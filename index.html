@@ -1,40 +1,82 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinu JS Entertainment - Watch Free Movies</title>
+<title>Vinu JS Entertainment</title>
 <style>
-body{margin:0;font-family:Arial;background:#111;color:#fff}
-header{background:#e50914;padding:15px;text-align:center;font-size:24px;font-weight:bold}
-.search{padding:20px;text-align:center}
-.search input{width:80%;max-width:400px;padding:12px;border-radius:25px;border:none;font-size:16px}
-.movies{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px;padding:20px}
-.card{background:#222;border-radius:10px;overflow:hidden;text-align:center}
-.card img{width:100%;height:220px;object-fit:cover}
-.card h3{font-size:14px;padding:10px;margin:0}
-.card button{background:#e50914;color:#fff;border:none;padding:8px 15px;border-radius:20px;margin-bottom:10px;cursor:pointer}
+body{margin:0;background:#000;color:#fff;font-family:Arial}
+header{background:red;padding:15px;text-align:center;font-size:22px;font-weight:bold}
+#search{width:90%;margin:15px 5%;padding:12px;border-radius:25px;border:none;font-size:16px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.card{background:#1a1a1a;border-radius:10px;overflow:hidden;text-align:center;padding-bottom:10px}
+.card img{width:100%;height:200px;object-fit:cover;background:#222}
+.card h3{font-size:14px;margin:10px 5px;height:32px}
+.btn{background:red;color:#fff;border:none;padding:8px 18px;border-radius:20px;cursor:pointer}
+#player{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999;display:none}
+#player video{width:100%;height:100%}
+#close{position:absolute;top:10px;right:15px;background:red;color:#fff;border:none;padding:8px 12px;border-radius:5px;z-index:1000}
 </style>
 </head>
 <body>
 <header>🎬 Vinu JS Entertainment</header>
-<div class="search"><input id="q" placeholder="Film Search Karo... (e.g. Pushpa)" onkeyup="search()"></div>
-<div class="movies" id="movies">Loading...</div>
+<input id="search" placeholder="Film Search Karo... (e.g. Pushpa)" onkeyup="searchFilms()">
+<div class="grid" id="movies">Loading...</div>
+
+<div id="player">
+<button id="close" onclick="closePlayer()">✖ Close</button>
+<video id="video" controls autoplay></video>
+</div>
+
 <script>
-const API="https://vinu-js-backend.onrender.com";
-async function load(q=""){
- let url=API+"/api/movies"+(q?"?search="+q:"");
- let res=await fetch(url);
- let data=await res.json();
- let html="";
- data.forEach(m=>{
-   html+=`<div class=card><img src="${m.poster||'https://via.placeholder.com/150x220?text=No+Image'}"><h3>${m.title}</h3><button onclick="play('${m._id}')">▶ Play</button></div>`;
- });
- document.getElementById("movies").innerHTML=html||"No Movies Found";
+const BACKEND = "https://vinu-js-backend.onrender.com";
+let allMovies = [];
+
+async function loadMovies(){
+try{
+let res = await fetch(BACKEND + "/api/movies");
+allMovies = await res.json();
+showMovies(allMovies);
+}catch(e){
+document.getElementById("movies").innerHTML = "Backend thoda time lega, 30 sec baad refresh karo. Render free server sota hai.";
 }
-function search(){ load(document.getElementById("q").value); }
-function play(id){ window.location.href=API+"/watch/"+id; }
-load();
+}
+
+function showMovies(list){
+let html = "";
+list.forEach(m=>{
+let poster = m.poster || m.image || "https://via.placeholder.com/300x400?text="+encodeURIComponent(m.title);
+let videoUrl = m.video || m.videoUrl || m.url || "";
+// ID sahi se nikalna
+let id = m._id || m.id || "";
+html += `<div class="card">
+<img src="${poster}" onerror="this.src='https://via.placeholder.com/300x400?text=No+Poster'">
+<h3>${m.title}</h3>
+<button class="btn" onclick="playMovie('${videoUrl}')">▶ Play</button>
+</div>`;
+});
+document.getElementById("movies").innerHTML = html || "No Movies Found";
+}
+
+function playMovie(url){
+if(!url){alert("Video Link Nahi Mila! Backend me video url check karo.");return;}
+document.getElementById("player").style.display="block";
+document.getElementById("video").src = url;
+}
+
+function closePlayer(){
+document.getElementById("player").style.display="none";
+document.getElementById("video").pause();
+document.getElementById("video").src="";
+}
+
+function searchFilms(){
+let q = document.getElementById("search").value.toLowerCase();
+let filtered = allMovies.filter(m=>m.title.toLowerCase().includes(q));
+showMovies(filtered);
+}
+
+loadMovies();
 </script>
 </body>
 </html>
