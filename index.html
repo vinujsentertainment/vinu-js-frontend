@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinu JS Entertainment - Watch Free Movies</title>
+<style>
+body{margin:0;font-family:Arial;background:#111;color:#fff}
+header{background:#e50914;padding:15px;text-align:center;font-size:24px;font-weight:bold}
+.search{padding:20px;text-align:center}
+.search input{width:80%;max-width:400px;padding:12px;border-radius:25px;border:none;font-size:16px}
+.movies{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:15px;padding:20px}
+.card{background:#222;border-radius:10px;overflow:hidden;text-align:center}
+.card img{width:100%;height:220px;object-fit:cover}
+.card h3{font-size:14px;padding:10px;margin:0}
+.card button{background:#e50914;color:#fff;border:none;padding:8px 15px;border-radius:20px;margin-bottom:10px;cursor:pointer}
+</style>
+</head>
+<body>
+<header>🎬 Vinu JS Entertainment</header>
+<div class="search"><input id="q" placeholder="Film Search Karo... (e.g. Pushpa)" onkeyup="search()"></div>
+<div class="movies" id="movies">Loading...</div>
+<script>
+const API="https://vinu-js-backend.onrender.com";
+async function load(q=""){
+ let url=API+"/api/movies"+(q?"?search="+q:"");
+ let res=await fetch(url);
+ let data=await res.json();
+ let html="";
+ data.forEach(m=>{
+   html+=`<div class=card><img src="${m.poster||'https://via.placeholder.com/150x220?text=No+Image'}"><h3>${m.title}</h3><button onclick="play('${m._id}')">▶ Play</button></div>`;
+ });
+ document.getElementById("movies").innerHTML=html||"No Movies Found";
+}
+function search(){ load(document.getElementById("q").value); }
+function play(id){ window.location.href=API+"/watch/"+id; }
+load();
+</script>
+</body>
+</html>
