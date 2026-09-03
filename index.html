@@ -1,124 +1,135 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>VLS - VINU 2.0 ENTERTAINMENT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VLS - VINU 2.0</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:system-ui,Arial}
-.top{position:sticky;top:0;z-index:10;background:#111;border-bottom:2px solid #ffcc00;padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
-.top b{color:#ffcc00;letter-spacing:1px}
-.pill{background:#ffcc00;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold}
-.wallet{margin:10px;background:linear-gradient(135deg,#1f1f1f,#2a2a2a);border:1.5px solid #ffcc00;border-radius:16px;padding:14px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.wallet.big{font-size:22px;color:#ffcc00;font-weight:800}
-.tabs{display:flex;gap:8px;overflow:auto;padding:8px 10px;position:sticky;top:52px;background:#070707;z-index:9}
-.tabs button{white-space:nowrap;background:#1a1a1a;border:1px solid #333;color:#fff;padding:8px 14px;border-radius:20px}
-.tabs button.active{background:#ffcc00;color:#000;border-color:#ffcc00;font-weight:bold}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:10px}
-@media(min-width:600px){.grid{grid-template-columns:repeat(4,1fr)}}
-.card{background:#151515;border:1px solid #262626;border-radius:16px;padding:10px;text-align:center;position:relative}
-.card img{width:54px;height:54px;border-radius:14px;background:#fff;object-fit:cover}
-.card.name{font-size:11px;margin:6px 0 2px 0;height:24px;overflow:hidden}
-.card.earn{font-size:10px;color:#ffcc00;font-weight:700}
-.card.btn{width:100%;margin-top:6px;background:#00c853;color:#fff;border:none;padding:6px 0;border-radius:8px;font-size:11px;font-weight:bold}
-.card.btn.ref{background:#2d2d2d;color:#ffcc00;border:1px dashed #ffcc00;margin-top:4px}
-.section-title{padding:14px 12px 2px 12px;color:#ffcc00;font-weight:800;letter-spacing:.5px}
-.ad-bar{margin:10px;background:#1a1a1a;border:1px dashed #ffcc00;border-radius:12px;padding:10px;display:flex;justify-content:space-between;align-items:center}
-.footer{margin:10px;background:#141414;border:1px solid #2a2a2a;border-radius:16px;padding:14px}
-.footer input{width:100%;padding:10px;margin:6px 0;border-radius:10px;border:1px solid #333;background:#0e0e0e;color:#fff}
-.footer.mainbtn{width:100%;background:#ffcc00;color:#000;border:none;padding:12px;border-radius:12px;font-weight:900;margin-top:8px}
-.refer-box{background:#1f1f1f;border-radius:12px;padding:10px;display:flex;justify-content:space-between;align-items:center;margin-top:8px;border:1px solid #333}
-#adModal{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:99;display:none;align-items:center;justify-content:center;padding:20px}
-#adModal.box{background:#111;border:2px solid #ffcc00;border-radius:20px;padding:20px;width:100%;max-width:320px;text-align:center}
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:Arial}
+.top{position:sticky;top:0;z-index:10;background:#111;border-bottom:2px solid #ffcc00;padding:10px;display:flex;justify-content:space-between}
+.top b{color:#ffcc00}.pill{background:#ffcc00;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:bold;margin-left:4px}
+.wallet{margin:10px;background:#1a1a1a;border:1.5px solid #ffcc00;border-radius:16px;padding:12px;display:flex;justify-content:space-between}
+.big{color:#ffcc00;font-size:22px;font-weight:800}
+.tabs{display:flex;gap:6px;overflow:auto;padding:8px;background:#070707;position:sticky;top:44px;z-index:9}
+.tabs button{background:#1a1a1a;border:1px solid #333;color:#fff;padding:7px 13px;border-radius:20px;white-space:nowrap}
+.tabs button.active{background:#ffcc00;color:#000;font-weight:bold}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px}
+.card{background:#151515;border:1px solid #262626;border-radius:14px;padding:8px;text-align:center}
+.card img{width:50px;height:50px;border-radius:12px;background:#fff}
+.name{font-size:11px;margin:5px 0;height:22px;overflow:hidden}.earn{font-size:11px;color:#ffcc00;font-weight:bold}
+.btn{width:100%;margin-top:5px;background:#00c853;color:#fff;border:none;padding:6px;border-radius:8px;font-size:11px;font-weight:bold}
+.btn2{width:100%;margin-top:4px;background:#222;border:1px dashed #ffcc00;color:#ffcc00;padding:4px;border-radius:6px;font-size:10px}
+.footer{margin:10px;background:#141414;border:1px solid #333;border-radius:14px;padding:12px}
+.footer input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #333;background:#000;color:#fff}
+.mainbtn{width:100%;background:#ffcc00;color:#000;border:none;padding:12px;border-radius:10px;font-weight:900}
+#adModal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:99}
+.box{background:#111;border:2px solid #ffcc00;border-radius:16px;padding:20px;text-align:center;width:90%;max-width:300px}
 </style>
 </head>
 <body>
-<div class="top"><b>VLS - VINU 2.0</b><div><span class="pill">Coins: <span id="coins">0</span></span> <span class="pill" style="background:#fff">₹<span id="bal">0</span></span></div></div>
+<div class="top"><b>VLS - VINU 2.0</b><div><span class="pill">₹<span id="bal">0</span></span><span class="pill">C: <span id="coins">0</span></span></div></div>
 
 <div class="wallet">
-<div><small>My Balance</small><div class="big">₹<span id="bal2">0</span></div><small>Today Earning ₹<span id="today">0</span></small><div class="refer-box"><span id="mycode" style="color:#ffcc00;font-weight:900">VINU0000</span><button onclick="copyCode()" style="background:#ffcc00;border:none;padding:5px 10px;border-radius:8px;font-weight:bold">COPY</button></div></div>
-<div style="text-align:right"><button onclick="daily()" style="background:#ffcc00;border:none;padding:8px 12px;border-radius:10px;font-weight:bold;width:100%">🎁 Daily +10</button><button onclick="spin()" style="background:#fff;color:#000;border:none;padding:8px 12px;border-radius:10px;font-weight:bold;width:100%;margin-top:8px">🎡 Spin & Win</button><button onclick="share()" style="background:#00c853;color:#fff;border:none;padding:8px 12px;border-radius:10px;font-weight:bold;width:100%;margin-top:8px">Refer & Earn ₹50</button></div>
+<div><small>My Balance</small><div class="big">₹<span id="bal2">0</span></div><small>Code: <b id="mycode" style="color:#ffcc00">VINU0000</b></small><br><button onclick="copyCode()" style="margin-top:6px;background:#333;color:#fff;border:1px solid #555;padding:4px 8px;border-radius:6px;font-size:10px">COPY CODE</button></div>
+<div><button onclick="daily()" style="width:100%;background:#ffcc00;border:none;padding:7px;border-radius:8px;font-weight:bold">🎁 Daily +10</button><button onclick="share()" style="width:100%;margin-top:6px;background:#25D366;color:#fff;border:none;padding:7px;border-radius:8px;font-weight:bold">Refer ₹50</button></div>
 </div>
 
-<div class="ad-bar"><div><b>🔥 Auto Ad Earning ON</b><br><small>Har 30 sec me Ad dekho, 5 Coins lo</small></div><button onclick="showAd()" style="background:#ffcc00;border:none;padding:8px 14px;border-radius:10px;font-weight:900">Watch Ad</button></div>
+<div style="margin:10px;background:#1a1a1a;border:1px dashed #ffcc00;border-radius:10px;padding:10px;display:flex;justify-content:space-between;align-items:center">
+<div><b>Auto Ad ON</b><br><small>Har 30 sec me Ad</small></div><button onclick="showAd()" style="background:#ffcc00;border:none;padding:6px 12px;border-radius:8px;font-weight:bold">Watch Ad +5</button>
+</div>
 
 <div class="tabs" id="tabs"></div>
 <div id="list"></div>
 
-<div class="section-title">Withdraw - Earning Se</div>
 <div class="footer">
-<input id="upi" placeholder="UPI ID (e.g. vinu@paytm)">
-<input id="amt" type="number" placeholder="Amount Min ₹100">
+<b>Withdraw - UPI</b>
+<input id="upi" placeholder="UPI ID - jaise 968517704@ybl">
+<input id="amt" type="number" placeholder="Min Amount 100">
 <button class="mainbtn" onclick="withdraw()">UPI PE PAISA MANGAO</button>
-<p style="font-size:10px;color:#888;margin-top:10px">Task: App Install > 30 Sec Open > Back > Coins Auto. Refer: Friend Install karega to aapko ₹50 milega. Fake Install se ID Block hogi.</p>
+<p style="font-size:9px;color:#888">Install -> Play Store khulega -> 30 sec baad paisa milega. Withdraw request seedha admin ke WhatsApp pe jayega.</p>
 </div>
 
-<div id="adModal"><div class="box"><h3 style="color:#ffcc00">📺 Ad Running...</h3><div style="font-size:50px">▶️</div><p id="adTimer">5 sec...</p><small>Ad dekhne par 5 Coins milenge</small><br><br><button id="claimBtn" onclick="claimAd()" disabled style="background:#444;color:#fff;border:none;padding:10px 20px;border-radius:10px;width:100%">Wait...</button></div></div>
+<div id="adModal"><div class="box"><h3 style="color:#ffcc00">Ad Chal Raha Hai...</h3><div style="font-size:40px">▶️</div><p id="timer">5</p><button id="claim" disabled onclick="claimAd()" style="width:100%;padding:10px;border-radius:8px;border:none;background:#444;color:#fff">Wait...</button></div></div>
 
 <script>
-const categories=["All","Social","OTT","Shopping","Payment","Gaming","Earning"];
+const OWNER_WHATSAPP="91968517704"; // Aapka Number jaha withdraw ayega
 const apps=[
-["Facebook","Social","https://img.icons8.com/color/96/facebook.png",22],["Instagram","Social","https://img.icons8.com/color/96/instagram-new.png",22],["WhatsApp","Social","https://img.icons8.com/color/96/whatsapp.png",20],["Telegram","Social","https://img.icons8.com/color/96/telegram-app.png",20],["Snapchat","Social","https://img.icons8.com/color/96/snapchat.png",18],["Twitter","Social","https://img.icons8.com/color/96/twitterx.png",18],["LinkedIn","Social","https://img.icons8.com/color/96/linkedin.png",15],["Truecaller","Social","https://img.icons8.com/color/96/truecaller.png",15],
-["Netflix","OTT","https://img.icons8.com/color/96/netflix.png",35],["YouTube","OTT","https://img.icons8.com/color/96/youtube-play.png",30],["Hotstar","OTT","https://img.icons8.com/color/96/disney-plus.png",30],["JioCinema","OTT","https://img.icons8.com/color/96/cinema.png",28],["MX Player","OTT","https://img.icons8.com/color/96/mx-player.png",20],["Spotify","OTT","https://img.icons8.com/color/96/spotify.png",22],
-["Amazon","Shopping","https://img.icons8.com/color/96/amazon.png",25],["Flipkart","Shopping","https://img.icons8.com/color/96/flipkart.png",25],["Myntra","Shopping","https://img.icons8.com/color/96/myntra.png",20],["Meesho","Shopping","https://img.icons8.com/color/96/shopping-bag.png",20],["Zomato","Shopping","https://img.icons8.com/color/96/zomato.png",20],
-["Google Pay","Payment","https://img.icons8.com/color/96/google-pay-india.png",35],["PhonePe","Payment","https://img.icons8.com/color/96/phone.png",35],["Paytm","Payment","https://img.icons8.com/color/96/paytm.png",35],["BHIM","Payment","https://img.icons8.com/color/96/bhim.png",25],
-["Dream11","Gaming","https://img.icons8.com/color/96/trophy.png",40],["Ludo King","Gaming","https://img.icons8.com/color/96/ludo.png",25],["Free Fire","Gaming","https://img.icons8.com/color/96/game-controller.png",30],["WinZo","Gaming","https://img.icons8.com/color/96/money.png",30],
-["RozDhan","Earning","https://img.icons8.com/color/96/coins.png",30],["TaskBucks","Earning","https://img.icons8.com/color/96/banknotes.png",30],["MPL","Earning","https://img.icons8.com/color/96/money-bag.png",35],["Upstox","Earning","https://img.icons8.com/color/96/stocks.png",50],["Groww","Earning","https://img.icons8.com/color/96/investment.png",50]
+["Facebook","Social","https://img.icons8.com/color/96/facebook.png",22,"com.facebook.katana"],
+["Instagram","Social","https://img.icons8.com/color/96/instagram-new.png",22,"com.instagram.android"],
+["WhatsApp","Social","https://img.icons8.com/color/96/whatsapp.png",20,"com.whatsapp"],
+["Telegram","Social","https://img.icons8.com/color/96/telegram-app.png",20,"org.telegram.messenger"],
+["Snapchat","Social","https://img.icons8.com/color/96/snapchat.png",18,"com.snapchat.android"],
+["Twitter","Social","https://img.icons8.com/color/96/twitter.png",18,"com.twitter.android"],
+["LinkedIn","Social","https://img.icons8.com/color/96/linkedin.png",15,"com.linkedin.android"],
+["Truecaller","Social","https://img.icons8.com/color/96/truecaller.png",15,"com.truecaller"],
+["Netflix","OTT","https://img.icons8.com/color/96/netflix.png",35,"com.netflix.mediaclient"],
+["YouTube","OTT","https://img.icons8.com/color/96/youtube-play.png",30,"com.google.android.youtube"],
+["Hotstar","OTT","https://img.icons8.com/color/96/disney-plus.png",30,"in.startv.hotstar"],
+["JioCinema","OTT","https://img.icons8.com/color/96/cinema.png",28,"com.jio.media.ondemand"],
+["MX Player","OTT","https://img.icons8.com/color/96/mx-player.png",20,"com.mxtech.videoplayer.ad"],
+["Spotify","OTT","https://img.icons8.com/color/96/spotify.png",22,"com.spotify.music"],
+["Amazon","Shopping","https://img.icons8.com/color/96/amazon.png",25,"com.amazon.mShop.android.shopping"],
+["Flipkart","Shopping","https://img.icons8.com/color/96/flipkart.png",25,"com.flipkart.android"],
+["Myntra","Shopping","https://img.icons8.com/color/96/myntra.png",20,"com.myntra.android"],
+["Zomato","Shopping","https://img.icons8.com/color/96/zomato.png",20,"application.com.zomato.activity"],
+["Google Pay","Payment","https://img.icons8.com/color/96/google-pay.png",35,"com.google.android.apps.nbu.paisa.user"],
+["PhonePe","Payment","https://img.icons8.com/color/96/phone.png",35,"com.phonepe.app"],
+["Paytm","Payment","https://img.icons8.com/color/96/paytm.png",35,"net.one97.paytm"],
+["BHIM","Payment","https://img.icons8.com/color/96/bhim.png",25,"in.org.npci.upiapp"],
+["Dream11","Gaming","https://img.icons8.com/color/96/trophy.png",40,"com.dream11sportsguru"],
+["Ludo King","Gaming","https://img.icons8.com/color/96/ludo.png",25,"com.ludo.king"],
+["Free Fire","Gaming","https://img.icons8.com/color/96/game-controller.png",30,"com.dts.freefireth"],
+["WinZo","Gaming","https://img.icons8.com/color/96/money.png",30,"com.winzo.ludo"],
+["RozDhan","Earning","https://img.icons8.com/color/96/coins.png",30,"com.rozdhan.wallet"],
+["Upstox","Earning","https://img.icons8.com/color/96/stocks.png",50,"in.upstox.pro"]
 ];
 let bal=parseInt(localStorage.getItem("vls_bal")||"0");
 let coins=parseInt(localStorage.getItem("vls_coins")||"0");
-let today=parseInt(localStorage.getItem("vls_today")||"0");
 let code=localStorage.getItem("vls_code")||"VINU"+Math.floor(1000+Math.random()*9000);
 localStorage.setItem("vls_code",code);
-let active="All";
-function renderTabs(){
-document.getElementById("tabs").innerHTML=categories.map(c=>`<button class="${active==c?'active':''}" onclick="setCat('${c}')">${c}</button>`).join("");
-}
+let active="All"; const cats=["All","Social","OTT","Shopping","Payment","Gaming","Earning"];
+function renderTabs(){document.getElementById("tabs").innerHTML=cats.map(c=>`<button class="${active==c?'active':''}" onclick="setCat('${c}')">${c}</button>`).join("")}
 function renderApps(){
-let filtered=active=="All"?apps:apps.filter(a=>a[1]==active);
-let byCat={}; filtered.forEach(a=>{if(!byCat[a[1]])byCat[a[1]]=[];byCat[a[1]].push(a)});
-let html="";
-Object.keys(byCat).forEach(cat=>{
-html+=`<div class="section-title">${cat} Apps - Earning</div><div class="grid">`;
-byCat[cat].forEach(app=>{
-html+=`<div class="card"><img src="${app[2]}" loading="lazy"><div class="name">${app[0]}</div><div class="earn">₹${app[3]}</div><button class="btn" onclick="install('${app[0]}',${app[3]})">Install</button><button class="btn ref" onclick="referApp('${app[0]}')">Refer ₹20</button></div>`;
-});
-html+=`</div>`;
-});
-document.getElementById("list").innerHTML=html;
+let f=active=="All"?apps:apps.filter(a=>a[1]==active);
+let g={};f.forEach(a=>{if(!g[a[1]])g[a[1]]=[];g[a[1]].push(a)});
+let h="";Object.keys(g).forEach(k=>{
+h+=`<div style="padding:10px 10px 0 10px;color:#ffcc00;font-weight:bold;font-size:12px">${k} Apps</div><div class="grid">`;
+g[k].forEach(a=>{
+h+=`<div class="card"><img src="${a[2]}"><div class="name">${a[0]}</div><div class="earn">₹${a[3]}</div><button class="btn" onclick="installApp('${a[0]}',${a[3]},'${a[4]}',this)">Install</button><button class="btn2" onclick="referApp('${a[0]}')">Refer ₹20</button></div>`;
+});h+=`</div>`;});
+document.getElementById("list").innerHTML=h;
 }
-function updateUI(){
-document.getElementById("bal").innerText=bal;
-document.getElementById("bal2").innerText=bal;
-document.getElementById("coins").innerText=coins;
-document.getElementById("today").innerText=today;
-document.getElementById("mycode").innerText=code;
-localStorage.setItem("vls_bal",bal);localStorage.setItem("vls_coins",coins);localStorage.setItem("vls_today",today);
-}
+function update(){document.getElementById("bal").innerText=bal;document.getElementById("bal2").innerText=bal;document.getElementById("coins").innerText=coins;document.getElementById("mycode").innerText=code;localStorage.setItem("vls_bal",bal);localStorage.setItem("vls_coins",coins);}
 function setCat(c){active=c;renderTabs();renderApps();}
-function install(name,amt){
-bal+=amt;coins+=amt;today+=amt;updateUI();
-let btn=event.target;let old=btn.innerText;btn.innerText="Installed ✓";btn.style.background="#444";
-setTimeout(()=>{alert(name+" Install Success! ₹"+amt+" Wallet me add ho gaya!");},300);
-}
-function referApp(name){
-let msg=`Maine ${name} App se ₹${Math.floor(Math.random()*30+20)} kamaye! Mera Refer Code: ${code} Link: https://vinu-js.netlify.app - VLS VINU 2.0`;
-window.open("https://wa.me/?text="+encodeURIComponent(msg));
-bal+=20;coins+=20;today+=20;updateUI();
-}
-function daily(){if(localStorage.getItem("vls_daily")==new Date().toDateString())return alert("Aaj ka bonus le liya!");bal+=10;coins+=10;today+=10;localStorage.setItem("vls_daily",new Date().toDateString());updateUI();alert("Daily +10 Added!");}
-function spin(){let win=[5,10,20,50][Math.floor(Math.random()*4)];bal+=win;coins+=win;today+=win;updateUI();alert("Spin Win! ₹"+win+" mila!");}
-function copyCode(){navigator.clipboard.writeText(code);alert("Refer Code Copied: "+code);}
-function share(){let msg=`VLS VINU 2.0 - Sabse Best Earning App! Roz ₹500 Kamao! Mera Code: ${code} Link: https://vinu-js.netlify.app`;window.open("https://wa.me/?text="+encodeURIComponent(msg));}
-function withdraw(){let u=document.getElementById("upi").value;let a=parseInt(document.getElementById("amt").value||"0");if(!u||a<100)return alert("UPI aur Min 100 likho");if(a>bal)return alert("Balance kam hai!");bal-=a;updateUI();alert("Withdraw Success! ₹"+a+" aapke UPI "+u+" pe 24hr me aayega");}
-function showAd(){
-document.getElementById("adModal").style.display="flex";let t=5;let iv=setInterval(()=>{
-t--;document.getElementById("adTimer").innerText=t+" sec...";
-if(t<=0){clearInterval(iv);document.getElementById("claimBtn").innerText="Claim 5 Coins";document.getElementById("claimBtn").disabled=false;document.getElementById("claimBtn").style.background="#ffcc00";document.getElementById("claimBtn").style.color="#000";}
+function installApp(name,amt,pkg,btn){
+btn.innerText="Opening...";
+window.open("https://play.google.com/store/apps/details?id="+pkg,"_blank");
+setTimeout(()=>{
+btn.innerText="Verifying 30s...";let t=30;
+let iv=setInterval(()=>{
+t--;btn.innerText=t+"s Wait...";
+if(t<=0){clearInterval(iv);bal+=amt;coins+=amt;update();btn.innerText="✓ ₹"+amt+" Added";btn.style.background="#444";alert(name+" Installed! ₹"+amt+" mil gaya!");}
+},1000);
 },1000);
 }
-function claimAd(){document.getElementById("adModal").style.display="none";bal+=5;coins+=5;today+=5;updateUI();document.getElementById("claimBtn").disabled=true;document.getElementById("claimBtn").innerText="Wait...";document.getElementById("claimBtn").style.background="#444";}
-setInterval(showAd,30000);
-renderTabs();renderApps();updateUI();
+function referApp(name){let msg=`Maine ${name} se paise kamaye! Mera Code: ${code} App: https://vinu-js.netlify.app`;window.open("https://wa.me/?text="+encodeURIComponent(msg));bal+=20;coins+=20;update();}
+function daily(){if(localStorage.getItem("vls_d")==new Date().toDateString())return alert("Aaj ka le liya!");bal+=10;coins+=10;localStorage.setItem("vls_d",new Date().toDateString());update();alert("Daily ₹10 Added");}
+function share(){let m=`VLS VINU 2.0 - Roz ₹500 Kamao! Code: ${code} Link: https://vinu-js.netlify.app`;window.open("https://wa.me/?text="+encodeURIComponent(m));}
+function copyCode(){navigator.clipboard.writeText(code);alert("Copied: "+code);}
+function withdraw(){
+let upi=document.getElementById("upi").value.trim();
+let amt=parseInt(document.getElementById("amt").value);
+if(!upi||amt<100)return alert("UPI aur Min 100 dalo");
+if(amt>bal)return alert("Balance kam hai! Balance: ₹"+bal);
+let msg=`🔔 NEW WITHDRAW REQUEST%0A%0AApp: VLS VINU 2.0%0AUPI: ${upi}%0AAmount: ₹${amt}%0ACoins: ${coins}%0AUser Code: ${code}%0ATime: ${new Date().toLocaleString()}%0A%0APlease Pay Manually`;
+bal-=amt;update();
+window.open(`https://wa.me/${OWNER_WHATSAPP}?text=${msg}`,"_blank");
+alert("Request Admin ko bhej di gayi! 24hr me paisa aayega!");
+document.getElementById("amt").value="";
+}
+function showAd(){document.getElementById("adModal").style.display="flex";let t=5;document.getElementById("claim").disabled=true;
+let iv=setInterval(()=>{t--;document.getElementById("timer").innerText=t+" sec";if(t<=0){clearInterval(iv);let b=document.getElementById("claim");b.innerText="Claim 5 Coins";b.disabled=false;b.style.background="#ffcc00";b.style.color="#000";}},1000);}
+function claimAd(){document.getElementById("adModal").style.display="none";bal+=5;coins+=5;update();alert("+5 Coins Added!");}
+renderTabs();renderApps();update();
 </script>
 </body>
 </html>
