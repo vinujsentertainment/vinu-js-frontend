@@ -2,130 +2,128 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VLS VINU 2.0 - MD Vinod Baidoriya</title>
+<title>VLS 3.0 - MD Vinod Baidoriya</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:Arial}
-.top{background:#000;border-bottom:2px solid #ffcc00;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-.founder{background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;padding:8px 12px;text-align:center;font-weight:900;font-size:12px;letter-spacing:.5px}
-.founder span{background:#000;color:#ffcc00;padding:2px 6px;border-radius:4px;margin-left:4px}
-.wallet{margin:10px;background:#151515;border:1.5px solid #ffcc00;border-radius:14px;padding:10px}
-.profit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:8px}
-.profit div{background:#000;border:1px solid #333;border-radius:8px;padding:6px;text-align:center}
-.profit b{color:#ffcc00;font-size:14px}
-.tabs{display:flex;gap:6px;overflow:auto;padding:8px;background:#070707;position:sticky;top:36px;z-index:9}
-.tabs button{background:#1a1a1a;border:1px solid #333;color:#fff;padding:6px 12px;border-radius:20px;white-space:nowrap;font-size:12px}
+*{box-sizing:border-box}body{margin:0;background:#0a0a0a;color:#fff;font-family:Arial}
+.top{background:#000;padding:8px 12px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;border-bottom:2px solid #ffcc00}
+.founder{background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;text-align:center;font-weight:900;font-size:11px;padding:6px}
+.card2{background:#151515;border:1px solid #222;border-radius:12px;padding:10px;margin:8px;display:flex;justify-content:space-between;align-items:center}
+.card2 img{width:45px;height:45px;border-radius:10px;background:#fff}
+.btn-play{background:#ffcc00;color:#000;border:none;padding:8px 14px;border-radius:20px;font-weight:900;font-size:12px}
+.btn-play2{background:#00e676;color:#000;border:none;padding:6px 10px;border-radius:8px;font-weight:bold;font-size:11px}
+.wallet{margin:10px;background:#111;border:1px dashed #ffcc00;border-radius:12px;padding:12px;text-align:center}
+.tabs{display:flex;gap:6px;overflow:auto;padding:8px}
+.tabs button{background:#1f1f1f;border:1px solid #333;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px;white-space:nowrap}
 .tabs button.active{background:#ffcc00;color:#000;font-weight:bold}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:8px}
-.card{background:#151515;border:1px solid #262626;border-radius:14px;padding:8px;text-align:center}
-.card img{width:48px;height:48px;border-radius:12px;background:#fff}
-.name{font-size:11px;margin:4px 0}.earn{font-size:10px;color:#aaa}.price{color:#ffcc00;font-weight:bold;font-size:12px}
-.btn{width:100%;margin-top:5px;background:#00c853;color:#fff;border:none;padding:6px;border-radius:8px;font-size:11px;font-weight:bold}
-.btn.use{background:#ffcc00;color:#000}
-.timer{font-size:9px;color:#25D366;margin-top:3px;font-weight:bold}
-.footer{margin:10px;background:#141414;border:1px solid #333;border-radius:12px;padding:12px}
-.footer input{width:100%;padding:10px;margin:5px 0;border-radius:8px;border:1px solid #333;background:#000;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+.task{background:#151515;border-radius:12px;padding:10px;text-align:center;border:1px solid #262626}
+#appViewer{position:fixed;inset:0;background:#000;z-index:999;display:none;flex-direction:column}
+#appViewer iframe{flex:1;border:none;width:100%;background:#fff}
+#viewerTop{background:#111;padding:8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #333}
+.footer{margin:10px;background:#141414;border-radius:12px;padding:12px}
+.footer input{width:100%;padding:10px;margin:5px 0;border-radius:8px;background:#000;border:1px solid #333;color:#fff}
 .mainbtn{width:100%;background:#ffcc00;color:#000;border:none;padding:12px;border-radius:10px;font-weight:900}
 </style>
 </head>
 <body>
-<div class="top"><b>VLS - VINU 2.0</b><div style="font-size:12px">₹<b id="bal" style="color:#ffcc00">0</b> | C:<b id="coins">0</b></div></div>
-<div class="founder">👑 MD & FOUNDER - <span>Mr. Vinod Baidoriya</span> | 70% Users | 30% Company</div>
+<div class="top"><b>VLS - VINU 3.0</b><div><span style="color:#ffcc00;font-weight:bold">C:<span id="coins">0</span></span> <span onclick="openAdmin()" style="color:#444;margin-left:6px">⚙️</span></div></div>
+<div class="founder">👑 MD & FOUNDER - Mr. Vinod Baidoriya | 70% Users | 30% Company</div>
 
 <div class="wallet">
-<div style="display:flex;justify-content:space-between"><div><small>My Balance (70%)</small><div style="color:#ffcc00;font-size:22px;font-weight:800">₹<span id="bal2">0</span></div></div><div style="text-align:right"><small>Code: <b id="mycode" style="color:#ffcc00">VINU0000</b></small><br><button onclick="daily()" style="margin-top:4px;background:#ffcc00;border:none;padding:6px 12px;border-radius:6px;font-weight:bold;font-size:11px">🎁 Daily +10</button></div></div>
-<div class="profit">
-<div><small>Total Profit</small><br><b id="totalProfit">₹0</b></div>
-<div><small>Users (70%)</small><br><b id="userProfit" style="color:#00e676">₹0</b></div>
-<div><small>Aapka (30%)</small><br><b id="myProfit" style="color:#ffcc00">₹0</b></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+<div onclick="doSpin()" style="background:#000;border-radius:8px;padding:8px;border:1px solid #333">🎡<br><b>Spin & Win</b><br><small style="color:#0f0">₹10-100</small></div>
+<div onclick="doScratch()" style="background:#000;border-radius:8px;padding:8px;border:1px solid #333">🎟️<br><b>Scratch</b><br><small style="color:#ffcc00">₹5-50</small></div>
+<div onclick="showAd()" style="background:#000;border-radius:8px;padding:8px;border:1px solid #333">📺<br><b>Watch Ad</b><br><small style="color:#ffcc00">₹5</small></div>
 </div>
-<div style="font-size:9px;color:#888;margin-top:6px;text-align:center">App jitna use hoga, utna earning. Har 1 Min Use = ₹1. Ad se company ko extra profit.</div>
+<div style="margin-top:10px;background:#000;border-radius:8px;padding:8px;border:1px solid #222">
+<small>🔒 Secret Earning (Withdraw pe dikhega)</small><br>
+<b style="color:#666">₹ ••••</b> <span style="font-size:10px;color:#888">Jitna app use karoge utna earning</span>
+<div style="font-size:10px;color:#25D366;margin-top:4px">✅ 1 Min Use = ₹2 | 70% Aapko | 30% MD ko</div>
+</div>
 </div>
 
 <div class="tabs" id="tabs"></div>
 <div id="list"></div>
 
 <div class="footer">
-<b>Withdraw - 70% Earning</b>
-<input id="upi" placeholder="UPI ID">
-<input id="amt" type="number" placeholder="Min ₹100">
+<b>🔓 Withdraw - Secret Earning Dekho</b>
+<p style="font-size:10px;color:#888">UPI dalo toh aapka total earning dikhega</p>
+<input id="upi" placeholder="UPI ID - 968517704@ybl">
+<button onclick="checkEarning()" style="width:100%;background:#222;color:#ffcc00;border:1px solid #ffcc00;padding:10px;border-radius:8px;margin:5px 0">💰 MERI EARNING DEKHO</button>
+<div id="earnBox" style="display:none;background:#000;border:1px solid #00e676;border-radius:8px;padding:10px;margin:5px 0;text-align:center"></div>
+<input id="amt" type="number" placeholder="Min ₹100 Withdraw">
 <button class="mainbtn" onclick="withdraw()">WITHDRAW KARO</button>
 </div>
+
+<div id="appViewer">
+<div id="viewerTop"><b id="vName">App</b><div><span id="vTimer" style="color:#0f0;font-weight:bold">00:00</span> <button onclick="closeViewer()" style="background:#ff0000;color:#fff;border:none;padding:6px 10px;border-radius:6px;margin-left:8px">X Close</button></div></div>
+<iframe id="vFrame" src=""></iframe>
+<div style="background:#111;padding:8px;text-align:center;font-size:11px">App use karte raho, upar timer se earning ho rahi hai! Min 30 sec use karo.</div>
+</div>
+
+<div id="adminPage" style="display:none;padding:12px"><h3 style="color:#ffcc00">ADMIN - Vinod Baidoriya</h3><div id="adminStats"></div><button onclick="location.hash='';location.reload()" style="margin-top:10px;width:100%;padding:10px;background:#222;color:#fff;border:1px solid #444;border-radius:8px">Back</button></div>
 
 <script>
 const OWNER="91968517704";
 const apps=[
-["Facebook","Social","https://img.icons8.com/color/96/facebook.png",22,"com.facebook.katana"],
-["Instagram","Social","https://img.icons8.com/color/96/instagram-new.png",22,"com.instagram.android"],
-["WhatsApp","Social","https://img.icons8.com/color/96/whatsapp.png",20,"com.whatsapp"],
-["Telegram","Social","https://img.icons8.com/color/96/telegram-app.png",20,"org.telegram.messenger"],
-["YouTube","OTT","https://img.icons8.com/color/96/youtube-play.png",30,"com.google.android.youtube"],
-["Netflix","OTT","https://img.icons8.com/color/96/netflix.png",35,"com.netflix.mediaclient"],
-["Hotstar","OTT","https://img.icons8.com/color/96/disney-plus.png",30,"in.startv.hotstar"],
-["Amazon","Shopping","https://img.icons8.com/color/96/amazon.png",25,"com.amazon.mShop.android.shopping"],
-["PhonePe","Payment","https://img.icons8.com/color/96/phone.png",35,"com.phonepe.app"],
-["Paytm","Payment","https://img.icons8.com/color/96/paytm.png",35,"net.one97.paytm"],
-["Dream11","Gaming","https://img.icons8.com/color/96/trophy.png",40,"com.dream11sportsguru"],
-["Free Fire","Gaming","https://img.icons8.com/color/96/game-controller.png",30,"com.dts.freefireth"],
-["RozDhan","Earning","https://img.icons8.com/color/96/coins.png",30,"com.rozdhan.wallet"]
+["Facebook","Social","https://img.icons8.com/color/96/facebook.png","https://m.facebook.com",22],
+["Instagram","Social","https://img.icons8.com/color/96/instagram-new.png","https://www.instagram.com",22],
+["YouTube","OTT","https://img.icons8.com/color/96/youtube-play.png","https://m.youtube.com",30],
+["Google","Search","https://img.icons8.com/color/96/google-logo.png","https://www.google.com",15],
+["Amazon","Shopping","https://img.icons8.com/color/96/amazon.png","https://www.amazon.in",25],
+["Flipkart","Shopping","https://img.icons8.com/color/96/flipkart.png","https://www.flipkart.com",25],
+["Hotstar","OTT","https://img.icons8.com/color/96/disney-plus.png","https://www.hotstar.com",30],
+["News","Earning","https://img.icons8.com/color/96/news.png","https://www.bhaskar.com",20],
+["Game","Gaming","https://img.icons8.com/color/96/game-controller.png","https://www.crazygames.com",35],
+["RozDhan","Earning","https://img.icons8.com/color/96/coins.png","https://www.google.com/search?q=earn+money+games",30]
 ];
-let bal=parseInt(localStorage.getItem("vls_bal")||"0");
-let coins=parseInt(localStorage.getItem("vls_coins")||"0");
-let total=parseInt(localStorage.getItem("vls_total")||"0");
-let code=localStorage.getItem("vls_code")||"VINU"+Math.floor(1000+Math.random()*9000);
-localStorage.setItem("vls_code",code);
-let active="All"; const cats=["All","Social","OTT","Shopping","Payment","Gaming","Earning"];
-let installed=JSON.parse(localStorage.getItem("vls_installed")||"{}");
+let bal=parseInt(localStorage.getItem("vls_bal")||"0"); let coins=parseInt(localStorage.getItem("vls_coins")||"0"); let total=parseInt(localStorage.getItem("vls_total")||"0");
+let code=localStorage.getItem("vls_code")||"VINU"+Math.floor(1000+Math.random()*9000); localStorage.setItem("vls_code",code);
+let active="All"; const cats=["All","Social","OTT","Shopping","Gaming","Earning","Search"];
+let withdrawals=JSON.parse(localStorage.getItem("vls_w")||"[]"); let usage=JSON.parse(localStorage.getItem("vls_use")||"{}");
 
 function renderTabs(){document.getElementById("tabs").innerHTML=cats.map(c=>`<button class="${active==c?'active':''}" onclick="setCat('${c}')">${c}</button>`).join("")}
 function renderApps(){
 let f=active=="All"?apps:apps.filter(a=>a[1]==active);
-let g={};f.forEach(a=>{if(!g[a[1]])g[a[1]]=[];g[a[1]].push(a)});
-let h="";Object.keys(g).forEach(k=>{
-h+=`<div style="padding:8px 10px 0;color:#ffcc00;font-weight:bold;font-size:12px">${k}</div><div class="grid">`;
-g[k].forEach(a=>{
-let isInstalled=installed[a[0]];
-h+=`<div class="card"><img src="${a[2]}"><div class="name">${a[0]}</div><div class="price">₹${a[3]} Install</div><div class="earn">Use = ₹1/min</div>
-${isInstalled?`<button class="btn use" onclick="useApp('${a[0]}',this)">▶️ USE & EARN</button><div class="timer" id="t-${a[0]}">${isInstalled.mins||0} min used</div>`:`<button class="btn" onclick="installApp('${a[0]}',${a[3]},'${a[4]}',this)">Install</button>`}
-</div>`;
-});h+=`</div>`;});
-document.getElementById("list").innerHTML=h;
-}
-function update(){
-document.getElementById("bal").innerText=bal;document.getElementById("bal2").innerText=bal;document.getElementById("coins").innerText=coins;document.getElementById("mycode").innerText=code;
-let myShare=Math.floor(total*0.3); let userShare=Math.floor(total*0.7);
-document.getElementById("totalProfit").innerText="₹"+total;
-document.getElementById("userProfit").innerText="₹"+userShare;
-document.getElementById("myProfit").innerText="₹"+myShare;
-localStorage.setItem("vls_bal",bal);localStorage.setItem("vls_coins",coins);localStorage.setItem("vls_total",total);localStorage.setItem("vls_installed",JSON.stringify(installed));
+let html=f.map(a=>`<div class="card2"><div style="display:flex;gap:10px;align-items:center"><img src="${a[2]}"><div><b style="font-size:13px">${a[0]}</b><br><small style="color:#888">₹${a[4]}/Play + ₹2/min Use</small><br><small style="color:#0f0">${usage[a[0]]||0} min used</small></div></div><button class="btn-play" onclick="openApp('${a[0]}','${a[3]}',${a[4]})">PLAY</button></div>`).join("");
+document.getElementById("list").innerHTML=html;
+document.getElementById("coins").innerText=coins;
 }
 function setCat(c){active=c;renderTabs();renderApps();}
-function installApp(name,amt,pkg,btn){
-btn.innerText="Opening Store...";
-window.open("https://play.google.com/store/apps/details?id="+pkg,"_blank");
-setTimeout(()=>{
-installed[name]={mins:0,amt:amt}; bal+=amt; total+=amt; coins+=amt; update(); renderApps();
-alert(name+" Download Started! Ab USE & EARN pe click karke app use karo, har minute ka paisa milega!");
-},1500);
-}
-function useApp(name,btn){
-btn.innerText="⏳ Using... Earning ON";
-window.open("https://play.google.com/store/apps/details?id="+apps.find(a=>a[0]==name)[4],"_blank");
-let sec=0;
+function openApp(name,url,reward){
+document.getElementById("appViewer").style.display="flex"; document.getElementById("vName").innerText=name; document.getElementById("vFrame").src=url;
+let sec=0; let timer=document.getElementById("vTimer");
 let iv=setInterval(()=>{
-sec++; btn.innerText=`Earning... ${sec}s`;
-if(sec>=60){clearInterval(iv); installed[name].mins=(installed[name].mins||0)+1; let earn=1; bal+=earn; total+=earn; coins+=earn; update(); renderApps(); alert(name+" 1 Min Use Complete! ₹1 Added! Jitna use karoge utna paisa! (70% aapko, 30% MD ko)"); }
+sec++; let m=Math.floor(sec/60); timer.innerText=(m<10?"0"+m:m)+":"+(sec%60<10?"0"+(sec%60):sec%60);
+if(sec==10){ bal+=reward; total+=reward; coins+=reward; update(); }
+if(sec%60==0 && sec>0){ bal+=2; total+=2; coins+=2; usage[name]=(usage[name]||0)+1; update(); }
 },1000);
+document.getElementById("appViewer").dataset.iv=iv;
 }
-function daily(){if(localStorage.getItem("vls_d")==new Date().toDateString())return alert("Aaj ka le liya!");bal+=10;total+=10;localStorage.setItem("vls_d",new Date().toDateString());update();alert("+10 Added");}
+function closeViewer(){
+clearInterval(parseInt(document.getElementById("appViewer").dataset.iv));
+document.getElementById("appViewer").style.display="none"; document.getElementById("vFrame").src=""; renderApps();
+alert("Earning add ho gayi! Withdraw me jaake dekho!");
+}
+function update(){localStorage.setItem("vls_bal",bal);localStorage.setItem("vls_coins",coins);localStorage.setItem("vls_total",total);localStorage.setItem("vls_use",JSON.stringify(usage)); document.getElementById("coins").innerText=coins;}
+function doSpin(){let win=Math.floor(10+Math.random()*90); bal+=win; total+=win; coins+=win; update(); alert("🎡 Spin Win! ₹"+win+" Jeete! (Secret me add ho gaya)");}
+function doScratch(){let win=Math.floor(5+Math.random()*45); bal+=win; total+=win; coins+=win; update(); alert("🎟️ Scratch! ₹"+win+" Mila! Withdraw pe dikhega");}
+function showAd(){alert("📺 Ad dikh raha hai... 5 sec..."); setTimeout(()=>{bal+=5; total+=5; coins+=5; update(); alert("+₹5 Added Secretly!");},5000);}
+function checkEarning(){
+let upi=document.getElementById("upi").value; if(!upi)return alert("Pehle UPI dalo");
+let box=document.getElementById("earnBox"); box.style.display="block";
+let userShare=Math.floor(total*0.7); // Actually bal is already user share, but we show as per your 70%
+box.innerHTML=`<small>Code: ${code}</small><br><b style="font-size:20px;color:#00e676">₹${bal} Earning</b><br><small>Total Business: ₹${total}</small><br><small>Your 70%: ₹${bal} | MD Vinod 30%: ₹${Math.floor(total*0.3)}</small>`;
+}
 function withdraw(){
 let upi=document.getElementById("upi").value; let amt=parseInt(document.getElementById("amt").value);
-if(!upi||amt<100)return alert("UPI aur 100 Min"); if(amt>bal)return alert("Balance kam hai");
-let msg=`🔔 WITHDRAW%0AMember: ${code}%0AUPI: ${upi}%0AAmt: ₹${amt} (70%)%0ACompany Profit (30%): ₹${Math.floor(amt*30/70)}%0ATotal Biz: ₹${total}`;
-bal-=amt;update();
-window.open(`https://wa.me/${OWNER}?text=${msg}`,"_blank");
-alert("Withdraw request MD Vinod Baidoriya ko bhej diya!");
+if(!upi||amt<100)return alert("UPI aur Min 100"); if(amt>bal)return alert("Balance kam hai. Earning Dekho dabao, Balance: ₹"+bal);
+let data={upi,amt,code,date:new Date().toLocaleString()}; withdrawals.unshift(data); localStorage.setItem("vls_w",JSON.stringify(withdrawals));
+bal-=amt; update(); let msg=`🔔 WITHDRAW VLS 3.0%0ACode:${code}%0AUPI:${upi}%0AAmt:₹${amt}%0AMD 30%:₹${Math.floor(total*0.3)}%0ATotal Biz:₹${total}`;
+window.open(`https://wa.me/${OWNER}?text=${msg}`,"_blank"); alert("Withdraw MD ko bhej diya!");
 }
-renderTabs();renderApps();update();
+function openAdmin(){let p=prompt("Admin Password:"); if(p=="VINU2025"){document.getElementById("adminPage").style.display="block"; document.getElementById("adminStats").innerHTML=`Total: ₹${total} | MD 30%: ₹${Math.floor(total*0.3)} | User Earning: ₹${bal}<br><br>Withdrawals:<br>${withdrawals.map(w=>`₹${w.amt} - ${w.upi} - ${w.date}`).join("<br>")||"No Data"}`;}}
+renderTabs();renderApps();
 </script>
 </body>
 </html>
