@@ -4,66 +4,97 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VINU JS - Earning OTT</title>
 <style>
-body{margin:0;background:#000;color:#fff;font-family:sans-serif}
-.header{background:#111;padding:15px;display:flex;justify-content:space-between;align-items:center}
-.wallet{background:linear-gradient(45deg,gold,orange);color:#000;padding:15px;border-radius:15px;margin:15px}
-.btn{background:#ff0055;color:#fff;border:none;padding:10px 15px;border-radius:8px;margin:5px;font-weight:bold}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:15px}
+body{margin:0;background:#000;color:#fff;font-family:Arial}
+.header{background:#111;padding:15px;display:flex;justify-content:space-between}
+.wallet{background: linear-gradient(45deg,gold,orange);color:#000;padding:15px;margin:10px;border-radius:10px}
+.btn{background:#ff0055;color:#fff;border:none;padding:8px 15px;border-radius:20px;margin:5px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
 .card{background:#222;border-radius:10px;overflow:hidden}
-.card img{width:100%;height:150px;object-fit:cover}
+.card img{width:100%;height:200px;object-fit:cover}
 .card div{padding:10px}
+#player{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:99;display:none;flex-direction:column}
+#player video{width:100%;flex:1}
 </style>
 </head>
 <body>
-<div class="header">
-  <b>VINU JS OTT</b>
-  <span id="user">Vinod</span>
-</div>
-
+<div class="header"><b>VINU JS OTT</b><span id="user">Vinod</span></div>
 <div class="wallet">
-  <h3 style="margin:0">💰 Wallet: <span id="balance">₹0</span></h3>
-  <p style="margin:5px 0">Coins: <span id="coins">0</span> | Refer: <b id="referCode">LOADING</b></p>
-  <button class="btn" onclick="dailyReward()">Daily 10 Coins</button>
-  <button class="btn" onclick="shareRefer()" style="background:#25D366">Refer & Earn 50 Coins</button>
+<h3 style="margin:0">💰 Wallet: <span id="balance">0</span> Coins</h3>
+<p style="margin:5px 0">Coins: <span id="coins">0</span> | Refer: <span id="referCode">VINU0000</span></p>
+<button class="btn" onclick="dailyReward()">Daily 10 Coins</button>
+<button class="btn" style="background:green" onclick="shareRefer()">Refer & Earn 50</button>
 </div>
-
 <div class="grid" id="movies"></div>
+
+<div id="player">
+<div style="padding:10px;display:flex;justify-content:space-between"><b id="mTitle"></b><button onclick="closePlayer()" style="background:red;color:#fff;border:none;padding:5px 10px;border-radius:5px">X Close</button></div>
+<video id="video" controls autoplay></video>
+</div>
 
 <script>
 const API = "https://vinu-js-backend.onrender.com";
 let mobile = localStorage.getItem("mobile");
-if(!mobile){ mobile = "9685" + Math.floor(10000000*Math.random()); localStorage.setItem("mobile", mobile); }
+if(!mobile){ mobile = "9685"+Math.floor(1000000+Math.random()*9000000); localStorage.setItem("mobile",mobile); }
+
+// Real Posters
+const posters = {
+"Pushpa 2":"https://m.media-amazon.com/images/M/MV5BMDQxZGI1MzItY2M5OS00MzdmLTgwZDUtZGU3NGVlMWEzMWRkXkEyXkFqcGdeQXVyMTUyNjIwMDEwMg@@._V1_.jpg",
+"KGF":"https://m.media-amazon.com/images/M/MV5BNDIwYjM0ODgtYjQzMi00N2M0LThhY2MtMWE3YzA0Y2RmOWZjXkEyXkFqcGdeQXVyMTI1NDEyNTM5Mw@@._V1_.jpg",
+"Salaar":"https://m.media-amazon.com/images/M/MV5BZDQzOTc1NzMtN2QyNS00MjM2LWI1N2MtZDJkM2I1MGRjMGIyXkEyXkFqcGdeQXVyMTUyNjIwMDEwMg@@._V1_.jpg",
+"RRR":"https://m.media-amazon.com/images/M/MV5BODUwNDNjM2YtZmFlYi00M2FhLWJkMGQtOWEyNWY2MWUzY2E1XkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_.jpg",
+"Animal":"https://m.media-amazon.com/images/M/MV5BNmI5MmY3YjQtMTkyOC00NGI1LWI4NzYtYmY5Y2VlM2E0YjhmXkEyXkFqcGdeQXVyMTUyNjIwMDEwMg@@._V1_.jpg",
+"Jawan":"https://m.media-amazon.com/images/M/MV5BOGFiMTgyYzItMjA1Yi00OGM1LTg0MWUtMWRkZTBmN2QxMWIzXkEyXkFqcGdeQXVyMTUzNTgzNzM0._V1_.jpg"
+};
 
 async function load(){
-  let r = await fetch(API+"/api/movies"); let list = await r.json();
-  let html="";
-  list.forEach(m=>{
-    html+=`<div class="card"><img src="${m.poster}"><div><b>${m.title}</b><br><small>${m.year}</small><br><button class="btn" onclick="watchMovie(${m.id})">▶ Watch & Earn 5 Coins</button></div></div>`;
-  });
-  document.getElementById("movies").innerHTML=html;
-  showWallet();
+try{
+let r = await fetch(API+"/api/movies"); let list = await r.json();
+let html="";
+list.forEach(m=>{
+let realPoster = posters[Object.keys(posters).find(k=>m.title.includes(k))] || m.poster;
+html+=`<div class="card"><img src="${realPoster}" onerror="this.src='https://via.placeholder.com/300x450?text=${m.title}'"><div><b>${m.title}</b><br>${m.year||2024}<br><button class="btn" onclick="watchMovie('${m._id||m.id}','${m.title}')">▶ Watch & Earn 5 Coins</button></div></div>`;
+});
+document.getElementById("movies").innerHTML=html;
+showWallet();
+}catch(e){ document.getElementById("movies").innerHTML="Loading... Backend start ho raha hai, 30 sec me refresh karo"; }
 }
+
 async function showWallet(){
-  try{
-    let r = await fetch(API+"/api/wallet/"+mobile); let d = await r.json();
-    document.getElementById("coins").innerText = d.coins || 0;
-    document.getElementById("balance").innerText = "₹"+Math.floor((d.coins||0)/2);
-    document.getElementById("referCode").innerText = d.referral_code || "VINU0000";
-  }catch(e){}
+try{
+let r = await fetch(API+"/api/wallet/"+mobile); let d = await r.json();
+document.getElementById("coins").innerText = d.coins||0;
+document.getElementById("balance").innerText = d.coins||0;
+document.getElementById("referCode").innerText = d.referCode||"VINU0000";
+}catch(e){}
 }
+
 async function dailyReward(){
-  await fetch(API+"/api/reward/daily",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile})});
-  alert("10 Coins Added! ✅"); showWallet();
+await fetch(API+"/api/reward/daily",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile})});
+alert("10 Coins Added! 💰"); showWallet();
 }
-async function watchMovie(id){
-  await fetch(API+"/api/reward/watch",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile,movieId:id})});
-  alert("Video Dekha - 5 Coins Mile! 💰"); showWallet();
-  window.open(API+"/api/movies","_blank");
+
+async function watchMovie(id,title){
+try{
+let r = await fetch(API+"/api/movies/"+id); let m = await r.json();
+document.getElementById("mTitle").innerText=title;
+let v = document.getElementById("video");
+v.src = m.videoUrl || "https://www.w3schools.com/html/mov_bbb.mp4";
+document.getElementById("player").style.display="flex";
+v.play();
+await fetch(API+"/api/reward/watch",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile,movieId:id})});
+setTimeout(()=>{ showWallet(); },2000);
+}catch(e){ alert("Video load nahi hua, backend 30 sec me start hoga"); }
 }
+
+function closePlayer(){
+document.getElementById("player").style.display="none";
+document.getElementById("video").pause();
+}
+
 function shareRefer(){
-  let code = document.getElementById("referCode").innerText;
-  let msg = `Vinu JS OTT Join Karo! Mera Refer Code: ${code} - 25 Coins Free! Link: https://github.com/vinujsentertainment/vinu-js-frontend`;
-  window.open("https://wa.me/?text="+encodeURIComponent(msg));
+let code = document.getElementById("referCode").innerText;
+let msg = `Vinu JS OTT Join Karo! Mera Refer Code: ${code} Link: https://vinu-js.netlify.app`;
+window.open("https://wa.me/?text="+encodeURIComponent(msg));
 }
 load();
 </script>
