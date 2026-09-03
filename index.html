@@ -1,82 +1,71 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinu JS Entertainment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VINU JS - Earning OTT</title>
 <style>
-body{margin:0;background:#000;color:#fff;font-family:Arial}
-header{background:red;padding:15px;text-align:center;font-size:22px;font-weight:bold}
-#search{width:90%;margin:15px 5%;padding:12px;border-radius:25px;border:none;font-size:16px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
-.card{background:#1a1a1a;border-radius:10px;overflow:hidden;text-align:center;padding-bottom:10px}
-.card img{width:100%;height:200px;object-fit:cover;background:#222}
-.card h3{font-size:14px;margin:10px 5px;height:32px}
-.btn{background:red;color:#fff;border:none;padding:8px 18px;border-radius:20px;cursor:pointer}
-#player{position:fixed;top:0;left:0;width:100%;height:100%;background:#000;z-index:999;display:none}
-#player video{width:100%;height:100%}
-#close{position:absolute;top:10px;right:15px;background:red;color:#fff;border:none;padding:8px 12px;border-radius:5px;z-index:1000}
+body{margin:0;background:#000;color:#fff;font-family:sans-serif}
+.header{background:#111;padding:15px;display:flex;justify-content:space-between;align-items:center}
+.wallet{background:linear-gradient(45deg,gold,orange);color:#000;padding:15px;border-radius:15px;margin:15px}
+.btn{background:#ff0055;color:#fff;border:none;padding:10px 15px;border-radius:8px;margin:5px;font-weight:bold}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:15px}
+.card{background:#222;border-radius:10px;overflow:hidden}
+.card img{width:100%;height:150px;object-fit:cover}
+.card div{padding:10px}
 </style>
 </head>
 <body>
-<header>🎬 Vinu JS Entertainment</header>
-<input id="search" placeholder="Film Search Karo... (e.g. Pushpa)" onkeyup="searchFilms()">
-<div class="grid" id="movies">Loading...</div>
-
-<div id="player">
-<button id="close" onclick="closePlayer()">✖ Close</button>
-<video id="video" controls autoplay></video>
+<div class="header">
+  <b>VINU JS OTT</b>
+  <span id="user">Vinod</span>
 </div>
 
+<div class="wallet">
+  <h3 style="margin:0">💰 Wallet: <span id="balance">₹0</span></h3>
+  <p style="margin:5px 0">Coins: <span id="coins">0</span> | Refer: <b id="referCode">LOADING</b></p>
+  <button class="btn" onclick="dailyReward()">Daily 10 Coins</button>
+  <button class="btn" onclick="shareRefer()" style="background:#25D366">Refer & Earn 50 Coins</button>
+</div>
+
+<div class="grid" id="movies"></div>
+
 <script>
-const BACKEND = "https://vinu-js-backend.onrender.com";
-let allMovies = [];
+const API = "https://vinu-js-backend.onrender.com";
+let mobile = localStorage.getItem("mobile");
+if(!mobile){ mobile = "9685" + Math.floor(10000000*Math.random()); localStorage.setItem("mobile", mobile); }
 
-async function loadMovies(){
-try{
-let res = await fetch(BACKEND + "/api/movies");
-allMovies = await res.json();
-showMovies(allMovies);
-}catch(e){
-document.getElementById("movies").innerHTML = "Backend thoda time lega, 30 sec baad refresh karo. Render free server sota hai.";
+async function load(){
+  let r = await fetch(API+"/api/movies"); let list = await r.json();
+  let html="";
+  list.forEach(m=>{
+    html+=`<div class="card"><img src="${m.poster}"><div><b>${m.title}</b><br><small>${m.year}</small><br><button class="btn" onclick="watchMovie(${m.id})">▶ Watch & Earn 5 Coins</button></div></div>`;
+  });
+  document.getElementById("movies").innerHTML=html;
+  showWallet();
 }
+async function showWallet(){
+  try{
+    let r = await fetch(API+"/api/wallet/"+mobile); let d = await r.json();
+    document.getElementById("coins").innerText = d.coins || 0;
+    document.getElementById("balance").innerText = "₹"+Math.floor((d.coins||0)/2);
+    document.getElementById("referCode").innerText = d.referral_code || "VINU0000";
+  }catch(e){}
 }
-
-function showMovies(list){
-let html = "";
-list.forEach(m=>{
-let poster = m.poster || m.image || "https://via.placeholder.com/300x400?text="+encodeURIComponent(m.title);
-let videoUrl = m.video || m.videoUrl || m.url || "";
-// ID sahi se nikalna
-let id = m._id || m.id || "";
-html += `<div class="card">
-<img src="${poster}" onerror="this.src='https://via.placeholder.com/300x400?text=No+Poster'">
-<h3>${m.title}</h3>
-<button class="btn" onclick="playMovie('${videoUrl}')">▶ Play</button>
-</div>`;
-});
-document.getElementById("movies").innerHTML = html || "No Movies Found";
+async function dailyReward(){
+  await fetch(API+"/api/reward/daily",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile})});
+  alert("10 Coins Added! ✅"); showWallet();
 }
-
-function playMovie(url){
-if(!url){alert("Video Link Nahi Mila! Backend me video url check karo.");return;}
-document.getElementById("player").style.display="block";
-document.getElementById("video").src = url;
+async function watchMovie(id){
+  await fetch(API+"/api/reward/watch",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({mobile,movieId:id})});
+  alert("Video Dekha - 5 Coins Mile! 💰"); showWallet();
+  window.open(API+"/api/movies","_blank");
 }
-
-function closePlayer(){
-document.getElementById("player").style.display="none";
-document.getElementById("video").pause();
-document.getElementById("video").src="";
+function shareRefer(){
+  let code = document.getElementById("referCode").innerText;
+  let msg = `Vinu JS OTT Join Karo! Mera Refer Code: ${code} - 25 Coins Free! Link: https://github.com/vinujsentertainment/vinu-js-frontend`;
+  window.open("https://wa.me/?text="+encodeURIComponent(msg));
 }
-
-function searchFilms(){
-let q = document.getElementById("search").value.toLowerCase();
-let filtered = allMovies.filter(m=>m.title.toLowerCase().includes(q));
-showMovies(filtered);
-}
-
-loadMovies();
+load();
 </script>
 </body>
 </html>
