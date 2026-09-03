@@ -2,319 +2,156 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>VLS 4.2 FINAL 196 APPS - MD Vinod Baidoriya</title>
+<title>VLS 4.3 FINAL - MD Vinod Baidoriya</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:Arial}
+*{box-sizing:border-box}body{margin:0;background:#070707;color:#fff;font-family:Arial;padding-bottom:70px}
 .top{background:#000;padding:10px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:100;border-bottom:2px solid #ffcc00}
-.founder{background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;text-align:center;font-weight:900;font-size:10px;padding:6px}
-.wallet{margin:10px;background:#111;border:1px dashed #ffcc00;border-radius:12px;padding:10px;text-align:center}
+.founder{background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;text-align:center;font-weight:900;font-size:9px;padding:5px}
 .tabs{display:flex;gap:6px;overflow:auto;padding:8px;position:sticky;top:40px;background:#070707;z-index:90}
 .tabs button{background:#1a1a1a;border:1px solid #333;color:#fff;padding:7px 13px;border-radius:20px;font-size:11px;white-space:nowrap}
 .tabs button.active{background:#ffcc00;color:#000;font-weight:bold}
 .card{background:#151515;border:1px solid #222;border-radius:12px;padding:8px;margin:5px 8px;display:flex;justify-content:space-between;align-items:center}
 .card img{width:44px;height:44px;border-radius:10px;background:#fff}
 .btn{background:#ffcc00;color:#000;border:none;padding:8px 16px;border-radius:20px;font-weight:900;font-size:12px}
-.footer{margin:10px;background:#141414;border-radius:12px;padding:12px}
-.footer input{width:100%;padding:11px;margin:5px 0;border-radius:8px;background:#000;border:1px solid #333;color:#fff}
-.mainbtn{width:100%;background:#ffcc00;color:#000;border:none;padding:12px;border-radius:10px;font-weight:900}
-#running{position:fixed;bottom:10px;left:10px;right:10px;background:#000;border:2px solid #0f0;border-radius:12px;padding:12px;display:none;z-index:999;text-align:center}
-#adminPage{display:none;padding:12px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #ffcc00;display:flex;justify-content:space-around;padding:8px;z-index:999}
+.bottom button{background:none;border:none;color:#aaa;font-size:11px;text-align:center}
+.bottom button.active{color:#ffcc00;font-weight:bold}
+.page{display:none;padding:10px}.page.active{display:block}
+.box{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
+.mainbtn{width:100%;background:#ffcc00;color:#000;border:none;padding:12px;border-radius:10px;font-weight:900;margin-top:8px}
+input{width:100%;padding:11px;margin:5px 0;border-radius:8px;background:#000;border:1px solid #333;color:#fff}
+#running{position:fixed;bottom:70px;left:10px;right:10px;background:#000;border:2px solid #0f0;border-radius:12px;padding:12px;display:none;z-index:998;text-align:center}
 </style>
 </head>
 <body>
-<div id="userPage">
-<div class="top"><b>VLS 4.2 FINAL 196 APPS</b><div>C:<b id="coins" style="color:#ffcc00">677</b> <span onclick="openAdmin()" style="margin-left:8px">⚙️</span></div></div>
-<div class="founder">👑 MD & FOUNDER - Mr. Vinod Baidoriya | 70% USERS | 30% COMPANY | 196 APPS | DIRECT PLAY</div>
-<div class="wallet">
+
+<div class="top"><b>VLS 4.3 FINAL 216 APPS</b><div>C:<b id="coins" style="color:#ffcc00">677</b> <span onclick="openAdmin()">⚙️</span></div></div>
+<div class="founder">👑 MD & FOUNDER - Mr. Vinod Baidoriya | 70% USERS | 30% COMPANY | 216 APPS | PAYMENT BANK ADDED</div>
+
+<!-- HOME PAGE -->
+<div id="homePage" class="page active">
+<div class="box" style="text-align:center;border:1px dashed #ffcc00">
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
-<div onclick="addMoney(50)" style="background:#000;border:1px solid #333;border-radius:8px;padding:8px">🎡<br><b>Spin</b><br><small style="color:#0f0">₹10-100</small></div>
-<div onclick="addMoney(25)" style="background:#000;border:1px solid #333;border-radius:8px;padding:8px">🎟️<br><b>Scratch</b><br><small style="color:#ffcc00">₹5-50</small></div>
-<div onclick="addMoney(5)" style="background:#000;border:1px solid #333;border-radius:8px;padding:8px">📺<br><b>Ad</b><br><small>₹5/Ad</small></div>
+<div onclick="addMoney(50)" style="background:#000;border-radius:8px;padding:8px;border:1px solid #333">🎡<br><b>Spin</b><br><small style="color:#0f0">₹10-100</small></div>
+<div onclick="addMoney(25)" style="background:#000;border-radius:8px;padding:8px;border:1px solid #333">🎟️<br><b>Scratch</b><br><small style="color:#ffcc00">₹5-50</small></div>
+<div onclick="addMoney(5)" style="background:#000;border-radius:8px;padding:8px;border:1px solid #333">📺<br><b>Ad</b><br><small>₹5</small></div>
 </div>
-<div style="margin-top:6px;font-size:10px;color:#25D366">✅ FIXED: PLAY = Original App Direct Open | 1 Min = ₹2 | No Iframe Block</div>
 </div>
 <div class="tabs" id="tabs"></div>
 <div id="list"></div>
-<div class="footer">
-<b>🔓 Real Withdrawal - UPI</b>
+</div>
+
+<!-- EARNING PAGE - ALAG -->
+<div id="earnPage" class="page">
+<h2 style="color:#ffcc00">💰 Earning Options & Amount</h2>
+<div class="box" style="border:1px solid #0f0;text-align:center"><small>Total Secret Earning</small><br><b id="eTotal" style="font-size:28px;color:#0f0">₹677</b><br><small id="eCode">Code: VINU677</small></div>
+<div class="box"><b>💵 Kaise Kamaya:</b><br>
+- App PLAY: <span id="ePlay">₹0</span><br>
+- Spin/Scratch/Ad: <span id="eTask">₹0</span><br>
+- 1 Min Use = ₹2: <span id="eMin">0 min</span><br>
+- Total Business: <span id="eBiz">₹950</span><br>
+- MD 30%: <span id="eMD" style="color:#ffcc00">₹285</span> | Aapka 70%: <span id="eYou" style="color:#0f0">₹677</span>
+</div>
+<div class="box"><b>📱 Top Used Apps</b><div id="eTop"></div></div>
+<button class="mainbtn" onclick="goPage('home')">Back to Apps</button>
+</div>
+
+<!-- WITHDRAW HISTORY PAGE - ALAG -->
+<div id="historyPage" class="page">
+<h2 style="color:#ffcc00">🏧 Withdrawal History</h2>
+<div class="box">
+<b>🔓 New Withdrawal</b>
 <input id="upi" placeholder="UPI ID - 968517704@ybl">
-<button onclick="checkEarn()" style="width:100%;background:#222;color:#ffcc00;border:1px solid #ffcc00;padding:10px;border-radius:8px;margin:5px 0">💰 MERI EARNING DEKHO</button>
-<div id="earnBox" style="display:none;background:#000;border:1px solid #0f0;border-radius:8px;padding:10px;text-align:center"></div>
-<input id="amt" type="number" placeholder="Min ₹100 Withdraw">
+<input id="amt" type="number" placeholder="Amount Min ₹100">
 <button class="mainbtn" onclick="withdraw()">REAL WITHDRAW KARO</button>
 </div>
+<div class="box"><b>📜 History - Earning Amount Withdrawal</b><div id="hList"></div></div>
 </div>
 
-<div id="running">
-<b id="rName" style="color:#ffcc00">App</b> - Timer: <b id="rTimer" style="color:#0f0">00:00</b><br>
-<small style="color:#aaa">App open ho gaya hai! Use karo, wapas aake niche button dabao</small><br>
-<button onclick="collectMoney()" style="background:#0f0;color:#000;border:none;padding:10px 20px;border-radius:20px;margin-top:8px;font-weight:900">✅ EARNING COLLECT KARO</button>
+<!-- ADMIN -->
+<div id="adminPage" class="page">
+<h2 style="color:#ffcc00">👑 ADMIN - Vinod Baidoriya</h2>
+<div id="aStats" class="box" style="border:1px solid #ffcc00"></div>
+<div id="wList" class="box"></div>
+<button onclick="goPage('home')" style="width:100%;padding:11px;background:#222;color:#fff;border-radius:8px;border:1px solid #444">Back</button>
 </div>
 
-<div id="adminPage">
-<h2 style="color:#ffcc00">👑 ADMIN PANEL - Mr. Vinod Baidoriya</h2>
-<div id="aStats" style="background:#151515;border:1px solid #ffcc00;border-radius:10px;padding:10px"></div>
-<div id="wList" style="background:#151515;border-radius:10px;padding:10px;margin-top:10px"></div>
-<button onclick="goHome()" style="width:100%;padding:11px;margin-top:10px;background:#222;color:#fff;border-radius:8px;border:1px solid #444">Back to User App</button>
+<div id="running"><b id="rName" style="color:#ffcc00">App</b> - <b id="rTimer" style="color:#0f0">00:00</b><br><small>App khul gaya! Use karo</small><br><button onclick="collectMoney()" style="background:#0f0;color:#000;border:none;padding:10px 20px;border-radius:20px;margin-top:6px;font-weight:900">✅ COLLECT EARNING</button></div>
+
+<div class="bottom">
+<button id="bHome" class="active" onclick="goPage('home')">🏠<br>Home<br><small>216 Apps</small></button>
+<button id="bEarn" onclick="goPage('earn')">💰<br>Earning<br><small>Amount</small></button>
+<button id="bHist" onclick="goPage('history')">🏧<br>History<br><small>Withdrawal</small></button>
+<button onclick="openAdmin()">⚙️<br>Admin<br><small>MD Panel</small></button>
 </div>
 
 <script>
 const OWNER="91968517704";
 let bal=parseInt(localStorage.getItem("vls_bal")||"677"); let total=parseInt(localStorage.getItem("vls_total")||"950"); let coins=parseInt(localStorage.getItem("vls_coins")||"677");
 let code=localStorage.getItem("vls_code")||"VINU677"; let usage=JSON.parse(localStorage.getItem("vls_use")||"{}"); let wds=JSON.parse(localStorage.getItem("vls_w")||"[]");
-let curApp=null, curReward=0, sec=0, timer=null, lastUrl="";
+let playEarn=parseInt(localStorage.getItem("vls_play")||"0"); let taskEarn=parseInt(localStorage.getItem("vls_task")||"0");
+let curApp=null, curReward=0, sec=0, timer=null;
 
 const apps=[
-// --- 20 MESSENGER ---
-["WhatsApp","Messenger","https://img.icons8.com/color/96/whatsapp.png","https://web.whatsapp.com/",35],
-["Telegram","Messenger","https://img.icons8.com/color/96/telegram-app.png","https://web.telegram.org/",30],
-["Facebook","Messenger","https://img.icons8.com/color/96/facebook.png","https://m.facebook.com/",30],
-["Messenger","Messenger","https://img.icons8.com/color/96/facebook-messenger.png","https://www.messenger.com/",25],
-["Instagram","Messenger","https://img.icons8.com/color/96/instagram-new.png","https://www.instagram.com/",30],
-["Snapchat","Messenger","https://img.icons8.com/color/96/snapchat.png","https://www.snapchat.com/",22],
-["Discord","Messenger","https://img.icons8.com/color/96/discord.png","https://discord.com/",25],
-["Signal","Messenger","https://img.icons8.com/color/96/signal-app.png","https://signal.org/",20],
-["Skype","Messenger","https://img.icons8.com/color/96/skype.png","https://join.skype.com/",20],
-["ShareChat","Messenger","https://img.icons8.com/color/96/sharechat.png","https://sharechat.com/",22],
-["Moj","Messenger","https://img.icons8.com/color/96/moj.png","https://mojapp.in/",22],
-["Josh","Messenger","https://img.icons8.com/color/96/josh.png","https://www.myjosh.in/",22],
-["Chingari","Messenger","https://img.icons8.com/color/96/chingari.png","https://chingari.io/",20],
-["Viber","Messenger","https://img.icons8.com/color/96/viber.png","https://www.viber.com/",18],
-["IMO","Messenger","https://img.icons8.com/color/96/imo.png","https://imo.im/",18],
-["WeChat","Messenger","https://img.icons8.com/color/96/wechat.png","https://www.wechat.com/",18],
-["Line","Messenger","https://img.icons8.com/color/96/line.png","https://line.me/en/",18],
-["Truecaller","Messenger","https://img.icons8.com/color/96/truecaller.png","https://www.truecaller.com/",20],
-["JioChat","Messenger","https://img.icons8.com/color/96/chat.png","https://www.jio.com/",15],
-["Botim","Messenger","https://img.icons8.com/color/96/botim.png","https://www.botim.me/",15],
-
-// --- 50 GAMES ---
-["Ludo King","Game","https://img.icons8.com/color/96/ludo.png","https://www.google.com/search?q=Ludo+King",40],
-["Free Fire","Game","https://img.icons8.com/color/96/free-fire.png","https://ff.garena.com/en/",45],
-["BGMI","Game","https://img.icons8.com/color/96/pubg.png","https://www.battlegroundsmobileindia.com/",45],
-["Candy Crush","Game","https://img.icons8.com/color/96/candy.png","https://www.king.com/game/candycrush",35],
-["Subway Surfers","Game","https://img.icons8.com/color/96/subway.png","https://subwaysurfers.com/",35],
-["Temple Run","Game","https://img.icons8.com/color/96/temple.png","https://www.google.com/search?q=Temple+Run+game",35],
-["Dream11","Game","https://img.icons8.com/color/96/trophy.png","https://www.dream11.com/",50],
-["WinZo","Game","https://img.icons8.com/color/96/money-bag.png","https://www.winzogames.com/",45],
-["MPL","Game","https://img.icons8.com/color/96/mpl.png","https://www.mpl.live/",45],
-["Carrom Pool","Game","https://img.icons8.com/color/96/carrom.png","https://www.miniclip.com/games/carrom-pool/en/",30],
-["8 Ball Pool","Game","https://img.icons8.com/color/96/8-ball.png","https://www.miniclip.com/games/8-ball-pool/en/",30],
-["Clash of Clans","Game","https://img.icons8.com/color/96/clash-of-clans.png","https://clashofclans.com/",40],
-["Coin Master","Game","https://img.icons8.com/color/96/coin.png","https://www.coinmaster.com/",35],
-["Ludo Supreme","Game","https://img.icons8.com/color/96/dice.png","https://www.winzogames.com/ludo-supreme",35],
-["Rummy Circle","Game","https://img.icons8.com/color/96/cards.png","https://www.rummycircle.com/",40],
-["Chess","Game","https://img.icons8.com/color/96/chess.png","https://www.chess.com/play/online",25],
-["Car Racing","Game","https://img.icons8.com/color/96/racing.png","https://www.google.com/search?q=car+racing+game+online",30],
-["Bike Racing","Game","https://img.icons8.com/color/96/motorcycle.png","https://www.google.com/search?q=bike+racing+game",30],
-["Cricket Game","Game","https://img.icons8.com/color/96/cricket.png","https://www.google.com/search?q=cricket+game+online",35],
-["Football Game","Game","https://img.icons8.com/color/96/football.png","https://www.google.com/search?q=football+game+online",30],
-["Bubble Shooter","Game","https://img.icons8.com/color/96/bubbles.png","https://www.google.com/search?q=bubble+shooter+game",25],
-["Among Us","Game","https://img.icons8.com/color/96/among-us.png","https://www.innersloth.com/games/among-us/",35],
-["Minecraft","Game","https://img.icons8.com/color/96/minecraft.png","https://classic.minecraft.net/",40],
-["Roblox","Game","https://img.icons8.com/color/96/roblox.png","https://www.roblox.com/",40],
-["Call of Duty","Game","https://img.icons8.com/color/96/call-of-duty.png","https://www.callofduty.com/",45],
-["GTA 5","Game","https://img.icons8.com/color/96/gta.png","https://www.rockstargames.com/gta-v",45],
-["Angry Birds","Game","https://img.icons8.com/color/96/angry-birds.png","https://www.angrybirds.com/",25],
-["Hill Climb","Game","https://img.icons8.com/color/96/hill.png","https://www.google.com/search?q=Hill+Climb+Racing+game",25],
-["Snake Game","Game","https://img.icons8.com/color/96/snake.png","https://playsnake.org/",20],
-["Solitaire","Game","https://img.icons8.com/color/96/solitaire.png","https://www.solitr.com/",20],
-["Sudoku","Game","https://img.icons8.com/color/96/sudoku.png","https://sudoku.com/",20],
-["Wordle","Game","https://img.icons8.com/color/96/word.png","https://www.nytimes.com/games/wordle/index.html",20],
-["Quiz Game","Game","https://img.icons8.com/color/96/quiz.png","https://www.google.com/search?q=quiz+game+online",25],
-["Archery","Game","https://img.icons8.com/color/96/archery.png","https://www.google.com/search?q=archery+game+online",25],
-["Bowling","Game","https://img.icons8.com/color/96/bowling.png","https://www.google.com/search?q=bowling+game+online",25],
-["Tennis","Game","https://img.icons8.com/color/96/tennis.png","https://www.google.com/search?q=tennis+game+online",25],
-["Golf","Game","https://img.icons8.com/color/96/golf.png","https://www.google.com/search?q=golf+game+online",25],
-["Mini Militia","Game","https://img.icons8.com/color/96/gun.png","https://www.google.com/search?q=Mini+Militia+game",30],
-["Dr Driving","Game","https://img.icons8.com/color/96/car.png","https://www.google.com/search?q=Dr+Driving+game",25],
-["Bus Simulator","Game","https://img.icons8.com/color/96/bus.png","https://www.google.com/search?q=Bus+Simulator+game",25],
-["Flight Pilot","Game","https://img.icons8.com/color/96/airplane.png","https://www.google.com/search?q=Flight+Simulator+game",30],
-["FarmVille","Game","https://img.icons8.com/color/96/farm.png","https://www.zynga.com/games/farmville-2/",25],
-["Cooking Game","Game","https://img.icons8.com/color/96/cooking.png","https://www.google.com/search?q=cooking+game+online",25],
-["Piano Tiles","Game","https://img.icons8.com/color/96/piano.png","https://www.google.com/search?q=piano+tiles+game",20],
-["UNO","Game","https://img.icons8.com/color/96/uno.png","https://www.google.com/search?q=uno+card+game+online",25],
-["Fruit Ninja","Game","https://img.icons8.com/color/96/watermelon.png","https://www.google.com/search?q=Fruit+Ninja+game",25],
-["Poker","Game","https://img.icons8.com/color/96/poker.png","https://www.pokerstars.com/",30],
-["Ludo Master","Game","https://img.icons8.com/color/96/ludo-master.png","https://www.google.com/search?q=Ludo+Master+game",35],
-["Carrom Master","Game","https://img.icons8.com/color/96/carrom-master.png","https://www.google.com/search?q=Carrom+Master+game",30],
-["Hockey Game","Game","https://img.icons8.com/color/96/hockey.png","https://www.google.com/search?q=hockey+game+online",25],
-["Basketball","Game","https://img.icons8.com/color/96/basketball.png","https://www.google.com/search?q=basketball+game+online",25],
-
-// --- 20 NEWS ---
-["Aaj Tak","News","https://img.icons8.com/color/96/news.png","https://www.aajtak.in/",20],
-["ABP News","News","https://img.icons8.com/color/96/tv.png","https://news.abplive.com/",20],
-["NDTV","News","https://img.icons8.com/color/96/tv-show.png","https://www.ndtv.com/",20],
-["Republic Bharat","News","https://img.icons8.com/color/96/live-tv.png","https://www.republicworld.com/",20],
-["Zee News","News","https://img.icons8.com/color/96/zee.png","https://zeenews.india.com/",20],
-["India TV","News","https://img.icons8.com/color/96/tv-antenna.png","https://www.indiatvnews.com/",18],
-["News18","News","https://img.icons8.com/color/96/cnn.png","https://www.news18.com/",18],
-["BBC News","News","https://img.icons8.com/color/96/bbc.png","https://www.bbc.com/news",22],
-["CNN News","News","https://img.icons8.com/color/96/cnn2.png","https://edition.cnn.com/",22],
-["TOI","News","https://img.icons8.com/color/96/newspaper.png","https://timesofindia.indiatimes.com/",20],
-["Dainik Bhaskar","News","https://img.icons8.com/color/96/india.png","https://www.bhaskar.com/",18],
-["Dainik Jagran","News","https://img.icons8.com/color/96/jagran.png","https://www.jagran.com/",18],
-["Amar Ujala","News","https://img.icons8.com/color/96/news-paper.png","https://www.amarujala.com/",18],
-["Patrika","News","https://img.icons8.com/color/96/patrika.png","https://www.patrika.com/",18],
-["NDTV India","News","https://img.icons8.com/color/96/ndtv2.png","https://ndtv.in/",18],
-["Google News","News","https://img.icons8.com/color/96/google-news.png","https://news.google.com/",25],
-["Inshorts","News","https://img.icons8.com/color/96/inshorts.png","https://inshorts.com/en/read",22],
-["Dailyhunt","News","https://img.icons8.com/color/96/dailyhunt.png","https://m.dailyhunt.in/",20],
-["Way2News","News","https://img.icons8.com/color/96/way2news.png","https://www.way2news.com/",20],
-["Public App","News","https://img.icons8.com/color/96/public.png","https://publicapp.co.in/",20],
-
-// --- ALL SIM APPS ---
-["MyJio","SIM","https://img.icons8.com/color/96/jio.png","https://www.jio.com/selfcare/",30],
-["Airtel Thanks","SIM","https://img.icons8.com/color/96/airtel.png","https://www.airtel.in/",30],
-["Vi App","SIM","https://img.icons8.com/color/96/vi.png","https://www.myvi.in/",30],
-["BSNL Selfcare","SIM","https://img.icons8.com/color/96/bsnl.png","https://selfcare.bsnl.co.in/",25],
-["JioMart","SIM","https://img.icons8.com/color/96/jiomart.png","https://www.jiomart.com/",20],
-
-// --- 20 SHOPPING ---
-["Amazon","Shopping","https://img.icons8.com/color/96/amazon.png","https://www.amazon.in/",35],
-["Flipkart","Shopping","https://img.icons8.com/color/96/flipkart.png","https://www.flipkart.com/",35],
-["Myntra","Shopping","https://img.icons8.com/color/96/myntra.png","https://www.myntra.com/",30],
-["Meesho","Shopping","https://img.icons8.com/color/96/meesho.png","https://www.meesho.com/",30],
-["Ajio","Shopping","https://img.icons8.com/color/96/ajio.png","https://www.ajio.com/",25],
-["Nykaa","Shopping","https://img.icons8.com/color/96/nykaa.png","https://www.nykaa.com/",25],
-["Snapdeal","Shopping","https://img.icons8.com/color/96/snapdeal.png","https://www.snapdeal.com/",20],
-["BigBasket","Shopping","https://img.icons8.com/color/96/bigbasket.png","https://www.bigbasket.com/",25],
-["Blinkit","Shopping","https://img.icons8.com/color/96/grofers.png","https://blinkit.com/",25],
-["Zomato","Shopping","https://img.icons8.com/color/96/zomato.png","https://www.zomato.com/",20],
-["Swiggy","Shopping","https://img.icons8.com/color/96/swiggy.png","https://www.swiggy.com/",20],
-["DMart","Shopping","https://img.icons8.com/color/96/dmart.png","https://www.dmart.in/",20],
-["Decathlon","Shopping","https://img.icons8.com/color/96/decathlon.png","https://www.decathlon.in/",20],
-["Nike","Shopping","https://img.icons8.com/color/96/nike.png","https://www.nike.com/in/",25],
-["Puma","Shopping","https://img.icons8.com/color/96/puma.png","https://in.puma.com/",25],
-["Bata","Shopping","https://img.icons8.com/color/96/bata.png","https://www.bata.in/",20],
-["Titan","Shopping","https://img.icons8.com/color/96/titan.png","https://www.titan.co.in/",20],
-["FirstCry","Shopping","https://img.icons8.com/color/96/firstcry.png","https://www.firstcry.com/",20],
-["Pepperfry","Shopping","https://img.icons8.com/color/96/pepperfry.png","https://www.pepperfry.com/",20],
-["ShopClues","Shopping","https://img.icons8.com/color/96/shopclues.png","https://www.shopclues.com/",18],
-
-// --- 20 REAL APPS ---
-["PhonePe","Real","https://img.icons8.com/color/96/phonepe.png","https://www.phonepe.com/",35],
-["Google Pay","Real","https://img.icons8.com/color/96/gpay.png","https://pay.google.com/",35],
-["Paytm","Real","https://img.icons8.com/color/96/paytm.png","https://paytm.com/",35],
-["BHIM UPI","Real","https://img.icons8.com/color/96/bhim.png","https://www.bhimupi.org.in/",30],
-["IRCTC","Real","https://img.icons8.com/color/96/train-ticket.png","https://www.irctc.co.in/",30],
-["MakeMyTrip","Real","https://img.icons8.com/color/96/makemytrip.png","https://www.makemytrip.com/",25],
-["Ola","Real","https://img.icons8.com/color/96/ola.png","https://www.olacabs.com/",20],
-["Uber","Real","https://img.icons8.com/color/96/uber.png","https://www.uber.com/in/en/",20],
-["Rapido","Real","https://img.icons8.com/color/96/rapido.png","https://www.rapido.bike/",18],
-["DigiLocker","Real","https://img.icons8.com/color/96/digilocker.png","https://www.digilocker.gov.in/",30],
-["UMANG","Real","https://img.icons8.com/color/96/umang.png","https://web.umang.gov.in/",30],
-["Google Maps","Real","https://img.icons8.com/color/96/google-maps.png","https://maps.google.com/",25],
-["Aarogya Setu","Real","https://img.icons8.com/color/96/aarogya.png","https://www.aarogyasetu.gov.in/",20],
-["Cowin","Real","https://img.icons8.com/color/96/cowin.png","https://www.cowin.gov.in/",20],
-["Weather","Real","https://img.icons8.com/color/96/weather.png","https://weather.com/",15],
-["Calculator","Real","https://img.icons8.com/color/96/calculator.png","https://www.google.com/search?q=calculator",15],
-["ShareMe","Real","https://img.icons8.com/color/96/share.png","https://www.mi.com/",20],
-["Oyo","Real","https://img.icons8.com/color/96/oyo.png","https://www.oyorooms.com/",20],
-["RedBus","Real","https://img.icons8.com/color/96/redbus.png","https://www.redbus.in/",20],
-["UrbanClap","Real","https://img.icons8.com/color/96/urbanclap.png","https://www.urbancompany.com/",20],
-
-// --- 30 EDUCATION ---
-["BYJU'S","Education","https://img.icons8.com/color/96/byjus.png","https://byjus.com/",40],
-["Unacademy","Education","https://img.icons8.com/color/96/unacademy.png","https://unacademy.com/",40],
-["Vedantu","Education","https://img.icons8.com/color/96/vedantu.png","https://www.vedantu.com/",35],
-["Physics Wallah","Education","https://img.icons8.com/color/96/pw.png","https://www.pw.live/",40],
-["Khan Academy","Education","https://img.icons8.com/color/96/khan.png","https://www.khanacademy.org/",35],
-["Duolingo","Education","https://img.icons8.com/color/96/duolingo.png","https://www.duolingo.com/",30],
-["Udemy","Education","https://img.icons8.com/color/96/udemy.png","https://www.udemy.com/",35],
-["Coursera","Education","https://img.icons8.com/color/96/coursera.png","https://www.coursera.org/",35],
-["Toppr","Education","https://img.icons8.com/color/96/toppr.png","https://toppr.com/",30],
-["Doubtnut","Education","https://img.icons8.com/color/96/doubtnut.png","https://doubtnut.com/",30],
-["Gradeup","Education","https://img.icons8.com/color/96/gradeup.png","https://gradeup.co/",30],
-["Adda247","Education","https://img.icons8.com/color/96/adda.png","https://adda247.com/",30],
-["Testbook","Education","https://img.icons8.com/color/96/testbook.png","https://testbook.com/",30],
-["Embibe","Education","https://img.icons8.com/color/96/embibe.png","https://www.embibe.com/",25],
-["Brainly","Education","https://img.icons8.com/color/96/brainly.png","https://brainly.in/",25],
-["Photomath","Education","https://img.icons8.com/color/96/photomath.png","https://www.photomath.com/",25],
-["Chegg","Education","https://img.icons8.com/color/96/chegg.png","https://www.chegg.com/",30],
-["Wikipedia","Education","https://img.icons8.com/color/96/wikipedia.png","https://en.wikipedia.org/",20],
-["Dictionary","Education","https://img.icons8.com/color/96/dictionary.png","https://www.dictionary.com/",15],
-["Google Classroom","Education","https://img.icons8.com/color/96/classroom.png","https://classroom.google.com/",35],
-["Zoom","Education","https://img.icons8.com/color/96/zoom.png","https://zoom.us/",25],
-["Google Meet","Education","https://img.icons8.com/color/96/meet.png","https://meet.google.com/",25],
-["MS Teams","Education","https://img.icons8.com/color/96/teams.png","https://teams.microsoft.com/",25],
-["LinkedIn Learning","Education","https://img.icons8.com/color/96/linkedin.png","https://www.linkedin.com/learning/",30],
-["Skillshare","Education","https://img.icons8.com/color/96/skillshare.png","https://www.skillshare.com/",30],
-["WhiteHat Jr","Education","https://img.icons8.com/color/96/whitehat.png","https://www.whitehatjr.com/",35],
-["CodeChef","Education","https://img.icons8.com/color/96/code.png","https://www.codechef.com/",30],
-["Quora","Education","https://img.icons8.com/color/96/quora.png","https://www.quora.com/",20],
-["Udacity","Education","https://img.icons8.com/color/96/udacity.png","https://www.udacity.com/",30],
-["edX","Education","https://img.icons8.com/color/96/edx.png","https://www.edx.org/",30],
-
-// --- 30 BANK ---
-["SBI YONO","Bank","https://img.icons8.com/color/96/sbi.png","https://www.sbiyono.sbi/",40],
-["HDFC Bank","Bank","https://img.icons8.com/color/96/hdfc.png","https://www.hdfcbank.com/",40],
-["ICICI iMobile","Bank","https://img.icons8.com/color/96/icici.png","https://www.icicibank.com/",40],
-["Axis Mobile","Bank","https://img.icons8.com/color/96/axis.png","https://www.axisbank.com/",35],
-["Kotak 811","Bank","https://img.icons8.com/color/96/kotak.png","https://www.kotak.com/",35],
-["PNB ONE","Bank","https://img.icons8.com/color/96/pnb.png","https://www.pnbindia.in/",35],
-["BOB World","Bank","https://img.icons8.com/color/96/bob.png","https://www.bankofbaroda.in/",35],
-["Canara ai1","Bank","https://img.icons8.com/color/96/canara.png","https://canarabank.com/",30],
-["Union Bank","Bank","https://img.icons8.com/color/96/union.png","https://www.unionbankofindia.co.in/",30],
-["Indian Bank","Bank","https://img.icons8.com/color/96/indian-bank.png","https://www.indianbank.in/",30],
-["IDBI Bank","Bank","https://img.icons8.com/color/96/idbi.png","https://www.idbibank.in/",25],
-["Yes Bank","Bank","https://img.icons8.com/color/96/yes-bank.png","https://www.yesbank.in/",25],
-["IndusInd","Bank","https://img.icons8.com/color/96/indusind.png","https://www.indusind.com/",25],
-["Federal Bank","Bank","https://img.icons8.com/color/96/federal.png","https://www.federalbank.co.in/",25],
-["RBL Bank","Bank","https://img.icons8.com/color/96/rbl.png","https://www.rblbank.com/",25],
-["Bandhan Bank","Bank","https://img.icons8.com/color/96/bandhan.png","https://www.bandhanbank.com/",25],
-["AU Bank","Bank","https://img.icons8.com/color/96/au-bank.png","https://www.aubank.in/",25],
-["IDFC First","Bank","https://img.icons8.com/color/96/idfc.png","https://www.idfcfirstbank.com/",30],
-["SBI Quick","Bank","https://img.icons8.com/color/96/sbi-quick.png","https://www.sbi.co.in/",30],
-["HDFC PayZapp","Bank","https://img.icons8.com/color/96/payzapp.png","https://www.hdfcbank.com/",30],
-["ICICI Pockets","Bank","https://img.icons8.com/color/96/pockets.png","https://www.icicibank.com/",25],
-["Axis Pay","Bank","https://img.icons8.com/color/96/axis-pay.png","https://www.axisbank.com/",25],
-["Kotak Pay","Bank","https://img.icons8.com/color/96/kotak-pay.png","https://www.kotak.com/",25],
-["BHIM SBI Pay","Bank","https://img.icons8.com/color/96/sbi-bhim.png","https://www.bhimupi.org.in/",30],
-["BHIM HDFC Pay","Bank","https://img.icons8.com/color/96/hdfc-bhim.png","https://www.bhimupi.org.in/",30],
-["PhonePe Business","Bank","https://img.icons8.com/color/96/phonepe-business.png","https://www.phonepe.com/",35],
-["GPay Business","Bank","https://img.icons8.com/color/96/gpay-business.png","https://pay.google.com/",35],
-["Paytm Business","Bank","https://img.icons8.com/color/96/paytm-business.png","https://business.paytm.com/",35],
-["Razorpay","Bank","https://img.icons8.com/color/96/razorpay.png","https://razorpay.com/",40],
-["Cashfree","Bank","https://img.icons8.com/color/96/cashfree.png","https://www.cashfree.com/",40]
+// 20 MESSENGER
+["WhatsApp","Messenger","https://img.icons8.com/color/96/whatsapp.png","https://wa.me/",35],["Telegram","Messenger","https://img.icons8.com/color/96/telegram-app.png","https://web.telegram.org/",30],["Facebook","Messenger","https://img.icons8.com/color/96/facebook.png","https://m.facebook.com/",30],["Messenger","Messenger","https://img.icons8.com/color/96/facebook-messenger.png","https://www.messenger.com/",25],["Instagram","Messenger","https://img.icons8.com/color/96/instagram-new.png","https://www.instagram.com/",30],["Snapchat","Messenger","https://img.icons8.com/color/96/snapchat.png","https://www.snapchat.com/",22],["Discord","Messenger","https://img.icons8.com/color/96/discord.png","https://discord.com/",25],["Signal","Messenger","https://img.icons8.com/color/96/signal-app.png","https://signal.org/",20],["Skype","Messenger","https://img.icons8.com/color/96/skype.png","https://join.skype.com/",20],["ShareChat","Messenger","https://img.icons8.com/color/96/sharechat.png","https://sharechat.com/",22],["Moj","Messenger","https://img.icons8.com/color/96/moj.png","https://mojapp.in/",22],["Josh","Messenger","https://img.icons8.com/color/96/josh.png","https://www.myjosh.in/",22],["Chingari","Messenger","https://img.icons8.com/color/96/chingari.png","https://chingari.io/",20],["Viber","Messenger","https://img.icons8.com/color/96/viber.png","https://www.viber.com/",18],["IMO","Messenger","https://img.icons8.com/color/96/imo.png","https://imo.im/",18],["WeChat","Messenger","https://img.icons8.com/color/96/wechat.png","https://www.wechat.com/",18],["Line","Messenger","https://img.icons8.com/color/96/line.png","https://line.me/en/",18],["Truecaller","Messenger","https://img.icons8.com/color/96/truecaller.png","https://www.truecaller.com/",20],["JioChat","Messenger","https://img.icons8.com/color/96/chat.png","https://www.jio.com/",15],["Botim","Messenger","https://img.icons8.com/color/96/botim.png","https://www.botim.me/",15],
+// 50 GAME
+["Ludo King","Game","https://img.icons8.com/color/96/ludo.png","https://www.google.com/search?q=Ludo+King",40],["Free Fire","Game","https://img.icons8.com/color/96/free-fire.png","https://ff.garena.com/en/",45],["BGMI","Game","https://img.icons8.com/color/96/pubg.png","https://www.battlegroundsmobileindia.com/",45],["Candy Crush","Game","https://img.icons8.com/color/96/candy.png","https://www.king.com/game/candycrush",35],["Subway Surfers","Game","https://img.icons8.com/color/96/subway.png","https://subwaysurfers.com/",35],["Temple Run","Game","https://img.icons8.com/color/96/temple.png","https://www.google.com/search?q=Temple+Run+game",35],["Dream11","Game","https://img.icons8.com/color/96/trophy.png","https://www.dream11.com/",50],["WinZo","Game","https://img.icons8.com/color/96/money-bag.png","https://www.winzogames.com/",45],["MPL","Game","https://img.icons8.com/color/96/mpl.png","https://www.mpl.live/",45],["Carrom Pool","Game","https://img.icons8.com/color/96/carrom.png","https://www.miniclip.com/games/carrom-pool/en/",30],["8 Ball Pool","Game","https://img.icons8.com/color/96/8-ball.png","https://www.miniclip.com/games/8-ball-pool/en/",30],["Clash of Clans","Game","https://img.icons8.com/color/96/clash-of-clans.png","https://clashofclans.com/",40],["Coin Master","Game","https://img.icons8.com/color/96/coin.png","https://www.coinmaster.com/",35],["Ludo Supreme","Game","https://img.icons8.com/color/96/dice.png","https://www.winzogames.com/ludo-supreme",35],["Rummy Circle","Game","https://img.icons8.com/color/96/cards.png","https://www.rummycircle.com/",40],["Chess","Game","https://img.icons8.com/color/96/chess.png","https://www.chess.com/play/online",25],["Car Racing","Game","https://img.icons8.com/color/96/racing.png","https://www.google.com/search?q=car+racing+game+online",30],["Bike Racing","Game","https://img.icons8.com/color/96/motorcycle.png","https://www.google.com/search?q=bike+racing+game",30],["Cricket Game","Game","https://img.icons8.com/color/96/cricket.png","https://www.google.com/search?q=cricket+game+online",35],["Football Game","Game","https://img.icons8.com/color/96/football.png","https://www.google.com/search?q=football+game+online",30],["Bubble Shooter","Game","https://img.icons8.com/color/96/bubbles.png","https://www.google.com/search?q=bubble+shooter+game",25],["Among Us","Game","https://img.icons8.com/color/96/among-us.png","https://www.innersloth.com/games/among-us/",35],["Minecraft","Game","https://img.icons8.com/color/96/minecraft.png","https://classic.minecraft.net/",40],["Roblox","Game","https://img.icons8.com/color/96/roblox.png","https://www.roblox.com/",40],["Call of Duty","Game","https://img.icons8.com/color/96/call-of-duty.png","https://www.callofduty.com/",45],["GTA 5","Game","https://img.icons8.com/color/96/gta.png","https://www.rockstargames.com/gta-v",45],["Angry Birds","Game","https://img.icons8.com/color/96/angry-birds.png","https://www.angrybirds.com/",25],["Hill Climb","Game","https://img.icons8.com/color/96/hill.png","https://www.google.com/search?q=Hill+Climb+Racing+game",25],["Snake Game","Game","https://img.icons8.com/color/96/snake.png","https://playsnake.org/",20],["Solitaire","Game","https://img.icons8.com/color/96/solitaire.png","https://www.solitr.com/",20],["Sudoku","Game","https://img.icons8.com/color/96/sudoku.png","https://sudoku.com/",20],["Wordle","Game","https://img.icons8.com/color/96/word.png","https://www.nytimes.com/games/wordle/index.html",20],["Quiz Game","Game","https://img.icons8.com/color/96/quiz.png","https://www.google.com/search?q=quiz+game+online",25],["Archery","Game","https://img.icons8.com/color/96/archery.png","https://www.google.com/search?q=archery+game+online",25],["Bowling","Game","https://img.icons8.com/color/96/bowling.png","https://www.google.com/search?q=bowling+game+online",25],["Tennis","Game","https://img.icons8.com/color/96/tennis.png","https://www.google.com/search?q=tennis+game+online",25],["Golf","Game","https://img.icons8.com/color/96/golf.png","https://www.google.com/search?q=golf+game+online",25],["Mini Militia","Game","https://img.icons8.com/color/96/gun.png","https://www.google.com/search?q=Mini+Militia+game",30],["Dr Driving","Game","https://img.icons8.com/color/96/car.png","https://www.google.com/search?q=Dr+Driving+game",25],["Bus Simulator","Game","https://img.icons8.com/color/96/bus.png","https://www.google.com/search?q=Bus+Simulator+game",25],["Flight Pilot","Game","https://img.icons8.com/color/96/airplane.png","https://www.google.com/search?q=Flight+Simulator+game",30],["FarmVille","Game","https://img.icons8.com/color/96/farm.png","https://www.zynga.com/games/farmville-2/",25],["Cooking Game","Game","https://img.icons8.com/color/96/cooking.png","https://www.google.com/search?q=cooking+game+online",25],["Piano Tiles","Game","https://img.icons8.com/color/96/piano.png","https://www.google.com/search?q=piano+tiles+game",20],["UNO","Game","https://img.icons8.com/color/96/uno.png","https://www.google.com/search?q=uno+card+game+online",25],["Fruit Ninja","Game","https://img.icons8.com/color/96/watermelon.png","https://www.google.com/search?q=Fruit+Ninja+game",25],["Poker","Game","https://img.icons8.com/color/96/poker.png","https://www.pokerstars.com/",30],["Ludo Master","Game","https://img.icons8.com/color/96/ludo-master.png","https://www.google.com/search?q=Ludo+Master+game",35],["Carrom Master","Game","https://img.icons8.com/color/96/carrom-master.png","https://www.google.com/search?q=Carrom+Master+game",30],["Hockey Game","Game","https://img.icons8.com/color/96/hockey.png","https://www.google.com/search?q=hockey+game+online",25],["Basketball","Game","https://img.icons8.com/color/96/basketball.png","https://www.google.com/search?q=basketball+game+online",25],
+// 20 NEWS
+["Aaj Tak","News","https://img.icons8.com/color/96/news.png","https://www.aajtak.in/",20],["ABP News","News","https://img.icons8.com/color/96/tv.png","https://news.abplive.com/",20],["NDTV","News","https://img.icons8.com/color/96/tv-show.png","https://www.ndtv.com/",20],["Republic Bharat","News","https://img.icons8.com/color/96/live-tv.png","https://www.republicworld.com/",20],["Zee News","News","https://img.icons8.com/color/96/zee.png","https://zeenews.india.com/",20],["India TV","News","https://img.icons8.com/color/96/tv-antenna.png","https://www.indiatvnews.com/",18],["News18","News","https://img.icons8.com/color/96/cnn.png","https://www.news18.com/",18],["BBC News","News","https://img.icons8.com/color/96/bbc.png","https://www.bbc.com/news",22],["CNN News","News","https://img.icons8.com/color/96/cnn2.png","https://edition.cnn.com/",22],["TOI","News","https://img.icons8.com/color/96/newspaper.png","https://timesofindia.indiatimes.com/",20],["Dainik Bhaskar","News","https://img.icons8.com/color/96/india.png","https://www.bhaskar.com/",18],["Dainik Jagran","News","https://img.icons8.com/color/96/jagran.png","https://www.jagran.com/",18],["Amar Ujala","News","https://img.icons8.com/color/96/news-paper.png","https://www.amarujala.com/",18],["Patrika","News","https://img.icons8.com/color/96/patrika.png","https://www.patrika.com/",18],["NDTV India","News","https://img.icons8.com/color/96/ndtv2.png","https://ndtv.in/",18],["Google News","News","https://img.icons8.com/color/96/google-news.png","https://news.google.com/",25],["Inshorts","News","https://img.icons8.com/color/96/inshorts.png","https://inshorts.com/en/read",22],["Dailyhunt","News","https://img.icons8.com/color/96/dailyhunt.png","https://m.dailyhunt.in/",20],["Way2News","News","https://img.icons8.com/color/96/way2news.png","https://www.way2news.com/",20],["Public App","News","https://img.icons8.com/color/96/public.png","https://publicapp.co.in/",20],
+// SIM
+["MyJio","SIM","https://img.icons8.com/color/96/jio.png","https://www.jio.com/selfcare/",30],["Airtel Thanks","SIM","https://img.icons8.com/color/96/airtel.png","https://www.airtel.in/",30],["Vi App","SIM","https://img.icons8.com/color/96/vi.png","https://www.myvi.in/",30],["BSNL Selfcare","SIM","https://img.icons8.com/color/96/bsnl.png","https://selfcare.bsnl.co.in/",25],["JioMart","SIM","https://img.icons8.com/color/96/jiomart.png","https://www.jiomart.com/",20],
+// 20 SHOPPING
+["Amazon","Shopping","https://img.icons8.com/color/96/amazon.png","https://www.amazon.in/",35],["Flipkart","Shopping","https://img.icons8.com/color/96/flipkart.png","https://www.flipkart.com/",35],["Myntra","Shopping","https://img.icons8.com/color/96/myntra.png","https://www.myntra.com/",30],["Meesho","Shopping","https://img.icons8.com/color/96/meesho.png","https://www.meesho.com/",30],["Ajio","Shopping","https://img.icons8.com/color/96/ajio.png","https://www.ajio.com/",25],["Nykaa","Shopping","https://img.icons8.com/color/96/nykaa.png","https://www.nykaa.com/",25],["Snapdeal","Shopping","https://img.icons8.com/color/96/snapdeal.png","https://www.snapdeal.com/",20],["BigBasket","Shopping","https://img.icons8.com/color/96/bigbasket.png","https://www.bigbasket.com/",25],["Blinkit","Shopping","https://img.icons8.com/color/96/grofers.png","https://blinkit.com/",25],["Zomato","Shopping","https://img.icons8.com/color/96/zomato.png","https://www.zomato.com/",20],["Swiggy","Shopping","https://img.icons8.com/color/96/swiggy.png","https://www.swiggy.com/",20],["DMart","Shopping","https://img.icons8.com/color/96/dmart.png","https://www.dmart.in/",20],["Decathlon","Shopping","https://img.icons8.com/color/96/decathlon.png","https://www.decathlon.in/",20],["Nike","Shopping","https://img.icons8.com/color/96/nike.png","https://www.nike.com/in/",25],["Puma","Shopping","https://img.icons8.com/color/96/puma.png","https://in.puma.com/",25],["Bata","Shopping","https://img.icons8.com/color/96/bata.png","https://www.bata.in/",20],["Titan","Shopping","https://img.icons8.com/color/96/titan.png","https://www.titan.co.in/",20],["FirstCry","Shopping","https://img.icons8.com/color/96/firstcry.png","https://www.firstcry.com/",20],["Pepperfry","Shopping","https://img.icons8.com/color/96/pepperfry.png","https://www.pepperfry.com/",20],["ShopClues","Shopping","https://img.icons8.com/color/96/shopclues.png","https://www.shopclues.com/",18],
+// 20 REAL
+["PhonePe","Real","https://img.icons8.com/color/96/phonepe.png","https://www.phonepe.com/",35],["Google Pay","Real","https://img.icons8.com/color/96/gpay.png","https://pay.google.com/",35],["Paytm","Real","https://img.icons8.com/color/96/paytm.png","https://paytm.com/",35],["BHIM UPI","Real","https://img.icons8.com/color/96/bhim.png","https://www.bhimupi.org.in/",30],["IRCTC","Real","https://img.icons8.com/color/96/train-ticket.png","https://www.irctc.co.in/",30],["MakeMyTrip","Real","https://img.icons8.com/color/96/makemytrip.png","https://www.makemytrip.com/",25],["Ola","Real","https://img.icons8.com/color/96/ola.png","https://www.olacabs.com/",20],["Uber","Real","https://img.icons8.com/color/96/uber.png","https://www.uber.com/in/en/",20],["Rapido","Real","https://img.icons8.com/color/96/rapido.png","https://www.rapido.bike/",18],["DigiLocker","Real","https://img.icons8.com/color/96/digilocker.png","https://www.digilocker.gov.in/",30],["UMANG","Real","https://img.icons8.com/color/96/umang.png","https://web.umang.gov.in/",30],["Google Maps","Real","https://img.icons8.com/color/96/google-maps.png","https://maps.google.com/",25],["Aarogya Setu","Real","https://img.icons8.com/color/96/aarogya.png","https://www.aarogyasetu.gov.in/",20],["Cowin","Real","https://img.icons8.com/color/96/cowin.png","https://www.cowin.gov.in/",20],["Weather","Real","https://img.icons8.com/color/96/weather.png","https://weather.com/",15],["Calculator","Real","https://img.icons8.com/color/96/calculator.png","https://www.google.com/search?q=calculator",15],["ShareMe","Real","https://img.icons8.com/color/96/share.png","https://www.mi.com/",20],["Oyo","Real","https://img.icons8.com/color/96/oyo.png","https://www.oyorooms.com/",20],["RedBus","Real","https://img.icons8.com/color/96/redbus.png","https://www.redbus.in/",20],["UrbanClap","Real","https://img.icons8.com/color/96/urbanclap.png","https://www.urbancompany.com/",20],
+// 30 EDUCATION
+["BYJU'S","Education","https://img.icons8.com/color/96/byjus.png","https://byjus.com/",40],["Unacademy","Education","https://img.icons8.com/color/96/unacademy.png","https://unacademy.com/",40],["Vedantu","Education","https://img.icons8.com/color/96/vedantu.png","https://www.vedantu.com/",35],["Physics Wallah","Education","https://img.icons8.com/color/96/pw.png","https://www.pw.live/",40],["Khan Academy","Education","https://img.icons8.com/color/96/khan.png","https://www.khanacademy.org/",35],["Duolingo","Education","https://img.icons8.com/color/96/duolingo.png","https://www.duolingo.com/",30],["Udemy","Education","https://img.icons8.com/color/96/udemy.png","https://www.udemy.com/",35],["Coursera","Education","https://img.icons8.com/color/96/coursera.png","https://www.coursera.org/",35],["Toppr","Education","https://img.icons8.com/color/96/toppr.png","https://toppr.com/",30],["Doubtnut","Education","https://img.icons8.com/color/96/doubtnut.png","https://doubtnut.com/",30],["Gradeup","Education","https://img.icons8.com/color/96/gradeup.png","https://gradeup.co/",30],["Adda247","Education","https://img.icons8.com/color/96/adda.png","https://adda247.com/",30],["Testbook","Education","https://img.icons8.com/color/96/testbook.png","https://testbook.com/",30],["Embibe","Education","https://img.icons8.com/color/96/embibe.png","https://www.embibe.com/",25],["Brainly","Education","https://img.icons8.com/color/96/brainly.png","https://brainly.in/",25],["Photomath","Education","https://img.icons8.com/color/96/photomath.png","https://www.photomath.com/",25],["Chegg","Education","https://img.icons8.com/color/96/chegg.png","https://www.chegg.com/",30],["Wikipedia","Education","https://img.icons8.com/color/96/wikipedia.png","https://en.wikipedia.org/",20],["Dictionary","Education","https://img.icons8.com/color/96/dictionary.png","https://www.dictionary.com/",15],["Google Classroom","Education","https://img.icons8.com/color/96/classroom.png","https://classroom.google.com/",35],["Zoom","Education","https://img.icons8.com/color/96/zoom.png","https://zoom.us/",25],["Google Meet","Education","https://img.icons8.com/color/96/meet.png","https://meet.google.com/",25],["MS Teams","Education","https://img.icons8.com/color/96/teams.png","https://teams.microsoft.com/",25],["LinkedIn Learning","Education","https://img.icons8.com/color/96/linkedin.png","https://www.linkedin.com/learning/",30],["Skillshare","Education","https://img.icons8.com/color/96/skillshare.png","https://www.skillshare.com/",30],["WhiteHat Jr","Education","https://img.icons8.com/color/96/whitehat.png","https://www.whitehatjr.com/",35],["CodeChef","Education","https://img.icons8.com/color/96/code.png","https://www.codechef.com/",30],["Quora","Education","https://img.icons8.com/color/96/quora.png","https://www.quora.com/",20],["Udacity","Education","https://img.icons8.com/color/96/udacity.png","https://www.udacity.com/",30],["edX","Education","https://img.icons8.com/color/96/edx.png","https://www.edx.org/",30],
+// 20 PAYMENT BANK - NAYA
+["PhonePe Bank","Payment","https://img.icons8.com/color/96/phonepe.png","https://www.phonepe.com/",40],["Google Pay Bank","Payment","https://img.icons8.com/color/96/gpay.png","https://pay.google.com/",40],["Paytm Bank","Payment","https://img.icons8.com/color/96/paytm.png","https://paytm.com/",40],["BHIM Bank","Payment","https://img.icons8.com/color/96/bhim.png","https://www.bhimupi.org.in/",35],["Airtel Payments Bank","Payment","https://img.icons8.com/color/96/airtel.png","https://www.airtel.in/bank/",35],["Jio Payments Bank","Payment","https://img.icons8.com/color/96/jio.png","https://www.jiopaymentsbank.com/",35],["Paytm Payments Bank","Payment","https://img.icons8.com/color/96/paytm-bank.png","https://paytmbank.com/",35],["Fino Payments Bank","Payment","https://img.icons8.com/color/96/fino.png","https://www.finobank.com/",30],["NSDL Payments Bank","Payment","https://img.icons8.com/color/96/nsdl.png","https://www.nsdlbank.com/",30],["India Post Bank","Payment","https://img.icons8.com/color/96/post.png","https://www.ippbonline.com/",30],["Amazon Pay Bank","Payment","https://img.icons8.com/color/96/amazon-pay.png","https://www.amazon.in/amazonpay",35],["WhatsApp Pay","Payment","https://img.icons8.com/color/96/whatsapp-pay.png","https://www.whatsapp.com/pay",35],["BharatPe","Payment","https://img.icons8.com/color/96/bharatpe.png","https://bharatpe.com/",35],["Mobikwik","Payment","https://img.icons8.com/color/96/mobikwik.png","https://www.mobikwik.com/",30],["Freecharge","Payment","https://img.icons8.com/color/96/freecharge.png","https://www.freecharge.in/",30],["Airtel Money","Payment","https://img.icons8.com/color/96/airtel-money.png","https://www.airtel.in/",30],["Jio Money","Payment","https://img.icons8.com/color/96/jio-money.png","https://www.jio.com/",30],["Ola Money","Payment","https://img.icons8.com/color/96/ola-money.png","https://www.olamoney.com/",25],["RazorpayX","Payment","https://img.icons8.com/color/96/razorpay.png","https://razorpay.com/",40],["Cashfree Bank","Payment","https://img.icons8.com/color/96/cashfree.png","https://www.cashfree.com/",40],
+// 30 BANK
+["SBI YONO","Bank","https://img.icons8.com/color/96/sbi.png","https://www.sbiyono.sbi/",40],["HDFC Bank","Bank","https://img.icons8.com/color/96/hdfc.png","https://www.hdfcbank.com/",40],["ICICI iMobile","Bank","https://img.icons8.com/color/96/icici.png","https://www.icicibank.com/",40],["Axis Mobile","Bank","https://img.icons8.com/color/96/axis.png","https://www.axisbank.com/",35],["Kotak 811","Bank","https://img.icons8.com/color/96/kotak.png","https://www.kotak.com/",35],["PNB ONE","Bank","https://img.icons8.com/color/96/pnb.png","https://www.pnbindia.in/",35],["BOB World","Bank","https://img.icons8.com/color/96/bob.png","https://www.bankofbaroda.in/",35],["Canara ai1","Bank","https://img.icons8.com/color/96/canara.png","https://canarabank.com/",30],["Union Bank","Bank","https://img.icons8.com/color/96/union.png","https://www.unionbankofindia.co.in/",30],["Indian Bank","Bank","https://img.icons8.com/color/96/indian-bank.png","https://www.indianbank.in/",30]
 ];
 
-let active="All"; const cats=["All","Messenger","Game","News","SIM","Shopping","Real","Education","Bank"];
+let active="All"; const cats=["All","Messenger","Game","News","SIM","Shopping","Real","Education","Payment","Bank"];
 function renderTabs(){document.getElementById("tabs").innerHTML=cats.map(c=>`<button class="${active==c?'active':''}" onclick="setCat('${c}')">${c} (${c=='All'?apps.length:apps.filter(a=>a[1]==c).length})</button>`).join("")}
 function renderApps(){
 let f=active=="All"?apps:apps.filter(a=>a[1]==active);
-document.getElementById("list").innerHTML=f.map(a=>`<div class="card"><div style="display:flex;gap:10px;align-items:center"><img src="${a[2]}" onerror="this.src='https://img.icons8.com/color/96/app.png'"><div><b style="font-size:13px">${a[0]}</b> <small style="background:#00c853;color:#fff;padding:1px 4px;border-radius:4px;font-size:8px">5★</small><br><small style="color:#aaa">₹${a[4]}/Play + ₹2/min | ${a[1]}</small><br><small style="color:#0f0">${usage[a[0]]||0} min</small></div></div><button class="btn" onclick="openApp('${a[0]}','${a[3]}',${a[4]})">PLAY</button></div>`).join("");
+document.getElementById("list").innerHTML=f.map(a=>`<div class="card"><div style="display:flex;gap:10px;align-items:center"><img src="${a[2]}" onerror="this.src='https://img.icons8.com/color/96/app.png'"><div><b style="font-size:13px">${a[0]}</b> <small style="background:#00c853;color:#fff;padding:1px 4px;border-radius:4px;font-size:8px">5★ ORIGINAL</small><br><small style="color:#aaa">₹${a[4]}/Play + ₹2/min</small><br><small style="color:#0f0">${usage[a[0]]||0} min</small></div></div><button class="btn" onclick="openApp('${a[0]}','${a[3]}',${a[4]})">PLAY</button></div>`).join("");
 document.getElementById("coins").innerText=coins;
 }
 function setCat(c){active=c;renderTabs();renderApps();}
 function openApp(name,url,reward){
-curApp=name; curReward=reward; lastUrl=url; sec=0;
-// DIRECT OPEN - No Iframe Block
-let win = window.open(url, "_blank");
-if(!win){ alert("Popup block hai! Phone ki setting me Popup allow karo. Fir se PLAY dabao."); window.location.href=url; return; }
-document.getElementById("running").style.display="block";
-document.getElementById("rName").innerText=name;
+curApp=name; curReward=reward; sec=0;
+let win=window.open(url,"_blank"); if(!win){window.location.href=url; return;}
+document.getElementById("running").style.display="block"; document.getElementById("rName").innerText=name;
 clearInterval(timer);
-timer=setInterval(()=>{
-sec++;
-document.getElementById("rTimer").innerText=Math.floor(sec/60)+":"+ (sec%60<10?"0"+(sec%60):sec%60);
-if(sec==10){ bal+=reward; total+=reward; coins+=reward; update(); }
-if(sec%60==0 && sec>0){ bal+=2; total+=2; coins+=2; usage[name]=(usage[name]||0)+1; update(); }
-},1000);
+timer=setInterval(()=>{sec++; document.getElementById("rTimer").innerText=Math.floor(sec/60)+":"+(sec%60<10?"0"+sec%60:sec%60); if(sec==10){bal+=reward; total+=reward; coins+=reward; playEarn+=reward; update();} if(sec%60==0&&sec>0){bal+=2; total+=2; coins+=2; usage[name]=(usage[name]||0)+1; update();}},1000);
 }
-function collectMoney(){
-clearInterval(timer);
-document.getElementById("running").style.display="none";
-if(curApp){ usage[curApp]=(usage[curApp]||0)+1; update(); alert("✅ "+curApp+" - "+sec+" sec use kiya! ₹"+curReward+" + ₹2/min add ho gaya! Withdraw dekho!"); }
-curApp=null;
+function collectMoney(){clearInterval(timer); document.getElementById("running").style.display="none"; if(curApp){usage[curApp]=(usage[curApp]||0)+1; update(); alert("✅ "+curApp+" - "+sec+" sec | ₹"+curReward+" Added!");} curApp=null;}
+function update(){
+localStorage.setItem("vls_bal",bal);localStorage.setItem("vls_coins",coins);localStorage.setItem("vls_total",total);localStorage.setItem("vls_use",JSON.stringify(usage));localStorage.setItem("vls_w",JSON.stringify(wds));localStorage.setItem("vls_play",playEarn);localStorage.setItem("vls_task",taskEarn);
+document.getElementById("coins").innerText=coins;
+// Earning page
+document.getElementById("eTotal").innerText="₹"+bal; document.getElementById("eCode").innerText="Code: "+code; document.getElementById("ePlay").innerText="₹"+playEarn; document.getElementById("eTask").innerText="₹"+taskEarn; document.getElementById("eMin").innerText=Object.values(usage).reduce((a,b)=>a+b,0)+" min"; document.getElementById("eBiz").innerText="₹"+total; document.getElementById("eMD").innerText="₹"+Math.floor(total*0.3); document.getElementById("eYou").innerText="₹"+Math.floor(total*0.7); document.getElementById("eTop").innerHTML=Object.entries(usage).sort((a,b)=>b[1]-a[1]).slice(0,5).map(e=>`<div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid #222"><span>${e[0]}</span><span style="color:#0f0">${e[1]} min</span></div>`).join("")||"No use yet";
+// History
+document.getElementById("hList").innerHTML=wds.length?wds.map(w=>`<div style="background:#000;padding:8px;border-radius:8px;margin:6px 0;border-left:3px solid ${w.status=='Paid'?'#0f0':'#ffcc00'}"><div style="display:flex;justify-content:space-between"><b style="color:#0f0">₹${w.amt}</b><small style="color:${w.status=='Paid'?'#0f0':'#ffcc00'}">${w.status||'Pending'}</small></div><small style="color:#aaa">UPI: ${w.upi}</small><br><small style="color:#666">${w.date} | Code: ${w.code}</small></div>`).join(""):"<small>No Withdrawal Yet</small>";
+// Admin
+document.getElementById("aStats").innerHTML=`Total: ₹${total} | MD 30%: ₹${Math.floor(total*0.3)} | Users 70%: ₹${Math.floor(total*0.7)}<br><small>Apps: ${apps.length} | Used: ${Object.keys(usage).length} | Withdraws: ${wds.length}</small>`; document.getElementById("wList").innerHTML=wds.length?wds.map((w,i)=>`<div style="background:#000;padding:6px;margin:4px 0;border-radius:6px;font-size:11px;display:flex;justify-content:space-between"><span>₹${w.amt} -> ${w.upi}<br><small>${w.date}</small></span><button onclick="markPaid(${i})" style="background:#0f0;color:#000;border:none;padding:4px 8px;border-radius:6px;font-size:10px">Mark Paid</button></div>`).join(""):"No Withdraw";
 }
-function update(){localStorage.setItem("vls_bal",bal);localStorage.setItem("vls_coins",coins);localStorage.setItem("vls_total",total);localStorage.setItem("vls_use",JSON.stringify(usage));localStorage.setItem("vls_w",JSON.stringify(wds)); document.getElementById("coins").innerText=coins; document.getElementById("aStats").innerHTML=`Total: ₹${total} | MD 30%: ₹${Math.floor(total*0.3)} | Users 70%: ₹${Math.floor(total*0.7)} | Apps: ${apps.length}`; document.getElementById("wList").innerHTML=wds.length?wds.map(w=>`<div style="background:#000;padding:6px;margin:4px 0;border-radius:6px;font-size:11px">₹${w.amt} -> ${w.upi} | ${w.code} | ${w.date}</div>`).join(""):"No Withdraw";}
-function addMoney(n){bal+=n; total+=n; coins+=n; update(); alert("₹"+n+" Added!");}
-function checkEarn(){let upi=document.getElementById("upi").value; if(!upi)return alert("UPI dalo"); let b=document.getElementById("earnBox"); b.style.display="block"; b.innerHTML=`<b style="font-size:22px;color:#0f0">₹${bal} Earning</b><br><small>Code: ${code} | Total: ₹${total} | Your 70%: ₹${bal} | MD 30%: ₹${Math.floor(total*0.3)}</small><br><small>Used Apps: ${Object.keys(usage).length}/${apps.length}</small>`;}
-function withdraw(){let upi=document.getElementById("upi").value; let amt=parseInt(document.getElementById("amt").value); if(!upi||amt<100)return alert("UPI + Min 100"); if(amt>bal)return alert("Balance: ₹"+bal); wds.unshift({upi,amt,code,date:new Date().toLocaleString(),total}); bal-=amt; update(); window.open(`https://wa.me/${OWNER}?text=${encodeURIComponent("REAL WITHDRAW 4.2%0ACode:"+code+"%0AUPI:"+upi+"%0AAmt:₹"+amt+"%0ATotal Biz:₹"+total+"%0AMD 30%:₹"+Math.floor(total*0.3))}`,"_blank"); alert("Withdraw MD Vinod ko bhej diya!");}
-function openAdmin(){let p=prompt("Admin Password:"); if(p=="VINU2025"){location.hash="#admin"; checkHash();}}
-function checkHash(){if(location.hash=="#admin"){document.getElementById("userPage").style.display="none"; document.getElementById("adminPage").style.display="block";}else{document.getElementById("userPage").style.display="block"; document.getElementById("adminPage").style.display="none";}}
-function goHome(){location.hash=""; location.href=location.pathname;}
-window.addEventListener("hashchange",checkHash); renderTabs(); renderApps(); checkHash(); update();
+function addMoney(n){bal+=n; total+=n; coins+=n; taskEarn+=n; update(); alert("₹"+n+" Added!");}
+function goPage(p){
+document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"));
+document.querySelectorAll(".bottom button").forEach(e=>e.classList.remove("active"));
+if(p=='home'){document.getElementById("homePage").classList.add("active"); document.getElementById("bHome").classList.add("active");}
+if(p=='earn'){document.getElementById("earnPage").classList.add("active"); document.getElementById("bEarn").classList.add("active");}
+if(p=='history'){document.getElementById("historyPage").classList.add("active"); document.getElementById("bHist").classList.add("active");}
+if(p=='admin'){document.getElementById("adminPage").classList.add("active");}
+}
+function withdraw(){let upi=document.getElementById("upi").value; let amt=parseInt(document.getElementById("amt").value); if(!upi||amt<100)return alert("UPI + Min 100"); if(amt>bal)return alert("Balance: ₹"+bal); wds.unshift({upi,amt,code,date:new Date().toLocaleString(),status:"Pending",total}); bal-=amt; update(); window.open(`https://wa.me/${OWNER}?text=${encodeURIComponent("REAL WITHDRAW 4.3%0ACode:"+code+"%0AUPI:"+upi+"%0AAmt:₹"+amt+"%0ATotal:₹"+total)}`,"_blank"); alert("Withdraw Request MD ko bhej diya! History me dekho!"); goPage('history');}
+function markPaid(i){wds[i].status="Paid"; update();}
+function openAdmin(){let p=prompt("Admin Password:"); if(p=="VINU2025"){goPage('admin');}}
+renderTabs(); renderApps(); update();
 </script>
 </body>
 </html>
