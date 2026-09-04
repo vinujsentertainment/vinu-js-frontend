@@ -1,120 +1,24 @@
-<!DOCTYPE html>
-<html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VLS 7.0 - RIGI TV CLONE - VJS</title>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4729657215342985" crossorigin="anonymous"></script>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#FFE4ED;color:#000}
-.top{background:#FF2E7A;padding:12px 14px 14px;color:#fff;position:sticky;top:0;z-index:10}
-.cash{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
-.cash b{font-size:32px}.wd{background:#fff;color:#FF2E7A;border:none;padding:9px 18px;border-radius:12px;font-weight:900}
-.bar{background:rgba(0,0,0,.15);border-radius:20px;padding:8px 12px;margin-top:12px;font-size:13px;display:flex;justify-content:space-between}
-.dia{display:flex;align-items:center;gap:8px;padding:14px;color:#fff;background:#FF2E7A}.card{background:#fff;border-radius:20px;margin:12px;padding:14px;box-shadow:0 4px 20px rgba(0,0,0,.08)}
-.win{display:flex;gap:10px;overflow:auto;padding-bottom:6px}.win div{min-width:110px;border-radius:14px;overflow:hidden;position:relative;background:#00E5C0;text-align:center;color:#000;font-weight:900}
-.progress{height:8px;background:#FFE4ED;border-radius:10px;margin-top:6px;overflow:hidden}.progress span{display:block;height:100%;background:#FF2E7A;border-radius:10px}
-.task{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #f0f0f0}
-.btnP{background:#FF2E7A;color:#fff;border:none;padding:8px 18px;border-radius:20px;font-weight:900}
-.btnG{background:#00D26A;color:#fff;border:none;padding:14px;width:100%;border-radius:14px;font-weight:900;font-size:16px;margin-top:10px}
-.btnW{background:#fff;color:#FF2E7A;border:1.5px solid #FF2E7A;padding:8px 14px;border-radius:10px;font-weight:900}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:99;align-items:center;justify-content:center;padding:18px}.box{background:#fff;border-radius:24px;overflow:hidden;width:100%;max-width:380px;text-align:center}
-.applist{background:#000;color:#fff;padding:10px}.app{background:#111;border:1px solid #222;border-radius:12px;display:flex;justify-content:space-between;align-items:center;padding:10px;margin:6px 0}.play{background:#FFD700;color:#000;border:none;padding:6px 14px;border-radius:20px;font-weight:900}
-.vjsBanner{width:100%;height:150px;object-fit:cover;border-bottom:2px solid gold}
-</style></head><body>
-
-<div class="top">
-<div style="display:flex;justify-content:space-between;align-items:center"><span onclick="history.back()" style="font-size:24px">←</span><div style="background:rgba(255,255,255,.2);padding:6px 14px;border-radius:20px">▶ Watch Video <span style="margin-left:8px">🕒</span></div></div>
-<div class="cash"><div><div style="opacity:.9">Cash Earnings</div><b>₹<span id="cash">1.85</span></b></div><button class="wd" onclick="withdraw()">Withdraw > </button></div>
-<div class="bar"><span>🤣📢</span><span>📢 More than <b style="color:#FFD700">5,000,000</b> users earned diamonds this week</span></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"><meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Expires" content="0"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>VLS 11.0 REAL WITHDRAWAL FIXED - VJS</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#000;color:#fff;padding-bottom:80px}.h{background:#111;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99}.y{background:gold;color:#000;text-align:center;padding:6px;font-size:11px;font-weight:900}.box{border:2px solid gold;border-radius:14px;margin:12px;padding:12px}.app{background:#1E1E1E;margin:8px 12px;border-radius:12px;padding:12px;display:flex;justify-content:space-between}.play{background:gold;color:#000;border:none;padding:8px 18px;border-radius:20px;font-weight:900}</style></head><body>
+<div class="h"><b>VLS 11.0 - REAL PAYOUT ✅</b><span id="coins">0</span> C</div>
+<div class="y">MD VINOD | v9bhtsc5 | googhy-21 | 4729657215342985 | REAL WITHDRAWAL LIVE</div>
+<div class="box">
+<input id="mob" placeholder="Mobile No" style="padding:12px;width:60%;background:#111;color:#fff;border:1px solid #555;border-radius:8px">
+<button onclick="login()" style="background:gold;padding:12px;border:none;border-radius:8px;font-weight:900">Login</button><br><br>
+<div style="background:#111;padding:10px;border-radius:10px">Cash: ₹<b id="cash">0.00</b> | Status: <span id="st">Connect...</span></div><br>
+<button onclick="wd()" style="background:#00FF00;color:#000;width:100%;padding:14px;border:none;border-radius:10px;font-weight:900;font-size:16px">💸 REAL WITHDRAWAL - UPI ME PAISA MANGAO</button><br><br>
+<button onclick="daily()" style="background:#333;color:#fff;padding:10px;width:30%;border-radius:8px;border:1px solid #555">Daily +10</button>
+<button onclick="watchAd()" style="background:#333;color:#fff;padding:10px;width:30%;border-radius:8px;border:1px solid #555">Ad +5</button>
+<button onclick="bal()" style="background:gold;color:#000;padding:10px;width:30%;border-radius:8px;border:none;font-weight:900">Balance</button>
 </div>
-
-<div class="dia"><span style="font-size:22px">🔷</span><b style="font-size:20px" id="dia">440</b><span style="margin-left:6px;font-size:12px;opacity:.9">Diamonds you earn today will be auto-converted to cash tonight ⓘ</span></div>
-
-<div class="card">
-<div style="font-weight:900;font-size:18px">🏆 Meet winners like you</div>
-<div class="win" style="margin-top:10px">
-<div><img src="https://i.ibb.co/0jZQ1nq/winner.png" style="width:100%;height:110px;object-fit:cover" onerror="this.style.background='#00E5C0'"><div style="background:#FF2E7A;color:#fff;margin:4px;border-radius:6px">LUCKY DRAW WINNER<br>₹10,000</div></div>
-<div><div style="height:110px;background:#FFD700;display:flex;align-items:center;justify-content:center">VJS</div><div style="background:#FF2E7A;color:#fff;margin:4px;border-radius:6px">LUCKY DRAW WINNER<br>₹10,000</div></div>
-<div><div style="height:110px;background:#00E5C0"></div><div style="background:#FF2E7A;color:#fff;margin:4px;border-radius:6px">LUCKY DRAW WINNER<br>₹10,000</div></div>
-<div><div style="height:110px;background:#A0E"></div><div style="background:#FF2E7A;color:#fff;margin:4px;border-radius:6px">LUCKY DRAW WINNER<br>₹10,000</div></div>
-</div>
-</div>
-
-<div class="card">
-<div style="display:flex;justify-content:space-between;align-items:center"><div><b style="font-size:18px">Weekly Lucky Draw</b><div style="color:#FF2E7A">Watch episodes to enter the draw!</div></div><span style="background:#00C853;color:#fff;padding:6px 12px;border-radius:20px;font-size:12px">₹25 Cr earned</span></div>
-<div class="task"><b>Win <span style="color:#FF2E7A">₹25,000</span></b><span style="color:#FF2E7A">3 more</span></div><div class="progress"><span style="width:70%"></span></div>
-<div class="task"><b>Win <span style="color:#FF2E7A">₹50,000</span></b><span>50 more</span></div><div class="progress"><span style="width:20%"></span></div>
-<div class="task"><b>Win <span style="color:#FF2E7A">₹1,00,000</span></b><span>200 more</span></div><div class="progress"><span style="width:5%"></span></div>
-<div class="task"><b>Win <span style="color:#FF2E7A">₹2,00,000</span></b><span>1000 more</span></div><div class="progress"><span style="width:1%"></span></div>
-</div>
-
-<div class="card">
-<b>Daily Rewards</b><div style="font-size:12px;color:#888">Resets at 12.00 AM</div>
-<div class="task"><div><b>Daily Watch (1/9)</b><br><small>up to 20,240</small><br><span style="background:#FFD700;padding:2px 6px;border-radius:6px">🔷 440/440</span></div><button class="btnP" onclick="openCheckin()">Claim</button></div>
-<div class="task"><div><b>Watch ad (0/20)</b><br><b>16,284</b></div><button class="btnW" onclick="watchAd()">Watch ad</button></div>
-<div style="display:flex;gap:8px;overflow:auto;margin-top:8px">
-<div style="min-width:70px;text-align:center"><div style="background:#FFE4ED;border-radius:12px;padding:8px">🔷<br>+448</div><small>Ad1</small></div>
-<div style="min-width:70px;text-align:center"><div style="background:#FFE4ED;border-radius:12px;padding:8px">🔷<br>+648</div><small>Ad2</small></div>
-<div style="min-width:70px;text-align:center"><div style="background:#FFE4ED;border-radius:12px;padding:8px">🔷<br>+648</div><small>Ad3</small></div>
-</div>
-
-<div style="margin-top:14px;display:flex;justify-content:space-between"><b>Daily Check-in<br><span style="color:#FF2E7A">🔷 440</span></b><button class="btnW" onclick="openCheckin()">Check-in</button></div>
-<div style="display:flex;gap:6px;margin-top:8px;overflow:auto">
-<div style="min-width:60px;background:#FFD700;border-radius:12px;padding:8px;text-align:center"><b>+440</b><br>🔷<br><small>Today</small></div>
-<div style="min-width:60px;background:#FFE4ED;border-radius:12px;padding:8px;text-align:center"><b>+440</b><br>🔷<br><small>Tom</small></div>
-<div style="min-width:60px;background:#FFE4ED;border-radius:12px;padding:8px;text-align:center"><b>+440</b><br>🔷<br><small>Day3</small></div>
-<div style="min-width:60px;background:#FFE4ED;border-radius:12px;padding:8px;text-align:center"><b>+440</b><br>🔷<br><small>Day4</small></div>
-</div>
-</div>
-
-<div class="card">
-<div style="display:flex;justify-content:space-between"><div><b>Invite & Earn ⓘ</b><div style="color:#FF2E7A">Get cash for every invite</div></div><div style="font-size:32px">💸</div></div>
-<div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px"><b style="color:#FF2E7A">💸 Start earning ₹30,000</b><button class="btnW" onclick="invite()">Invite</button></div>
-<div style="display:flex;gap:8px;overflow:auto;margin-top:10px">
-<div style="min-width:90px;background:#FFE4ED;border:2px solid #FF2E7A;border-radius:12px;padding:10px;text-align:center"><b>1st Invite<br>+₹10</b><br>💸</div>
-<div style="min-width:90px;background:#f5f5f5;border-radius:12px;padding:10px;text-align:center"><b>5th Invite<br>+₹40</b><br>💸</div>
-<div style="min-width:90px;background:#f5f5f5;border-radius:12px;padding:10px;text-align:center"><b>25th Invite<br>+₹200</b><br>💸</div>
-<div style="min-width:90px;background:#f5f5f5;border-radius:12px;padding:10px;text-align:center"><b>100th Invite<br>+₹750</b><br>💸</div>
-</div>
-</div>
-
-<div class="card">
-<b>Learn & Earn ⓘ</b><div style="color:#FF2E7A">Watch videos and earn diamonds</div>
-<div style="display:flex;gap:10px;overflow:auto;margin-top:10px">
-<div style="min-width:130px;border-radius:12px;overflow:hidden;background:#6A1B9A;color:#fff;padding:8px"><span style="background:#FFD700;color:#000;padding:2px 6px;border-radius:6px">🔷 204</span><br><b>HOW TO CANCEL AUTOPAY ON PhonePe</b></div>
-<div style="min-width:130px;border-radius:12px;overflow:hidden;background:#C2185B;color:#fff;padding:8px"><span style="background:#FFD700;color:#000;padding:2px 6px;border-radius:6px">🔷 270</span><br><b>TOP 5 DARK LIPSTICKS</b></div>
-<div style="min-width:130px;border-radius:12px;overflow:hidden;background:#FFCCBC;color:#000;padding:8px"><span style="background:#FFD700;color:#000;padding:2px 6px;border-radius:6px">🔷 211</span><br><b>HINDI SE ENGLISH BOLNA SEEKHO</b></div>
-</div>
-</div>
-
-<div style="background:#000;color:#fff;padding:12px"><div style="color:gold;text-align:center;font-size:10px;margin-bottom:8px">MD VINOD BAIDORIYA | ADMOB 4729657215342985 | AMAZON googhy-21 | RIGI v9bhtsc5 | 40% MD 9685187704@ybl | 60% USER</div>
-<img class="vjsBanner" src="vjs-banner.jpg" onerror="this.src='https://vinu-js.netlify.app/vjs-banner.jpg'">
-<div id="appList"></div>
-<div style="margin:10px"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-4729657215342985" data-ad-slot="1004100604"></ins></div>
-</div>
-
-<!-- Checkin Popup -->
-<div id="checkModal" class="modal"><div class="box">
-<div style="background:#FF2E7A;padding:20px;color:#fff;text-align:left;position:relative"><span onclick="closeM()" style="position:absolute;top:10px;right:14px;background:#fff;color:#FF2E7A;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-weight:900">✕</span><h2>Today's Check-in</h2><p style="margin-top:6px;font-size:14px">Check in & get 440 diamonds. Your streak resets if you miss a day.</p><div style="background:#fff;border-radius:16px;padding:14px;margin-top:14px;color:#FF2E7A;text-align:center;font-size:28px;font-weight:900">🔷 440</div><div style="display:flex;gap:8px;margin-top:14px;overflow:auto"><div style="min-width:64px;background:#FFD700;border-radius:12px;padding:8px;color:#000;text-align:center"><b>+440</b><br>🔷<br><small>Today</small></div><div style="min-width:64px;background:#FFD700;border-radius:12px;padding:8px;color:#000;text-align:center;opacity:.7"><b>+440</b><br>🔷<br><small>Tomorrow</small></div><div style="min-width:64px;background:#FFD700;border-radius:12px;padding:8px;color:#000;text-align:center;opacity:.7"><b>+440</b><br>🔷<br><small>Day3</small></div></div><button onclick="doCheckin()" style="width:100%;background:#FF2E7A;border:2px solid #fff;color:#fff;padding:14px;border-radius:14px;font-weight:900;margin-top:14px;font-size:18px">Check-in 👆</button></div>
-</div></div>
-
-<!-- Claim Success Popup -->
-<div id="claimModal" class="modal"><div class="box" style="padding:0">
-<div style="background:#FFD7B0;padding:30px"><div style="font-size:80px">💎</div><div style="background:#FF6B6B;border-radius:12px;height:60px;margin-top:-20px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900">GIFT BOX</div></div>
-<div style="padding:20px"><h2>Claim Successful</h2><h1 style="color:#FF2E7A;margin-top:8px">+440 Diamonds</h1><button onclick="watchAdBonus()" style="width:100%;background:#00D26A;color:#fff;border:none;padding:14px;border-radius:14px;font-weight:900;margin-top:16px;font-size:16px">AD Watch ad | Get 🔷 648</button><button onclick="closeM()" style="width:100%;background:#FF2E7A;color:#fff;border:none;padding:14px;border-radius:14px;font-weight:900;margin-top:10px">Got it</button></div>
-</div></div>
-
+<div id="list"></div>
 <script>
-let dia=440,cash=1.85;
-function up(){document.getElementById('dia').innerText=dia;document.getElementById('cash').innerText=cash.toFixed(2);}
-function openCheckin(){document.getElementById('checkModal').style.display='flex';try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}}
-function doCheckin(){dia+=440;cash+=0.44;up();document.getElementById('checkModal').style.display='none';document.getElementById('claimModal').style.display='flex';localStorage.dia=dia;}
-function closeM(){document.getElementById('checkModal').style.display='none';document.getElementById('claimModal').style.display='none';}
-function watchAd(){try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){} dia+=648;cash+=0.64;up();alert('Ad Watched! +648 Diamonds | AdMob SLOT 1004100604');}
-function watchAdBonus(){try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){} dia+=648;cash+=0.64;up();closeM();}
-function invite(){window.open('https://wa.me/?text=Join RIGI TV Clone VLS 7.0 Code VINU-v9bhtsc5 https://vinu-js.netlify.app/?ref=VINU-v9bhtsc5','_blank'); dia+=100; up();}
-function withdraw(){let upi=prompt('UPI / Bank No dalo (40% MD - 9685187704@ybl, 60% User)'); if(!upi) return; alert('Withdraw Request: ₹'+cash+' -> '+upi+' | MD 40% Direct A/C 31463585243'); window.open('https://wa.me/919685187704?text=Withdraw ₹'+cash+' UPI '+upi,'_blank'); window.location.href='upi://pay?pa='+encodeURIComponent(upi)+'&am='+cash+'&cu=INR';}
-let apps=[{n:"Amazon",r:35,u:"https://www.amazon.in/?tag=googhy-21"},{n:"Rigi TV",r:45,u:"https://rigi.io/v9bhtsc5"},{n:"WhatsApp",r:30,u:"https://wa.me"},{n:"Instagram",r:30,u:"https://instagram.com"},{n:"Dream11",r:50,u:"https://dream11.com"},{n:"PhonePe",r:30,u:"https://phonepe.com"},{n:"Meesho",r:40,u:"https://meesho.com"}];
-let h='';apps.forEach(a=>{h+=`<div class="app"><div style="display:flex;gap:10px;align-items:center"><div style="width:40px;height:40px;background:#222;border-radius:8px;display:flex;align-items:center;justify-content:center">${a.n[0]}</div><div><b>${a.n} ⭐5.0</b><div style="font-size:11px;color:gold">₹${a.r} | AdMob</div></div></div><button class="play" onclick="openApp('${a.n}','${a.u}',${a.r})">PLAY</button></div>`});document.getElementById('appList').innerHTML=h;
-function openApp(n,u,r){try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){} window.open(u,'_blank'); let ur=Math.floor(r*0.6),mr=r-ur; dia+=ur*10; cash+=ur*0.1; up(); alert(n+' Opened! +'+ur*10+' Diamonds | User 60% ₹'+ur+' | MD 40% ₹'+mr+' -> 9685187704@ybl');}
-try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}
-setInterval(()=>{try{(adsbygoogle=window.adsbygoogle||[]).push({});}catch(e){}},5*60*1000);
+const API="https://vinu-js-backend.onrender.com?v="+Date.now(); // cache tod
+let mobile=localStorage.getItem('vls11')||"";document.getElementById('mob').value=mobile;
+async function login(){mobile=document.getElementById('mob').value;localStorage.setItem('vls11',mobile);let r=await fetch("https://vinu-js-backend.onrender.com/api/refer",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mobile})});let j=await r.json();alert(j.message);bal();}
+async function daily(){let r=await fetch("https://vinu-js-backend.onrender.com/api/reward/daily",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mobile})});alert((await r.json()).message);bal();}
+async function watchAd(){let r=await fetch("https://vinu-js-backend.onrender.com/api/reward/watch",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mobile})});alert((await r.json()).message);bal();}
+async function bal(){let r=await fetch("https://vinu-js-backend.onrender.com/api/wallet/"+mobile+"?t="+Date.now());let j=await r.json();document.getElementById('coins').innerText=j.coins;document.getElementById('cash').innerText=(j.coins/100).toFixed(2);document.getElementById('st').innerText='LIVE '+j.coins+' coins';}
+async function wd(){let upi=prompt('Apna UPI ID dalo jisme paisa chahiye - Eg: 9685187704@ybl\n\nCash: ₹'+document.getElementById('cash').innerText+'\n60% aapko, 40% MD ko');if(!upi)return;let amt=document.getElementById('cash').innerText;let r=await fetch("https://vinu-js-backend.onrender.com/api/withdraw",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mobile,upi,amount:amt})});let j=await r.json();alert(j.message+"\n\nAdmin Panel: vinu-js-backend.onrender.com/api/withdrawals pe sab requests dikhengi");}
+let apps=[["Amazon ₹35 googhy-21","https://www.amazon.in/?tag=googhy-21"],["Rigi ₹45 v9bhtsc5","https://rigi.io/v9bhtsc5"],["Kuku ₹40","https://rigi.io/v9bhtsc5"]];let h='';apps.forEach(a=>h+=`<div class="app"><b>${a[0]}</b><button class="play" onclick="window.open('${a[1]}','_blank')">PLAY</button></div>`);document.getElementById('list').innerHTML=h;
+if(mobile)bal();
 </script></body></html>
