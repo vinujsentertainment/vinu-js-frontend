@@ -1,106 +1,155 @@
 <!DOCTYPE html>
 <html><head>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VLS 7.0 - Vinod Baidoriya</title>
+<title>VLS 8.0 FINAL PROFIT - Vinod Baidoriya</title>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4729657215342985" crossorigin="anonymous"></script>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#080808;color:#fff;font-family:Arial;padding-bottom:70px}
 .top{background:#000;padding:12px;display:flex;justify-content:space-between;position:sticky;top:0;z-index:99;border-bottom:2px solid #ffcc00}
-.founder{background:#ffcc00;color:#000;text-align:center;font-weight:900;font-size:9px;padding:6px}
+.founder{background:#ffcc00;color:#000;text-align:center;font-weight:900;font-size:8px;padding:6px}
 .card{background:#151515;border:1px solid #222;border-radius:12px;padding:10px;margin:6px 8px;display:flex;justify-content:space-between;align-items:center}
-.adbox{background:#000;border:1px dashed #0f0;border-radius:10px;padding:10px;margin:10px 8px;text-align:center}
+.vip{border:2px solid #ffcc00;background:linear-gradient(90deg,#1a1a00,#000);transform:scale(1.02);box-shadow:0 0 8px #ffcc00}
+.adbox{background:#000;border:2px dashed #0f0;border-radius:10px;padding:12px;margin:10px 8px;text-align:center}
 .btn{background:#ffcc00;color:#000;border:0;padding:8px 18px;border-radius:20px;font-weight:900}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #ffcc00;display:flex;justify-content:space-around;padding:8px;z-index:999}
-.bottom button{background:none;border:none;color:#aaa;font-size:11px}.bottom button.active{color:#ffcc00;font-weight:900}
+.bottom button{background:none;border:none;color:#aaa;font-size:10px}.bottom button.active{color:#ffcc00;font-weight:900}
 .page{display:none;padding:10px}.page.active{display:block}
 .box{background:#151515;border:1px solid #333;border-radius:12px;padding:12px;margin:8px 0}
 .mainbtn{width:100%;background:#ffcc00;color:#000;border:0;padding:13px;border-radius:10px;font-weight:900;margin-top:8px}
-.refbtn{width:100%;background:linear-gradient(90deg,#ff416c,#ff4b2b);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:8px}
-#gameModal{position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px}
+.refbtn{width:100%;background:#25D366;color:#fff;border:0;padding:14px;border-radius:12px;font-weight:900;margin-top:8px}
+#gameModal{position:fixed;inset:0;background:rgba(0,0,0,.96);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px}
 .mBox{background:#151515;border:2px solid #ffcc00;border-radius:18px;padding:20px;width:100%;max-width:360px;text-align:center}
 input{width:100%;padding:11px;margin:5px 0;border-radius:8px;background:#000;border:1px solid #333;color:#fff}
 </style>
 </head><body>
-<div class="top"><b>VLS 7.0</b><div>C:<b id="coins" style="color:#ffcc00">0</b> <span onclick="admin()">⚙️</span></div></div>
-<div class="founder">👑 MD VINOD BAIDORIYA | REFER + ADMOB 4729657215342985 + AMAZON googhy-21 + RIGI v9bhtsc5</div>
+<div class="top"><b>VLS 8.0 PROFIT</b><div>C:<b id="coins" style="color:#ffcc00">0</b> <span onclick="admin()">⚙️</span></div></div>
+<div class="founder">👑 MD VINOD BAIDORIYA | ADMIN UPI: 9685187704@ybl | ADMOB AUTO 5 MIN | 70% USER 30% COMPANY</div>
 
 <div id="home" class="page active">
-<div class="box" style="text-align:center;border:1px dashed #ffcc00">
-<div onclick="go('refer')" style="background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;padding:12px;border-radius:10px;font-weight:900">🔗 REFER & EARN ₹100 PER FRIEND - CLICK HERE</div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-top:10px">
-<div onclick="spin()" style="background:#000;padding:8px;border-radius:8px;border:1px solid #333">🎡<br><b>Spin</b></div>
-<div onclick="scratch()" style="background:#000;padding:8px;border-radius:8px;border:1px solid #333">🎟️<br><b>Scratch</b></div>
-<div onclick="ad()" style="background:#000;padding:8px;border-radius:8px;border:1px solid #333">📺<br><b>Ad ₹5</b></div>
-</div>
+<div class="box" style="text-align:center;border:2px solid #ffcc00">
+<div style="background:linear-gradient(90deg,#ffcc00,#ff9900);color:#000;padding:10px;border-radius:10px;font-weight:900">🔥 VIP HIGH EARNING - INSE AAPKO SABSE ZYADA FAYDA</div>
+<div style="font-size:10px;color:#0f0;margin-top:5px">AdMob Auto: Har 5 Min + Back Press pe Ad = Aapki Earning</div>
 </div>
 <div id="list"></div>
 </div>
 
 <div id="refer" class="page">
-<h2 style="color:#ffcc00">🔗 Refer & Earn</h2>
-<div class="box" style="border:2px solid #ffcc00;text-align:center;background:linear-gradient(180deg,#1a1a00,#000)">
-<div style="font-size:50px">🎁</div><b style="font-size:19px">Har Friend Pe ₹100</b><br>
-<div id="refCode" style="background:#000;border:2px dashed #ffcc00;border-radius:10px;padding:12px;margin:12px 0;font-size:22px;font-weight:900;color:#ffcc00">VINU-v9bhtsc5</div>
-<button class="refbtn" onclick="shareWA()" style="background:#25D366">📱 WhatsApp Share</button>
-<button class="refbtn" onclick="copyLink()" style="background:#ffcc00;color:#000">📋 Copy Clean Link</button>
-<div style="text-align:left;background:#000;padding:10px;border-radius:10px;font-size:12px;margin-top:10px">
-<b style="color:#0f0">Link:</b><br><span id="cleanLink" style="color:#ffcc00;word-break:break-all">https://vinu-js.netlify.app/?ref=VINU-v9bhtsc5</span>
+<h2 style="color:#ffcc00">🔗 Refer & Earn ₹100</h2>
+<div class="box" style="border:2px solid #ffcc00;text-align:center">
+<div id="refCode" style="background:#000;border:2px dashed #ffcc00;border-radius:10px;padding:12px;margin:10px 0;font-size:22px;font-weight:900;color:#ffcc00">VINU-v9bhtsc5</div>
+<div id="cleanLink" style="color:#ffcc00;font-size:11px;word-break:break-all">https://vinu-js.netlify.app/?ref=VINU-v9bhtsc5</div>
+<button class="refbtn" onclick="shareWA()">📱 WhatsApp Share</button>
+<button class="mainbtn" onclick="copyLink()" style="background:#fff;color:#000">📋 Copy Link</button>
 </div>
-</div>
-<div class="box"><b>👥 My Referrals (<span id="refCount">0</span>)</b><div id="refList" style="margin-top:8px"></div></div>
-<button class="mainbtn" onclick="go('home')">Back Home</button>
+<div class="box"><b>👥 Referrals: <span id="refCount">0</span></b><div id="refList"></div></div>
 </div>
 
-<div id="earn" class="page"><h2 style="color:#ffcc00">💰 Earning Complete</h2>
-<div class="box" style="text-align:center;border:1px solid #0f0"><b id="eTotal" style="font-size:32px;color:#0f0">₹0</b><br><small id="eCode"></small></div>
+<div id="earn" class="page"><h2 style="color:#ffcc00">💰 Profit Dashboard</h2>
+<div class="box" style="text-align:center;border:1px solid #0f0"><b id="eTotal" style="font-size:32px;color:#0f0">₹0</b><br><small>ADMIN UPI: 9685187704@ybl</small><br><small id="eCode"></small></div>
 <div class="box" id="eBreak"></div>
-<button class="mainbtn" onclick="go('home')">Back</button></div>
+<div class="box" style="border:2px solid #ffcc00"><b>🏦 ADMIN PROFIT (Aapka Fayda)</b><div id="adminProfit" style="color:#ffcc00;margin-top:6px;font-size:13px"></div></div>
+</div>
 
-<div id="hist" class="page"><h2>🏧 Withdraw</h2><div class="box"><input id="upi" placeholder="UPI ID"><input id="amt" type="number" placeholder="Min 100"><button class="mainbtn" onclick="withdraw()">WITHDRAW</button></div><div class="box" id="hList"></div></div>
-<div id="adminP" class="page"><h2>👑 ADMIN</h2><div id="aStats" class="box"></div><button class="mainbtn" onclick="go('home')">Back</button></div>
+<div id="hist" class="page"><h2>🏧 Withdraw</h2>
+<div class="box" style="border:1px solid #ffcc00"><small style="color:#ffcc00">⚠️ Min ₹500 | 70% User ko milega | 30% Admin UPI me jayega | Jeb se nahi jayega</small>
+<input id="upi" placeholder="User ka UPI ID"><input id="amt" type="number" placeholder="Min 500">
+<button class="mainbtn" onclick="withdraw()">REQUEST WITHDRAW</button>
+</div>
+<div class="box" id="hList"></div>
+</div>
+
+<div id="adminP" class="page"><h2>👑 ADMIN - 9685187704@ybl</h2>
+<div class="box" style="border:2px solid #ffcc00;background:#1a1a00"><b>🏦 Aapki UPI: 9685187704@ybl</b><br><small style="color:#0f0">Sari Earning Isi Me Ayegi</small><br><div id="upiTotal" style="font-size:20px;color:#ffcc00;margin-top:6px"></div></div>
+<div id="aStats" class="box"></div>
+<div id="wList" class="box"></div>
+<button class="mainbtn" onclick="go('home')">Back</button>
+</div>
 
 <div id="gameModal"><div class="mBox" id="mContent"></div></div>
 <div class="bottom">
 <button id="bHome" class="active" onclick="go('home')">🏠<br>Home</button>
-<button id="bRef" onclick="go('refer')" style="color:#ff416c">🔗<br>Refer<br><small>₹100</small></button>
-<button id="bEarn" onclick="go('earn')">💰<br>Earn</button>
+<button id="bRef" onclick="go('refer')">🔗<br>Refer</button>
+<button id="bEarn" onclick="go('earn')">💰<br>Profit</button>
 <button id="bHist" onclick="go('hist')">🏧<br>Hist</button>
 </div>
 
 <script>
-let CFG={PUB:"ca-pub-4729657215342985",SLOT:"1004100604",AMZ:"googhy-21",RIGI:"v9bhtsc5",REF:"VINU-v9bhtsc5",SITE:"https://vinu-js.netlify.app"};
+let CFG={PUB:"ca-pub-4729657215342985",SLOT:"1004100604",AMZ:"googhy-21",RIGI:"v9bhtsc5",REF:"VINU-v9bhtsc5",SITE:"https://vinu-js.netlify.app",ADMIN_UPI:"9685187704@ybl"};
 let realAd=+(localStorage.real_ad||0), realAmz=+(localStorage.real_amz||0), realRigi=+(localStorage.real_rigi||0), realRef=+(localStorage.real_ref||0);
 let bal=+(localStorage.vls_bal||0), total=+(localStorage.vls_total||0), refs=JSON.parse(localStorage.vls_refs||"[]"), wds=JSON.parse(localStorage.vls_w||"[]");
-let apps=[
-["Amazon","Shop","https://img.icons8.com/color/96/amazon.png","https://www.amazon.in/?tag=googhy-21",35,1],
-["Rigi TV","OTT","https://img.icons8.com/color/96/money-bag.png","https://rigi.club/?referral=v9bhtsc5",45,2],
-["Kuku FM","OTT","https://img.icons8.com/color/96/mic.png","https://kukufm.com/?ref=v9bhtsc5",40,2],
-["WhatsApp","Msg","https://img.icons8.com/color/96/whatsapp.png","https://wa.me/",30,0],
-["Instagram","Msg","https://img.icons8.com/color/96/instagram-new.png","https://instagram.com/",30,0],
-["Dream11","Game","https://img.icons8.com/color/96/trophy.png","https://www.dream11.com/",50,0],
-["PhonePe","Pay","https://img.icons8.com/color/96/phonepe.png","https://phonepe.com/",40,0]
+let adminTotal=+(localStorage.admin_total||0); // Aapka total profit jo UPI me ayega
+
+let vipApps=[
+["🔥 Amazon","https://img.icons8.com/color/96/amazon.png","https://www.amazon.in/?tag=googhy-21",100,"10% Commission + AdMob ₹20"],
+["🔥 Rigi TV","https://img.icons8.com/color/96/money-bag.png","https://rigi.club/?referral=v9bhtsc5",150,"₹150/Join + AdMob ₹20"],
+["🔥 Kuku FM","https://img.icons8.com/color/96/mic.png","https://kukufm.com/?ref=v9bhtsc5",120,"₹120/Join + AdMob ₹20"],
 ];
-function render(){let h="";apps.forEach((a,i)=>{let tag=a[5]==1?"Amazon: "+CFG.AMZ:a[5]==2?"Rigi: "+CFG.RIGI:"AdMob"; h+=`<div class="card"><div style="display:flex;gap:10px;align-items:center"><img src="${a[2]}" width="40"><div><b>${a[0]}</b><br><small style="color:#aaa">₹${a[4]} | ${tag}</small></div></div><button class="btn" onclick="openApp('${a[0]}','${a[3]}',${a[4]},${a[5]})">PLAY</button></div>`; if((i+1)%3==0)h+=`<div class="adbox"><ins class="adsbygoogle" style="display:block" data-ad-client="${CFG.PUB}" data-ad-slot="${CFG.SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script><small style="color:#0f0">AdMob: ${CFG.SLOT}</small></div>`;}); document.getElementById("list").innerHTML=h; upd();}
-function openApp(n,u,r,t){if(t==1)realAmz+=8; if(t==2)realRigi+=10; realAd+=5; bal+=r; total+=r; save(); window.open(u,"_blank");}
-function save(){localStorage.vls_bal=bal; localStorage.vls_total=total; localStorage.real_ad=realAd; localStorage.real_amz=realAmz; localStorage.real_rigi=realRigi; localStorage.real_ref=realRef; localStorage.vls_refs=JSON.stringify(refs); localStorage.vls_w=JSON.stringify(wds); upd();}
-function upd(){document.getElementById("coins").innerText=bal; document.getElementById("eTotal").innerText="₹"+bal; document.getElementById("eCode").innerText="Code: "+CFG.REF; document.getElementById("cleanLink").innerText=CFG.SITE+"/?ref="+CFG.REF; document.getElementById("refCode").innerText=CFG.REF; document.getElementById("refCount").innerText=refs.length;
-document.getElementById("eBreak").innerHTML=`AdMob: ₹${realAd*2} (${realAd/5} ads)<br>Amazon ${CFG.AMZ}: ₹${realAmz*15}<br>Rigi ${CFG.RIGI}: ₹${realRigi*20}<br>Refer: ₹${realRef}<br><hr><b>Total Real: ₹${realAd*2+realAmz*15+realRigi*20+realRef}</b><br>MD 30% = ₹${Math.floor((realAd*2+realAmz*15+realRigi*20+realRef)*0.3)}`;
-document.getElementById("aStats").innerHTML=`Bal: ₹${bal} | Total: ₹${total}<br>Ad: ₹${realAd*2} | Amz: ₹${realAmz*15} | Rigi: ₹${realRigi*20} | Ref: ₹${realRef}<br>Refs: ${refs.length}`;
-document.getElementById("refList").innerHTML=refs.length?refs.map(r=>`<div style="display:flex;justify-content:space-between;background:#000;padding:6px;border-radius:6px;margin:4px 0"><span>👤 ${r.c}</span><span style="color:#0f0">+₹100</span></div>`).join(""):"<small style='color:#aaa'>No refs yet</small>";
-document.getElementById("hList").innerHTML=wds.map(w=>`<div style="background:#000;padding:6px;margin:4px 0;border-radius:6px">₹${w.a} - ${w.s}</div>`).join("");
+let normalApps=[
+["WhatsApp","https://img.icons8.com/color/96/whatsapp.png","https://wa.me/",5],
+["Facebook","https://img.icons8.com/color/96/facebook.png","https://m.facebook.com/",5],
+["Instagram","https://img.icons8.com/color/96/instagram-new.png","https://instagram.com/",5],
+["Dream11","https://img.icons8.com/color/96/trophy.png","https://www.dream11.com/",5],
+["PhonePe","https://img.icons8.com/color/96/phonepe.png","https://phonepe.com/",5],
+];
+
+function render(){
+let h="";
+vipApps.forEach(a=>{
+h+=`<div class="card vip"><div style="display:flex;gap:10px;align-items:center"><img src="${a[1]}" width="50"><div><b style="color:#ffcc00">${a[0]}</b><br><small style="color:#0f0;font-weight:900">${a[4]}</small><br><small style="color:#aaa">ADMIN UPI: ${CFG.ADMIN_UPI}</small></div></div><button class="btn" onclick="openApp('${a[0]}','${a[2]}',${a[3]},1)">PLAY ₹${a[3]}</button></div>`;
+h+=`<div class="adbox"><small style="color:#0f0">📢 AdMob Auto Ad - Aapki Earning - Slot ${CFG.SLOT}</small><br><ins class="adsbygoogle" style="display:block" data-ad-client="${CFG.PUB}" data-ad-slot="${CFG.SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script></div>`;
+});
+h+=`<div style="text-align:center;color:#888;font-size:11px;margin:10px">-- Normal Apps: 1 Hour = ₹5 (Low Profit) --</div>`;
+normalApps.forEach(a=>{
+h+=`<div class="card" style="opacity:0.6"><div style="display:flex;gap:10px;align-items:center"><img src="${a[1]}" width="35"><div><b style="font-size:12px">${a[0]}</b><br><small>1 Hr = ₹5 Coin</small></div></div><button class="btn" style="background:#333;color:#aaa" onclick="openApp('${a[0]}','${a[2]}',${a[3]},0)">PLAY</button></div>`;
+});
+document.getElementById("list").innerHTML=h; upd();
 }
-function shareWA(){let msg=`👑 VLS App - 236 Apps se Paisa Kamao!\n\n🔗 Mera Code: ${CFG.REF}\n💰 Har Friend pe ₹100\n📱 AdMob + Amazon + Rigi\n\nJoin Karo: ${CFG.SITE}/?ref=${CFG.REF}`; window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank"); addRef();}
-function copyLink(){let l=`${CFG.SITE}/?ref=${CFG.REF}`; navigator.clipboard.writeText(l); alert("✅ Copied:\n"+l);}
-function addRef(){let n="User"+Math.floor(Math.random()*9000); refs.unshift({c:n}); realRef+=100; bal+=100; total+=100; save();}
-function go(p){document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"));document.querySelectorAll(".bottom button").forEach(e=>e.classList.remove("active"));document.getElementById(p).classList.add("active"); if(p=="home")document.getElementById("bHome").classList.add("active"); if(p=="refer")document.getElementById("bRef").classList.add("active"); if(p=="earn")document.getElementById("bEarn").classList.add("active"); if(p=="hist")document.getElementById("bHist").classList.add("active");}
-function spin(){let m=document.getElementById("gameModal"); m.style.display="flex"; document.getElementById("mContent").innerHTML=`<h3>🎡 Spin</h3><div style="width:150px;height:150px;border-radius:50%;border:6px solid #ffcc00;margin:10px auto;background:conic-gradient(#ffcc00 0 20%,#111 20% 40%,#0f0 40% 60%,#f00 60% 80%,#00f 80% 100%)" id="wh"></div><button class="mainbtn" onclick="doSpin()">SPIN NOW</button><br><button onclick="closeM()" style="background:none;border:none;color:#aaa;margin-top:8px">Close</button><div class="adbox"><ins class="adsbygoogle" style="display:block" data-ad-client="${CFG.PUB}" data-ad-slot="${CFG.SLOT}" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script></div>`;}
-function doSpin(){document.getElementById("wh").style.transition="transform 3s"; document.getElementById("wh").style.transform=`rotate(${1440+Math.random()*360}deg)`; setTimeout(()=>{let w=[10,20,50,100][Math.floor(Math.random()*4)]; bal+=w; total+=w; realAd+=10; save(); alert("Won ₹"+w); closeM();},3000);}
-function scratch(){let m=document.getElementById("gameModal"); m.style.display="flex"; let w=Math.floor(Math.random()*40)+10; document.getElementById("mContent").innerHTML=`<h3>🎟️ Scratch ₹${w}</h3><div style="background:#222;padding:30px;border-radius:12px" onclick="this.innerHTML='<b style=color:#0f0;font-size:30px>₹${w} WON!</b>'; bal+=${w}; total+=${w}; realAd+=5; save(); setTimeout(closeM,1200)">👆 TAP TO SCRATCH</div><button onclick="closeM()" style="background:none;border:none;color:#aaa;margin-top:8px">Close</button>`;}
-function ad(){let m=document.getElementById("gameModal"); m.style.display="flex"; let s=5; document.getElementById("mContent").innerHTML=`<h3>📺 Ad - ₹5</h3><div id="tm" style="font-size:30px;color:#ffcc00">${s}s</div><div class="adbox"><ins class="adsbygoogle" style="display:block" data-ad-client="${CFG.PUB}" data-ad-slot="${CFG.SLOT}" data-ad-format="auto"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script></div><button id="ab" disabled class="mainbtn" style="background:#333">Wait ${s}s</button>`; let t=setInterval(()=>{s--; document.getElementById("tm").innerText=s+"s"; let b=document.getElementById("ab"); b.innerText="Wait "+s+"s"; if(s<=0){clearInterval(t); b.disabled=false; b.style.background="#0f0"; b.innerText="COLLECT ₹5"; b.onclick=()=>{bal+=5; total+=5; realAd+=10; save(); closeM();}}},1000);}
+
+function openApp(n,u,r,t){
+if(t==1){realAmz+= (n.includes("Amazon")?8:0); realRigi+= (n.includes("Rigi")||n.includes("Kuku")?10:0); bal+=r; adminTotal+= Math.floor(r*0.3); }
+else { bal+=0; } // Normal pe 0 abhi, 1 ghante baad
+realAd+=5; total+=r; save(); window.open(u,"_blank"); triggerAd(); // Har PLAY pe Ad
+}
+
+function triggerAd(){
+let m=document.getElementById("gameModal"); m.style.display="flex";
+let s=5;
+document.getElementById("mContent").innerHTML=`<h3 style="color:#0f0">📺 AdMob Ad - Earning</h3><div id="tm" style="font-size:28px;color:#ffcc00">${s}s</div><div class="adbox"><ins class="adsbygoogle" style="display:block" data-ad-client="${CFG.PUB}" data-ad-slot="${CFG.SLOT}" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});<\/script><small style="color:#0f0">Ye Ad se ₹10 aapke AdMob ${CFG.PUB} me</small></div><button id="ab" disabled class="mainbtn" style="background:#333">Wait ${s}s</button><small style="color:#aaa">ADMIN UPI: ${CFG.ADMIN_UPI}</small>`;
+let tt=setInterval(()=>{s--; document.getElementById("tm").innerText=s+"s"; let b=document.getElementById("ab"); if(b) b.innerText="Wait "+s+"s"; if(s<=0){clearInterval(tt); let b2=document.getElementById("ab"); b2.disabled=false; b2.style.background="#0f0"; b2.innerText="✅ COLLECT + CLOSE"; b2.onclick=()=>{realAd+=10; adminTotal+=7; save(); closeM();}}},1000);
+}
+
+function save(){localStorage.vls_bal=bal; localStorage.vls_total=total; localStorage.real_ad=realAd; localStorage.real_amz=realAmz; localStorage.real_rigi=realRigi; localStorage.real_ref=realRef; localStorage.vls_refs=JSON.stringify(refs); localStorage.vls_w=JSON.stringify(wds); localStorage.admin_total=adminTotal; upd();}
+function upd(){
+document.getElementById("coins").innerText=bal; document.getElementById("eTotal").innerText="₹"+bal; document.getElementById("eCode").innerText="Code: "+CFG.REF+" | Admin UPI: "+CFG.ADMIN_UPI; document.getElementById("refCount").innerText=refs.length;
+let realTotal = realAd*2 + realAmz*15 + realRigi*20 + realRef;
+document.getElementById("eBreak").innerHTML=`AdMob: ₹${realAd*2} (${realAd/5} Ads)<br>Amazon ${CFG.AMZ}: ₹${realAmz*15}<br>Rigi ${CFG.RIGI}: ₹${realRigi*20}<br>Refer: ₹${realRef}<br><b>Total Real: ₹${realTotal}</b>`;
+document.getElementById("adminProfit").innerHTML=`AdMob Profit (100% aapka): ₹${realAd*2}<br>Amazon 30%: ₹${Math.floor(realAmz*15*0.3)}<br>Rigi 30%: ₹${Math.floor(realRigi*20*0.3)}<br>User Withdrawal 30% Cut: ₹${Math.floor(adminTotal*0.3)}<br><hr><b style="font-size:18px">TOTAL ADMIN UPI ${CFG.ADMIN_UPI} me: ₹${realTotal + adminTotal}</b><br><small style="color:#0f0">Jeb se nahi jayega, sara yahi ayega</small>`;
+document.getElementById("upiTotal").innerHTML=`₹${realTotal + adminTotal}<br><small style="font-size:11px">UPI: ${CFG.ADMIN_UPI}</small>`;
+document.getElementById("aStats").innerHTML=`User Bal: ₹${bal} | Total Play: ₹${total}<br>AdMob Views: ${realAd/5} | Real ₹: ₹${realAd*2}<br>Admin Total UPI: ₹${realTotal + adminTotal}<br>UPI ID: ${CFG.ADMIN_UPI}`;
+document.getElementById("refList").innerHTML=refs.map(r=>`<div style="display:flex;justify-content:space-between;background:#000;padding:6px;border-radius:6px;margin:4px 0"><span>👤 ${r.c}</span><span style="color:#0f0">+₹100</span></div>`).join("")||"<small>No refs</small>";
+document.getElementById("hList").innerHTML=wds.map(w=>`<div style="background:#000;padding:6px;margin:4px 0;border-radius:6px">User: ${w.upi} | ₹${w.a} | ${w.s}<br><small>30% Admin UPI ${CFG.ADMIN_UPI} me: ₹${Math.floor(w.a*0.3)}</small></div>`).join("")||"No withdrawal";
+document.getElementById("wList").innerHTML=wds.map((w,i)=>`<div style="background:#000;padding:6px;margin:4px 0;display:flex;justify-content:space-between"><span>₹${w.a} -> ${w.upi}<br><small>Admin Cut: ₹${Math.floor(w.a*0.3)} -> ${CFG.ADMIN_UPI}</small></span><button onclick="approve(${i})" style="background:#0f0;color:#000;border:0;padding:4px 8px;border-radius:6px">Approve 70%</button></div>`).join("")||"No Withdraw";
+}
+function shareWA(){let msg=`👑 VLS App - 236 Apps se Paisa Kamao!\n\n🔗 Code: ${CFG.REF}\n💰 Har Friend pe ₹100\nJoin: ${CFG.SITE}/?ref=${CFG.REF}`; window.open("https://wa.me/?text="+encodeURIComponent(msg),"_blank"); refs.unshift({c:"User"+Math.floor(Math.random()*900)}); realRef+=100; bal+=100; adminTotal+=30; save();}
+function copyLink(){navigator.clipboard.writeText(CFG.SITE+"/?ref="+CFG.REF); alert("Copied: "+CFG.SITE+"/?ref="+CFG.REF);}
+function go(p){document.querySelectorAll(".page").forEach(e=>e.classList.remove("active"));document.querySelectorAll(".bottom button").forEach(e=>e.classList.remove("active"));document.getElementById(p).classList.add("active"); if(p=="home")document.getElementById("bHome").classList.add("active");}
 function closeM(){document.getElementById("gameModal").style.display="none";}
-function withdraw(){let upi=document.getElementById("upi").value, amt=+(document.getElementById("amt").value); if(!upi||amt<100)return alert("Min 100"); if(amt>bal)return alert("Low Balance"); wds.unshift({a:amt,s:"Pending"}); bal-=amt; save(); window.open(`https://wa.me/91968517704?text=Withdraw ${CFG.REF} ₹${amt} ${upi}`,"_blank");}
+function withdraw(){let upi=document.getElementById("upi").value, amt=+(document.getElementById("amt").value); if(!upi||amt<500)return alert("Min ₹500 | 70% milega"); if(amt>bal)return alert("Low Balance"); let adminCut=Math.floor(amt*0.3); let userGet=amt-adminCut; wds.unshift({upi:upi,a:amt,userGet:userGet,adminCut:adminCut,s:"Pending - 70% User ko, 30% Admin UPI "+CFG.ADMIN_UPI+" me"}); bal-=amt; adminTotal+=adminCut; alert(`✅ Request Sent!\nUser ko: ₹${userGet} (70%)\nAdmin UPI ${CFG.ADMIN_UPI} me: ₹${adminCut} (30%)\nJeb se nahi jayega!`); save(); window.open(`https://wa.me/91968517704?text=Withdraw%20${CFG.REF}%20₹${amt}%20User:${upi}%20AdminCut:${adminCut}%20UPI:${CFG.ADMIN_UPI}`,"_blank");}
+function approve(i){wds[i].s="Approved - 70% Paid, 30% Admin UPI "+CFG.ADMIN_UPI; save();}
 function admin(){let p=prompt("Password"); if(p=="VINU2025")go("adminP");}
-let u=new URLSearchParams(location.search).get("ref"); if(u){localStorage.vls_code=u; if(!refs.find(r=>r.c==u)){alert("🎉 Referral: "+u+" | ₹50 Bonus!"); bal+=50; total+=50; refs.unshift({c:u}); realRef+=50; save();}}
+
+// === AUTO ADMOB LOGIC - 5 to 10 MIN + BACK PRESS ===
+let adInterval = 5*60*1000; // 5 min
+setInterval(()=>{console.log("Auto Ad - 5 min"); triggerAd();}, adInterval); // Har 5 min me Ad
+// Random 5-10 min second timer
+setInterval(()=>{if(Math.random()>0.5) triggerAd();}, 10*60*1000);
+
+// Back Press / App Return pe Ad
+document.addEventListener("visibilitychange", ()=>{if(!document.hidden){console.log("Back to App - Ad"); setTimeout(triggerAd, 1000);}});
+window.addEventListener("focus", ()=>{console.log("Focus - Ad"); setTimeout(triggerAd, 1500);});
+window.addEventListener("pageshow", ()=>{setTimeout(triggerAd, 2000);});
+
+let u=new URLSearchParams(location.search).get("ref"); if(u){if(!refs.find(r=>r.c==u)){refs.unshift({c:u}); realRef+=50; bal+=50; adminTotal+=15; save(); alert("🎉 Referral: "+u+" | Bonus ₹50!");}}
 render();
 </script>
 </body></html>
