@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>VINU JS ROYAL KING - 9 LEVEL EARNING</title>
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<script type="text/javascript">
-// Aapka Adsterra Social Bar - Yahi Real Earning dega
-</script>
-<script src="https://p1226000.profitablecpmgate.com/xxxx/invoke.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinu JS - 9 Level Earning</title>
 <style>
-body{background:#0f0f0f;color:#fff;font-family:sans-serif;text-align:center}
-.app_card{background:#1e1e1e;padding:12px;margin:8px;border-radius:10px;border:1px solid #333}
-button{background:gold;color:#000;padding:8px 15px;border:none;border-radius:8px;font-weight:bold}
-#balance{color:gold;font-size:22px}
+body{font-family:Arial;background:#0f172a;color:#fff;margin:0;padding:15px}
+.header{display:flex;justify-content:space-between;background:#1e293b;padding:12px;border-radius:10px}
+.bal{color:#22c55e;font-weight:bold}
+.card{background:#1e293b;margin:10px 0;padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}
+.btn{background:#22c55e;color:#000;border:0;padding:8px 15px;border-radius:8px;font-weight:bold}
+.level-box{background:#1e293b;padding:10px;border-radius:10px;margin-top:15px}
+.level-box b{color:#facc15}
+.online{color:#22c55e} .offline{color:#ef4444}
 </style>
 </head>
 <body>
-<h2>👑 VINU JS ROYAL KING - REAL</h2>
-<div>Balance: Rs.<span id="balance">0</span> | Backend: <span id="backend">Checking...</span></div>
+<div class="header">
+<div>Vinu JS Earning</div>
+<div><span id="status" class="offline">Checking...</span> | <span class="bal" id="balance">Rs.0</span></div>
+</div>
+
+<div class="level-box">
+<b>9 ID Earning Status:</b><br>
+1. Self: Rs.2/app ✅<br>
+2. Direct Refer: Rs.20 ✅<br>
+3. Level Income (7 Level) ✅<br>
+4. Daily Task (10 Apps=Rs.10) ✅<br>
+5. Spin & Win ✅<br>
+6. Team Bonus ✅<br>
+7. Rank Bonus ✅<br>
+8. Ad Bonus (100 Apps=Rs.50) ✅<br>
+9. Royalty ✅
+</div>
+
 <div id="apps"></div>
 
 <script>
-// ===== CONFIG - Aapka wala hi hai =====
 const BACKEND = "https://vinu-js-backend.onrender.com";
-const SMARTLINK = "https://www.highperformancecpmgate.com/xxxx";
-const USER_ID = localStorage.getItem("vinu_id") || "VINU_"+Date.now();
-localStorage.setItem("vinu_id", USER_ID);
-const ADMIN_ID = "31092163";
+let USER_ID = localStorage.getItem('vinu_id') || 'USER_' + Date.now();
+localStorage.setItem('vinu_id', USER_ID);
+let balance = 0;
 
-// Backend Check
-fetch(BACKEND+'/api/health').then(r=>r.json()).then(d=>{
-  document.getElementById('backend').innerText="Online ✅"
-}).catch(e=>{
-  document.getElementById('backend').innerText="Sleeping... 30sec wait"
+async function checkHealth(){
+ try{
+  let r = await fetch(BACKEND + '/');
+  if(r.ok){ document.getElementById('status').innerHTML='Online ✅'; document.getElementById('status').className='online'; }
+  else{ throw 'off' }
+ }catch{ document.getElementById('status').innerHTML='Offline ❌ (30s wait)'; document.getElementById('status').className='offline'; }
+ getWallet();
+}
+
+async function getWallet(){
+ try{
+  let res = await fetch(BACKEND + '/api/wallet/' + USER_ID);
+  let data = await res.json();
+  balance = data.balance || 0;
+  document.getElementById('balance').innerText = 'Rs.' + balance;
+ }catch{}
+}
+
+async function claim(app){
+ // Level 1 Self Earning
+ let res = await fetch(BACKEND + '/api/claim', {
+  method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body: JSON.stringify({userId: USER_ID, appName: app})
+ });
+ let d = await res.json();
+ if(d.success){
+  alert('Rs.' + d.earned + ' Added! ' + d.msg);
+  getWallet();
+  if(d.taskBonus) alert('🎉 TASK BONUS: ' + d.taskBonus);
+  if(d.adBonus) alert('🔥 AD BONUS: ' + d.adBonus);
+  window.open('https://play.google.com/store', '_blank');
+ }
+}
+
+const appList = ["Meesho","PhonePe","Dream11","Moj","RozDhan","WinZo","Upstox","Groww","Paytm","Google Pay"];
+let html='';
+appList.forEach(a=>{
+ html+=`<div class="card"><span>${a} - Earn Rs.2</span><button class="btn" onclick="claim('${a}')">Open & Earn</button></div>`;
 });
-
-// ===== 300 Apps Load =====
-const appsDiv = document.getElementById('apps');
-for(let i=1;i<=300;i++){
-  appsDiv.innerHTML += `<div class="app_card">App ${i} - 2 Rs <button onclick="realEarn(${i})">Open & Earn</button></div>`;
-}
-
-// ===== 9 TARAH KI EARNING KA LOGIC - LEVEL BY LEVEL =====
-async function realEarn(appId){
-  // LEVEL 1 - Self Earning (Ad Open)
-  window.open(SMARTLINK, "_blank");
-
-  // LEVEL 2 to 9 - Backend ko bolo verify kare
-  try{
-    const res = await fetch(BACKEND+'/api/reward', {
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        userId: USER_ID,
-        appId: appId,
-        taskType: 'app_open',
-        adProvider: 'adsterra',
-        adminId: ADMIN_ID,
-        // 9 Earning Types yahi se track hogi
-        earningTypes: {
-          self: 2, direct: 20, level: 5, task: 10,
-          spin: 5, team: 100, rank: 500, adBonus: 50, royalty: 5
-        }
-      })
-    });
-    const data = await res.json();
-    if(data.success){
-      document.getElementById('balance').innerText=data.newBalance;
-      alert('✅ Rs.2 Added! Total 9 Earning me add ho gaya');
-    } else {
-      alert('⚠️ '+data.error+' - 1 app 1 din me 1 baar');
-    }
-  }catch(e){
-    alert('Backend abhi so raha hai, 30 sec me fir try karo');
-  }
-}
-
-// Wallet History
-async function loadWallet(){
-  try{
-    const r = await fetch(BACKEND+'/api/wallet/'+USER_ID);
-    const d = await r.json();
-    if(d.balance) document.getElementById('balance').innerText=d.balance;
-  }catch(e){}
-}
-loadWallet();
+document.getElementById('apps').innerHTML=html;
+checkHealth();
 </script>
 </body>
 </html>
