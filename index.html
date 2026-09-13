@@ -15,27 +15,20 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0f;color:white}
 </style>
 </head>
 <body>
-<!-- Header -->
 <div class="flex justify-between items-center p-4 max-w-md mx-auto">
   <div class="flex gap-2 items-center"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center font-bold">V</div><h1 class="font-bold">Vinu JS Earning</h1></div>
   <div class="flex gap-3"><i class="fa-regular fa-bell text-violet-400"></i><i class="fa-regular fa-user text-violet-400"></i></div>
 </div>
-
 <div class="max-w-md mx-auto px-3 pb-20">
-  <!-- Wallet -->
   <div class="flex justify-between items-center mb-4">
     <p class="text-white/50 text-sm"><i class="fa-solid fa-wallet"></i> Wallet</p>
-    <h2 class="text-2xl font-bold">₹0</h2>
-    <button class="border border-violet-500 text-violet-400 px-4 py-1 rounded-lg text-xs">Withdraw</button>
+    <h2 id="walletAmount" class="text-2xl font-bold">₹0</h2>
+    <button id="withdrawBtn" class="border border-violet-500 text-violet-400 px-4 py-1 rounded-lg text-xs">Withdraw</button>
   </div>
-
-  <!-- Banner -->
   <div class="rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 p-4 flex justify-between items-center glow mb-5">
     <div><h2 class="text-xl font-bold">Earn ₹500 per day</h2><p class="text-xs opacity-80 mt-1">Complete tasks & earn daily rewards • Instant payout</p></div>
     <div class="text-3xl">💰</div>
   </div>
-
-  <!-- 9 Ways -->
   <div class="flex justify-between items-center mb-3"><h3 class="font-bold">9 Ways to Earn</h3><span class="text-violet-400 text-xs">See all ></span></div>
   <div class="grid grid-cols-3 gap-2 mb-6">
     <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-clipboard-list text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Self Earn</p><p class="text-[10px] opacity-60">Earn ₹2/App</p></div>
@@ -48,29 +41,55 @@ body{font-family:'Poppins',sans-serif;background:#0a0a0f;color:white}
     <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-rectangle-ad text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Ad Bonus</p><p class="text-[10px] opacity-60">100=Rs.50</p></div>
     <div class="card rounded-xl p-3 text-center border-yellow-500/30"><i class="fa-solid fa-crown text-yellow-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Royalty</p><p class="text-[10px] opacity-60">Lifetime</p></div>
   </div>
-
-  <!-- Apps -->
   <h3 class="font-bold mb-3">Recommended Apps</h3>
   <div class="space-y-2">
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center font-bold">m</div><div><p class="text-sm font-bold">Meesho</p><p class="text-[11px] opacity-60">Online Shopping • Cashback</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold">पे</div><div><p class="text-sm font-bold">PhonePe</p><p class="text-[11px] opacity-60">Recharge & Bills • UPI</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center"><i class="fa-solid fa-trophy"></i></div><div><p class="text-sm font-bold">Dream11</p><p class="text-[11px] opacity-60">Fantasy Sports • Play & Earn</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold">M</div><div><p class="text-sm font-bold">Moj</p><p class="text-[11px] opacity-60">Short Videos • Earn</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-yellow-600 flex items-center justify-center"><i class="fa-solid fa-sun"></i></div><div><p class="text-sm font-bold">RozDhan</p><p class="text-[11px] opacity-60">Read & Earn Daily</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center"><i class="fa-solid fa-gamepad"></i></div><div><p class="text-sm font-bold">WinZo</p><p class="text-[11px] opacity-60">Play Games & Win</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div><div><p class="text-sm font-bold">Upstox</p><p class="text-[11px] opacity-60">Trading • Demat</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Groww</p><p class="text-[11px] opacity-60">Invest • Stocks</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center"><i class="fa-solid fa-wallet"></i></div><div><p class="text-sm font-bold">Paytm</p><p class="text-[11px] opacity-60">UPI & Wallet Cashback</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Google Pay</p><p class="text-[11px] opacity-60">UPI Payment • Rewards</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center font-bold">m</div><div><p class="text-sm font-bold">Meesho</p><p class="text-[11px] opacity-60">Online Shopping • Cashback</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold">पे</div><div><p class="text-sm font-bold">PhonePe</p><p class="text-[11px] opacity-60">Recharge & Bills • UPI</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center"><i class="fa-solid fa-trophy"></i></div><div><p class="text-sm font-bold">Dream11</p><p class="text-[11px] opacity-60">Fantasy Sports • Play & Earn</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold">M</div><div><p class="text-sm font-bold">Moj</p><p class="text-[11px] opacity-60">Short Videos • Earn</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-yellow-600 flex items-center justify-center"><i class="fa-solid fa-sun"></i></div><div><p class="text-sm font-bold">RozDhan</p><p class="text-[11px] opacity-60">Read & Earn Daily</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center"><i class="fa-solid fa-gamepad"></i></div><div><p class="text-sm font-bold">WinZo</p><p class="text-[11px] opacity-60">Play Games & Win</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div><div><p class="text-sm font-bold">Upstox</p><p class="text-[11px] opacity-60">Trading • Demat</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Groww</p><p class="text-[11px] opacity-60">Invest • Stocks</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center"><i class="fa-solid fa-wallet"></i></div><div><p class="text-sm font-bold">Paytm</p><p class="text-[11px] opacity-60">UPI & Wallet Cashback</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Google Pay</p><p class="text-[11px] opacity-60">UPI Payment • Rewards</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
   </div>
 </div>
-
-<!-- Bottom Menu -->
 <div class="fixed bottom-0 left-0 right-0 bg-[#0f0f14] border-t border-white/10 p-2 max-w-md mx-auto flex justify-around">
   <div class="text-center text-violet-400"><i class="fa-solid fa-house"></i><p class="text-[10px]">Home</p></div>
   <div class="text-center text-white/40"><i class="fa-solid fa-gift"></i><p class="text-[10px]">Earn</p></div>
   <div class="text-center text-white/40"><i class="fa-solid fa-wallet"></i><p class="text-[10px]">Wallet</p></div>
   <div class="text-center text-white/40"><i class="fa-solid fa-user"></i><p class="text-[10px]">Profile</p></div>
 </div>
+
+<script>
+let wallet = localStorage.getItem('wallet')? parseInt(localStorage.getItem('wallet')) : 0;
+let walletEl = document.getElementById('walletAmount');
+walletEl.innerText = '₹' + wallet;
+
+function earn(amount, appName){
+  wallet += amount;
+  localStorage.setItem('wallet', wallet);
+  walletEl.innerText = '₹' + wallet;
+  walletEl.classList.add('text-green-400');
+  setTimeout(()=> walletEl.classList.remove('text-green-400'), 500);
+  alert('🎉 ' + appName + ' se ₹' + amount + ' kamaya!\nWallet me add ho gaya ✅');
+}
+
+document.querySelectorAll('.earn-btn').forEach(btn=>{
+  btn.addEventListener('click', function(){
+    let app = this.parentElement.querySelector('.text-sm').innerText;
+    // Pehle Play Store kholo ka natak, fir paisa do
+    if(confirm(app + ' install karna hai?\\nOk dabao aur ₹2 kamao!')){
+      earn(2, app);
+    }
+  })
+})
+
+document.getElementById('withdrawBtn').addEventListener('click', ()=>{
+  if(wallet < 10){ alert('⚠️ Minimum ₹10 hona chahiye withdraw ke liye\\nAbhi aapke paas ₹'+wallet+' hai'); }
+  else { alert('✅ ₹'+wallet+' ka withdraw request bhej diya!\\n24hr me payment ayega'); wallet=0; localStorage.setItem('wallet',0); walletEl.innerText='₹0'; }
+})
+</script>
 </body>
 </html>
