@@ -3,78 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinu JS Earning - Fixed</title>
+<title>Vinu JS Earning - Final</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>.no-scrollbar::-webkit-scrollbar{display:none}</style>
 </head>
-<body class="bg-[#0f1220] text-white font-sans pb-20">
-<div class="max-w-md mx-auto">
+<body class="bg-[#0f1220] text-white font-sans">
+<div class="max-w-md mx-auto min-h-screen">
   <div class="flex justify-between items-center p-4 sticky top-0 bg-[#0f1220] z-10">
     <h1 class="font-bold text-lg">Vinu JS Earning</h1>
-    <div class="bg-[#1c1f36] px-3 py-1 rounded-lg text-sm">Wallet: ₹<span id="wallet">4</span></div>
+    <div class="bg-[#1c1f36] px-4 py-2 rounded-xl font-bold border border-purple-500/30">Wallet: ₹<span id="wallet">0</span></div>
   </div>
 
   <div class="bg-gradient-to-r from-purple-600 to-indigo-600 m-4 p-4 rounded-xl">
     <h2 class="font-bold text-xl">Earn ₹500 per day</h2>
-    <p class="text-sm opacity-80">App open karo, 30s ruko, tabhi paisa milega</p>
+    <p class="text-sm opacity-80">Link open karo > 30 sec ruko > Verify karo > Paisa lo</p>
   </div>
 
-  <div class="flex gap-2 overflow-x-auto px-4 pb-3 no-scrollbar" id="catBar"></div>
+  <div class="flex gap-2 overflow-x-auto px-4 pb-3" id="catContainer"></div>
   <div id="appList" class="p-4 space-y-3"></div>
 </div>
 
 <script>
-let wallet = parseInt(localStorage.getItem('wallet') || '4');
+let wallet = parseInt(localStorage.getItem('wallet') || '0');
 let claimed = JSON.parse(localStorage.getItem('claimed') || '[]');
 let currentCat = 'All';
-const categories = ['All','Shopping','Finance','Gaming','Social','UPI','Earning'];
+const categories = ['All','Shopping','Finance','Gaming','Social','UPI','Earning','OTT'];
 
+// Yahan tum 300 tak add kar sakte ho - format same rakho
 const apps = [
   {id:1, name:'Meesho', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.meesho.supply'},
-  {id:2, name:'Flipkart', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.flipkart.android'},
-  {id:3, name:'Amazon', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping'},
-  {id:4, name:'PhonePe', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.phonepe.app'},
-  {id:5, name:'Google Pay', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user'},
-  {id:6, name:'Paytm', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=net.one97.paytm'},
-  {id:7, name:'CRED', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=com.dreamplug.androidapp'},
-  {id:8, name:'Dream11', cat:'Gaming', reward:3, link:'https://play.google.com/store/apps/details?id=com.dream11.fantasy'},
-  {id:9, name:'MPL', cat:'Gaming', reward:3, link:'https://play.google.com/store/apps/details?id=com.mpl.android'},
-  {id:10, name:'Ludo Supreme', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.ludo.supreme'},
-  {id:11, name:'Instagram', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=com.instagram.android'},
-  {id:12, name:'WhatsApp', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=com.whatsapp'},
-  {id:13, name:'Roz Dhan', cat:'Earning', reward:5, link:'https://play.google.com/store/apps/details?id=com.roz.earn'},
-  {id:14, name:'Moj', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=in.mohalla.sharechat'},
-  // Isi tarah id:15 se 300 tak add karte jao
+  {id:2, name:'Flipkart', cat:'Shopping', reward:3, link:'https://play.google.com/store/apps/details?id=com.flipkart.android'},
+  {id:3, name:'PhonePe', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.phonepe.app'},
+  {id:4, name:'Google Pay', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user'},
+  {id:5, name:'Paytm', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=net.one97.paytm'},
+  {id:6, name:'Dream11', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.dream11.fantasy'},
+  {id:7, name:'MPL Pro', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.mpl.android'},
+  {id:8, name:'Instagram', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=com.instagram.android'},
+  {id:9, name:'CRED', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=com.dreamplug.androidapp'},
+  {id:10, name:'WinZO', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.winzo.platform'},
+  {id:11, name:'Amazon', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=in.amazon.mShop.android.shopping'},
+  {id:12, name:'Netflix', cat:'OTT', reward:2, link:'https://play.google.com/store/apps/details?id=com.netflix.mediaclient'},
 ];
 
 function renderCats(){
-  document.getElementById('catBar').innerHTML = categories.map(c=> 
-    `<button onclick="filterCat('${c}')" class="${currentCat===c?'bg-white text-black font-bold':'bg-[#1c1f36]'} px-4 py-1.5 rounded-full text-sm whitespace-nowrap">${c}</button>`
+  document.getElementById('catContainer').innerHTML = categories.map(c=> 
+    `<button onclick="filterCat('${c}', this)" class="cat-btn ${currentCat===c?'bg-white text-black font-bold':'bg-[#1c1f36]'} px-4 py-1.5 rounded-full text-sm whitespace-nowrap">${c}</button>`
   ).join('');
 }
 
 function render(){
   document.getElementById('wallet').innerText = wallet;
-  renderCats();
   const list = document.getElementById('appList');
   list.innerHTML = '';
   apps.filter(a => currentCat==='All' || a.cat===currentCat).forEach(app=>{
     const isDone = claimed.includes(app.id);
     list.innerHTML += `
-    <div class="bg-[#1c1f36] p-3 rounded-xl flex justify-between items-center">
-      <div>
-        <h3 class="font-bold text-[15px]">${app.name}</h3>
-        <p class="text-xs text-gray-400">${app.cat} • ₹${app.reward}</p>
-      </div>
-      <button id="btn-${app.id}" onclick="startTask(${app.id})" 
-      class="${isDone?'bg-zinc-700 text-gray-400':'bg-green-400 text-black'} px-4 py-2 rounded-lg text-sm font-bold">
-        ${isDone?'Claimed':'Earn ₹'+app.reward}
-      </button>
+    <div class="bg-[#1c1f36] p-3 rounded-xl flex justify-between items-center border border-white/5">
+      <div><h3 class="font-bold">${app.name}</h3><p class="text-xs text-gray-400">${app.cat} • ₹${app.reward}</p></div>
+      <button id="btn-${app.id}" onclick="startTask(${app.id})" class="${isDone?'bg-gray-700 text-gray-400':'bg-green-500 text-black'} px-4 py-2 rounded-lg text-sm font-bold" ${isDone?'disabled':''}>${isDone?'Claimed':'Earn ₹'+app.reward}</button>
     </div>`;
   });
 }
 
-function filterCat(cat){ currentCat = cat; render(); }
+function filterCat(cat, el){
+  currentCat = cat;
+  renderCats();
+  render();
+}
 
 function startTask(id){
   if(claimed.includes(id)) return;
@@ -83,4 +77,6 @@ function startTask(id){
   window.open(app.link, '_blank');
   let time = 30;
   btn.disabled = true;
-  const
+  btn.className = 'bg-yellow-500 text-black px-4 py-2 rounded-lg text-sm font-bold';
+  let timer = setInterval(()=>{
+   
