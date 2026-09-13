@@ -5,78 +5,118 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vinu JS Earning - Final</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<!-- Adsterra Social Bar - Aapka ID -->
+<script type='text/javascript' src='//www.highperformanceformat.com/31092164e0e3b0e3f1e3f1e3f1e3f1e3.js'></script>
 </head>
-<body class="bg-[#0f1220] text-white font-sans">
+<body class="bg-[#0f1120] text-white font-sans">
 <div class="max-w-md mx-auto min-h-screen">
-  <div class="flex justify-between items-center p-4 sticky top-0 bg-[#0f1220] z-10">
-    <h1 class="font-bold text-lg">Vinu JS Earning</h1>
-    <div class="bg-[#1c1f36] px-4 py-2 rounded-xl font-bold border border-purple-500/30">Wallet: ₹<span id="wallet">0</span></div>
+  <div class="flex justify-between items-center p-4">
+    <h1 class="font-bold text-lg">Vinu JS Earnings</h1>
+    <div class="bg-[#1c1f36] px-4 py-2 rounded-xl">Wallet: Rs <span id="wallet">0</span></div>
   </div>
 
-  <div class="bg-gradient-to-r from-purple-600 to-indigo-600 m-4 p-4 rounded-xl">
+  <div class="bg-gradient-to-r from-purple-600 to-pink-500 m-4 p-4 rounded-xl">
     <h2 class="font-bold text-xl">Earn ₹500 per day</h2>
-    <p class="text-sm opacity-80">Link open karo > 30 sec ruko > Verify karo > Paisa lo</p>
+    <p class="text-sm opacity-80">Link open karo, 30 sec ruko, Ad dekho, Paisa lo</p>
   </div>
 
-  <div class="flex gap-2 overflow-x-auto px-4 pb-3" id="catContainer"></div>
+  <div id="catContainer" class="flex gap-2 overflow-x-auto px-4 pb-3"></div>
   <div id="appList" class="p-4 space-y-3"></div>
 </div>
 
 <script>
-let wallet = parseInt(localStorage.getItem('wallet') || '0');
+const BACKEND_URL = "https://vinu-js-backend.onrender.com";
+let userId = localStorage.getItem('vinu_user_id');
+if(!userId){ userId = 'user_'+Date.now(); localStorage.setItem('vinu_user_id', userId); }
+
+let wallet = 0;
 let claimed = JSON.parse(localStorage.getItem('claimed') || '[]');
 let currentCat = 'All';
-const categories = ['All','Shopping','Finance','Gaming','Social','UPI','Earning','OTT'];
-
-// Yahan tum 300 tak add kar sakte ho - format same rakho
+const categories = ['All','Shopping','Finance','Gaming','Social','OTT'];
 const apps = [
-  {id:1, name:'Meesho', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.meesho.supply'},
-  {id:2, name:'Flipkart', cat:'Shopping', reward:3, link:'https://play.google.com/store/apps/details?id=com.flipkart.android'},
-  {id:3, name:'PhonePe', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.phonepe.app'},
-  {id:4, name:'Google Pay', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user'},
-  {id:5, name:'Paytm', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=net.one97.paytm'},
-  {id:6, name:'Dream11', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.dream11.fantasy'},
-  {id:7, name:'MPL Pro', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.mpl.android'},
-  {id:8, name:'Instagram', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=com.instagram.android'},
-  {id:9, name:'CRED', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=com.dreamplug.androidapp'},
-  {id:10, name:'WinZO', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.winzo.platform'},
-  {id:11, name:'Amazon', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=in.amazon.mShop.android.shopping'},
-  {id:12, name:'Netflix', cat:'OTT', reward:2, link:'https://play.google.com/store/apps/details?id=com.netflix.mediaclient'},
+  {id:1, name:'Meesho', cat:'Shopping', reward:2, link:'https://www.meesho.com'},
+  {id:2, name:'Flipkart', cat:'Shopping', reward:3, link:'https://www.flipkart.com'},
+  {id:3, name:'PhonePe', cat:'UPI', reward:3, link:'https://www.phonepe.com'},
+  {id:4, name:'Google Pay', cat:'UPI', reward:3, link:'https://pay.google.com'},
+  {id:5, name:'Paytm', cat:'Finance', reward:2, link:'https://paytm.com'},
+  {id:6, name:'Dream11', cat:'Gaming', reward:2, link:'https://www.dream11.com'},
+  {id:7, name:'MPL Pro', cat:'Gaming', reward:2, link:'https://www.mpl.live'},
+  {id:8, name:'Instagram', cat:'Social', reward:1, link:'https://www.instagram.com'},
+  {id:9, name:'CRED', cat:'Finance', reward:2, link:'https://cred.club'},
+  {id:10, name:'WinZO', cat:'Gaming', reward:2, link:'https://www.winzogames.com'},
+  {id:11, name:'Amazon', cat:'Shopping', reward:2, link:'https://www.amazon.in'},
+  {id:12, name:'Netflix', cat:'OTT', reward:2, link:'https://www.netflix.com'},
 ];
 
 function renderCats(){
   document.getElementById('catContainer').innerHTML = categories.map(c=> 
-    `<button onclick="filterCat('${c}', this)" class="cat-btn ${currentCat===c?'bg-white text-black font-bold':'bg-[#1c1f36]'} px-4 py-1.5 rounded-full text-sm whitespace-nowrap">${c}</button>`
+    `<button onclick="filterCat('${c}', this)" class="px-4 py-1 rounded-full text-sm ${currentCat===c?'bg-white text-black':'bg-[#1c1f36]'}">${c}</button>`
   ).join('');
 }
-
 function render(){
   document.getElementById('wallet').innerText = wallet;
   const list = document.getElementById('appList');
-  list.innerHTML = '';
-  apps.filter(a => currentCat==='All' || a.cat===currentCat).forEach(app=>{
+  let filtered = currentCat==='All' ? apps : apps.filter(a=>a.cat===currentCat);
+  list.innerHTML = filtered.map(app=>{
     const isDone = claimed.includes(app.id);
-    list.innerHTML += `
-    <div class="bg-[#1c1f36] p-3 rounded-xl flex justify-between items-center border border-white/5">
-      <div><h3 class="font-bold">${app.name}</h3><p class="text-xs text-gray-400">${app.cat} • ₹${app.reward}</p></div>
-      <button id="btn-${app.id}" onclick="startTask(${app.id})" class="${isDone?'bg-gray-700 text-gray-400':'bg-green-500 text-black'} px-4 py-2 rounded-lg text-sm font-bold" ${isDone?'disabled':''}>${isDone?'Claimed':'Earn ₹'+app.reward}</button>
+    return `<div class="bg-[#1c1f36] p-3 rounded-xl flex justify-between items-center">
+      <div><h3 class="font-bold">${app.name}</h3><p class="text-xs text-gray-400">${app.cat} - Earn Rs ${app.reward}</p></div>
+      <button id="btn-${app.id}" class="${isDone?'bg-gray-600':'bg-yellow-400 text-black'} px-4 py-2 rounded-lg font-bold text-sm" onclick="startTask(${app.id})">${isDone?'Done':'Earn'}</button>
     </div>`;
-  });
+  }).join('');
+}
+function filterCat(cat, el){ currentCat=cat; renderCats(); render(); }
+
+async function loadWallet(){
+  try{
+    let res = await fetch(`${BACKEND_URL}/api/wallet/${userId}`);
+    let data = await res.json();
+    wallet = data.balance || 0;
+    render();
+  }catch(e){ console.log("Backend offline"); render(); }
 }
 
-function filterCat(cat, el){
-  currentCat = cat;
-  renderCats();
-  render();
-}
-
-function startTask(id){
+async function startTask(id){
   if(claimed.includes(id)) return;
-  const app = apps.find(a=>a.id===id);
+  const app = apps.find(a=>a.id==id);
   const btn = document.getElementById(`btn-${id}`);
   window.open(app.link, '_blank');
   let time = 30;
-  btn.disabled = true;
-  btn.className = 'bg-yellow-500 text-black px-4 py-2 rounded-lg text-sm font-bold';
-  let timer = setInterval(()=>{
-   
+  btn.disabled=true;
+  btn.className="bg-yellow-500 text-black px-4 py-2 rounded-lg font-bold text-sm";
+  let timer = setInterval(async ()=>{
+    btn.innerText = time+'s';
+    time--;
+    if(time<0){
+      clearInterval(timer);
+      btn.innerText = 'Verifying Ad...';
+      // Yaha real AdMob/Adsterra check hoga
+      try{
+        let res = await fetch(`${BACKEND_URL}/api/tasks/verify-ad`,{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({userId:userId, appId:id, adWatched:true})
+        });
+        let data = await res.json();
+        if(data.success){
+          wallet = data.newBalance;
+          claimed.push(id);
+          localStorage.setItem('claimed', JSON.stringify(claimed));
+          btn.innerText='Done';
+          btn.className="bg-green-500 px-4 py-2 rounded-lg font-bold text-sm";
+          render();
+          alert(`Rs ${app.reward} Added! New Balance: ${wallet}`);
+        }else{
+          btn.innerText=data.message || 'Try Again';
+          btn.disabled=false;
+        }
+      }catch(e){ btn.innerText='Server Error'; btn.disabled=false; }
+    }
+  },1000);
+}
+
+renderCats();
+loadWallet();
+</script>
+</body>
+</html>
