@@ -1,95 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinu JS Earning</title>
+<title>Vinu JS Earning - Fixed</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
-body{font-family:'Poppins',sans-serif;background:#0a0a0f;color:white}
-.card{background:#15151f;border:1px solid rgba(168,85,247,0.15)}
-.glow{box-shadow:0 0 20px rgba(168,85,247,0.3)}
-.btn-green{background:linear-gradient(135deg,#00ff88,#10b981)}
-</style>
+<style>.no-scrollbar::-webkit-scrollbar{display:none}</style>
 </head>
-<body>
-<div class="flex justify-between items-center p-4 max-w-md mx-auto">
-  <div class="flex gap-2 items-center"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center font-bold">V</div><h1 class="font-bold">Vinu JS Earning</h1></div>
-  <div class="flex gap-3"><i class="fa-regular fa-bell text-violet-400"></i><i class="fa-regular fa-user text-violet-400"></i></div>
-</div>
-<div class="max-w-md mx-auto px-3 pb-20">
-  <div class="flex justify-between items-center mb-4">
-    <p class="text-white/50 text-sm"><i class="fa-solid fa-wallet"></i> Wallet</p>
-    <h2 id="walletAmount" class="text-2xl font-bold">₹0</h2>
-    <button id="withdrawBtn" class="border border-violet-500 text-violet-400 px-4 py-1 rounded-lg text-xs">Withdraw</button>
+<body class="bg-[#0f1220] text-white font-sans pb-20">
+<div class="max-w-md mx-auto">
+  <div class="flex justify-between items-center p-4 sticky top-0 bg-[#0f1220] z-10">
+    <h1 class="font-bold text-lg">Vinu JS Earning</h1>
+    <div class="bg-[#1c1f36] px-3 py-1 rounded-lg text-sm">Wallet: ₹<span id="wallet">4</span></div>
   </div>
-  <div class="rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 p-4 flex justify-between items-center glow mb-5">
-    <div><h2 class="text-xl font-bold">Earn ₹500 per day</h2><p class="text-xs opacity-80 mt-1">Complete tasks & earn daily rewards • Instant payout</p></div>
-    <div class="text-3xl">💰</div>
+
+  <div class="bg-gradient-to-r from-purple-600 to-indigo-600 m-4 p-4 rounded-xl">
+    <h2 class="font-bold text-xl">Earn ₹500 per day</h2>
+    <p class="text-sm opacity-80">App open karo, 30s ruko, tabhi paisa milega</p>
   </div>
-  <div class="flex justify-between items-center mb-3"><h3 class="font-bold">9 Ways to Earn</h3><span class="text-violet-400 text-xs">See all ></span></div>
-  <div class="grid grid-cols-3 gap-2 mb-6">
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-clipboard-list text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Self Earn</p><p class="text-[10px] opacity-60">Earn ₹2/App</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-share-nodes text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Refer & Earn</p><p class="text-[10px] opacity-60">Earn ₹20</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-layer-group text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">7 Level</p><p class="text-[10px] opacity-60">Income</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-list-check text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Daily Task</p><p class="text-[10px] opacity-60">10=Rs.10</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-dharmachakra text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Spin & Win</p><p class="text-[10px] opacity-60">Daily</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-users text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Team Bonus</p><p class="text-[10px] opacity-60">Extra</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-trophy text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Rank Bonus</p><p class="text-[10px] opacity-60">Reward</p></div>
-    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-rectangle-ad text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Ad Bonus</p><p class="text-[10px] opacity-60">100=Rs.50</p></div>
-    <div class="card rounded-xl p-3 text-center border-yellow-500/30"><i class="fa-solid fa-crown text-yellow-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Royalty</p><p class="text-[10px] opacity-60">Lifetime</p></div>
-  </div>
-  <h3 class="font-bold mb-3">Recommended Apps</h3>
-  <div class="space-y-2">
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center font-bold">m</div><div><p class="text-sm font-bold">Meesho</p><p class="text-[11px] opacity-60">Online Shopping • Cashback</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold">पे</div><div><p class="text-sm font-bold">PhonePe</p><p class="text-[11px] opacity-60">Recharge & Bills • UPI</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center"><i class="fa-solid fa-trophy"></i></div><div><p class="text-sm font-bold">Dream11</p><p class="text-[11px] opacity-60">Fantasy Sports • Play & Earn</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold">M</div><div><p class="text-sm font-bold">Moj</p><p class="text-[11px] opacity-60">Short Videos • Earn</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-yellow-600 flex items-center justify-center"><i class="fa-solid fa-sun"></i></div><div><p class="text-sm font-bold">RozDhan</p><p class="text-[11px] opacity-60">Read & Earn Daily</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center"><i class="fa-solid fa-gamepad"></i></div><div><p class="text-sm font-bold">WinZo</p><p class="text-[11px] opacity-60">Play Games & Win</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div><div><p class="text-sm font-bold">Upstox</p><p class="text-[11px] opacity-60">Trading • Demat</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Groww</p><p class="text-[11px] opacity-60">Invest • Stocks</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center"><i class="fa-solid fa-wallet"></i></div><div><p class="text-sm font-bold">Paytm</p><p class="text-[11px] opacity-60">UPI & Wallet Cashback</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Google Pay</p><p class="text-[11px] opacity-60">UPI Payment • Rewards</p></div></div><button class="btn-green earn-btn text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
-  </div>
-</div>
-<div class="fixed bottom-0 left-0 right-0 bg-[#0f0f14] border-t border-white/10 p-2 max-w-md mx-auto flex justify-around">
-  <div class="text-center text-violet-400"><i class="fa-solid fa-house"></i><p class="text-[10px]">Home</p></div>
-  <div class="text-center text-white/40"><i class="fa-solid fa-gift"></i><p class="text-[10px]">Earn</p></div>
-  <div class="text-center text-white/40"><i class="fa-solid fa-wallet"></i><p class="text-[10px]">Wallet</p></div>
-  <div class="text-center text-white/40"><i class="fa-solid fa-user"></i><p class="text-[10px]">Profile</p></div>
+
+  <div class="flex gap-2 overflow-x-auto px-4 pb-3 no-scrollbar" id="catBar"></div>
+  <div id="appList" class="p-4 space-y-3"></div>
 </div>
 
 <script>
-let wallet = localStorage.getItem('wallet')? parseInt(localStorage.getItem('wallet')) : 0;
-let walletEl = document.getElementById('walletAmount');
-walletEl.innerText = '₹' + wallet;
+let wallet = parseInt(localStorage.getItem('wallet') || '4');
+let claimed = JSON.parse(localStorage.getItem('claimed') || '[]');
+let currentCat = 'All';
+const categories = ['All','Shopping','Finance','Gaming','Social','UPI','Earning'];
 
-function earn(amount, appName){
-  wallet += amount;
-  localStorage.setItem('wallet', wallet);
-  walletEl.innerText = '₹' + wallet;
-  walletEl.classList.add('text-green-400');
-  setTimeout(()=> walletEl.classList.remove('text-green-400'), 500);
-  alert('🎉 ' + appName + ' se ₹' + amount + ' kamaya!\nWallet me add ho gaya ✅');
+const apps = [
+  {id:1, name:'Meesho', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.meesho.supply'},
+  {id:2, name:'Flipkart', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.flipkart.android'},
+  {id:3, name:'Amazon', cat:'Shopping', reward:2, link:'https://play.google.com/store/apps/details?id=com.amazon.mShop.android.shopping'},
+  {id:4, name:'PhonePe', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.phonepe.app'},
+  {id:5, name:'Google Pay', cat:'UPI', reward:3, link:'https://play.google.com/store/apps/details?id=com.google.android.apps.nbu.paisa.user'},
+  {id:6, name:'Paytm', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=net.one97.paytm'},
+  {id:7, name:'CRED', cat:'Finance', reward:2, link:'https://play.google.com/store/apps/details?id=com.dreamplug.androidapp'},
+  {id:8, name:'Dream11', cat:'Gaming', reward:3, link:'https://play.google.com/store/apps/details?id=com.dream11.fantasy'},
+  {id:9, name:'MPL', cat:'Gaming', reward:3, link:'https://play.google.com/store/apps/details?id=com.mpl.android'},
+  {id:10, name:'Ludo Supreme', cat:'Gaming', reward:2, link:'https://play.google.com/store/apps/details?id=com.ludo.supreme'},
+  {id:11, name:'Instagram', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=com.instagram.android'},
+  {id:12, name:'WhatsApp', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=com.whatsapp'},
+  {id:13, name:'Roz Dhan', cat:'Earning', reward:5, link:'https://play.google.com/store/apps/details?id=com.roz.earn'},
+  {id:14, name:'Moj', cat:'Social', reward:1, link:'https://play.google.com/store/apps/details?id=in.mohalla.sharechat'},
+  // Isi tarah id:15 se 300 tak add karte jao
+];
+
+function renderCats(){
+  document.getElementById('catBar').innerHTML = categories.map(c=> 
+    `<button onclick="filterCat('${c}')" class="${currentCat===c?'bg-white text-black font-bold':'bg-[#1c1f36]'} px-4 py-1.5 rounded-full text-sm whitespace-nowrap">${c}</button>`
+  ).join('');
 }
 
-document.querySelectorAll('.earn-btn').forEach(btn=>{
-  btn.addEventListener('click', function(){
-    let app = this.parentElement.querySelector('.text-sm').innerText;
-    // Pehle Play Store kholo ka natak, fir paisa do
-    if(confirm(app + ' install karna hai?\\nOk dabao aur ₹2 kamao!')){
-      earn(2, app);
-    }
-  })
-})
+function render(){
+  document.getElementById('wallet').innerText = wallet;
+  renderCats();
+  const list = document.getElementById('appList');
+  list.innerHTML = '';
+  apps.filter(a => currentCat==='All' || a.cat===currentCat).forEach(app=>{
+    const isDone = claimed.includes(app.id);
+    list.innerHTML += `
+    <div class="bg-[#1c1f36] p-3 rounded-xl flex justify-between items-center">
+      <div>
+        <h3 class="font-bold text-[15px]">${app.name}</h3>
+        <p class="text-xs text-gray-400">${app.cat} • ₹${app.reward}</p>
+      </div>
+      <button id="btn-${app.id}" onclick="startTask(${app.id})" 
+      class="${isDone?'bg-zinc-700 text-gray-400':'bg-green-400 text-black'} px-4 py-2 rounded-lg text-sm font-bold">
+        ${isDone?'Claimed':'Earn ₹'+app.reward}
+      </button>
+    </div>`;
+  });
+}
 
-document.getElementById('withdrawBtn').addEventListener('click', ()=>{
-  if(wallet < 10){ alert('⚠️ Minimum ₹10 hona chahiye withdraw ke liye\\nAbhi aapke paas ₹'+wallet+' hai'); }
-  else { alert('✅ ₹'+wallet+' ka withdraw request bhej diya!\\n24hr me payment ayega'); wallet=0; localStorage.setItem('wallet',0); walletEl.innerText='₹0'; }
-})
-</script>
-</body>
-</html>
+function filterCat(cat){ currentCat = cat; render(); }
+
+function startTask(id){
+  if(claimed.includes(id)) return;
+  const app = apps.find(a=>a.id===id);
+  const btn = document.getElementById(`btn-${id}`);
+  window.open(app.link, '_blank');
+  let time = 30;
+  btn.disabled = true;
+  const
