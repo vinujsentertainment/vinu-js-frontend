@@ -1,89 +1,76 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vinu JS - 9 Level Earning</title>
+<title>Vinu JS Earning</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 <style>
-body{font-family:Arial;background:#0f172a;color:#fff;margin:0;padding:15px}
-.header{display:flex;justify-content:space-between;background:#1e293b;padding:12px;border-radius:10px}
-.bal{color:#22c55e;font-weight:bold}
-.card{background:#1e293b;margin:10px 0;padding:12px;border-radius:10px;display:flex;justify-content:space-between;align-items:center}
-.btn{background:#22c55e;color:#000;border:0;padding:8px 15px;border-radius:8px;font-weight:bold}
-.level-box{background:#1e293b;padding:10px;border-radius:10px;margin-top:15px}
-.level-box b{color:#facc15}
-.online{color:#22c55e} .offline{color:#ef4444}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
+body{font-family:'Poppins',sans-serif;background:#0a0a0f;color:white}
+.card{background:#15151f;border:1px solid rgba(168,85,247,0.15)}
+.glow{box-shadow:0 0 20px rgba(168,85,247,0.3)}
+.btn-green{background:linear-gradient(135deg,#00ff88,#10b981)}
 </style>
 </head>
 <body>
-<div class="header">
-<div>Vinu JS Earning</div>
-<div><span id="status" class="offline">Checking...</span> | <span class="bal" id="balance">Rs.0</span></div>
+<!-- Header -->
+<div class="flex justify-between items-center p-4 max-w-md mx-auto">
+  <div class="flex gap-2 items-center"><div class="w-8 h-8 rounded-lg bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center font-bold">V</div><h1 class="font-bold">Vinu JS Earning</h1></div>
+  <div class="flex gap-3"><i class="fa-regular fa-bell text-violet-400"></i><i class="fa-regular fa-user text-violet-400"></i></div>
 </div>
 
-<div class="level-box">
-<b>9 ID Earning Status:</b><br>
-1. Self: Rs.2/app ✅<br>
-2. Direct Refer: Rs.20 ✅<br>
-3. Level Income (7 Level) ✅<br>
-4. Daily Task (10 Apps=Rs.10) ✅<br>
-5. Spin & Win ✅<br>
-6. Team Bonus ✅<br>
-7. Rank Bonus ✅<br>
-8. Ad Bonus (100 Apps=Rs.50) ✅<br>
-9. Royalty ✅
+<div class="max-w-md mx-auto px-3 pb-20">
+  <!-- Wallet -->
+  <div class="flex justify-between items-center mb-4">
+    <p class="text-white/50 text-sm"><i class="fa-solid fa-wallet"></i> Wallet</p>
+    <h2 class="text-2xl font-bold">₹0</h2>
+    <button class="border border-violet-500 text-violet-400 px-4 py-1 rounded-lg text-xs">Withdraw</button>
+  </div>
+
+  <!-- Banner -->
+  <div class="rounded-2xl bg-gradient-to-r from-violet-600 to-purple-600 p-4 flex justify-between items-center glow mb-5">
+    <div><h2 class="text-xl font-bold">Earn ₹500 per day</h2><p class="text-xs opacity-80 mt-1">Complete tasks & earn daily rewards • Instant payout</p></div>
+    <div class="text-3xl">💰</div>
+  </div>
+
+  <!-- 9 Ways -->
+  <div class="flex justify-between items-center mb-3"><h3 class="font-bold">9 Ways to Earn</h3><span class="text-violet-400 text-xs">See all ></span></div>
+  <div class="grid grid-cols-3 gap-2 mb-6">
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-clipboard-list text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Self Earn</p><p class="text-[10px] opacity-60">Earn ₹2/App</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-share-nodes text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Refer & Earn</p><p class="text-[10px] opacity-60">Earn ₹20</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-layer-group text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">7 Level</p><p class="text-[10px] opacity-60">Income</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-list-check text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Daily Task</p><p class="text-[10px] opacity-60">10=Rs.10</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-dharmachakra text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Spin & Win</p><p class="text-[10px] opacity-60">Daily</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-users text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Team Bonus</p><p class="text-[10px] opacity-60">Extra</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-trophy text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Rank Bonus</p><p class="text-[10px] opacity-60">Reward</p></div>
+    <div class="card rounded-xl p-3 text-center"><i class="fa-solid fa-rectangle-ad text-violet-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Ad Bonus</p><p class="text-[10px] opacity-60">100=Rs.50</p></div>
+    <div class="card rounded-xl p-3 text-center border-yellow-500/30"><i class="fa-solid fa-crown text-yellow-400 text-xl"></i><p class="text-[11px] font-bold mt-2">Royalty</p><p class="text-[10px] opacity-60">Lifetime</p></div>
+  </div>
+
+  <!-- Apps -->
+  <h3 class="font-bold mb-3">Recommended Apps</h3>
+  <div class="space-y-2">
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-500 flex items-center justify-center font-bold">m</div><div><p class="text-sm font-bold">Meesho</p><p class="text-[11px] opacity-60">Online Shopping • Cashback</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center font-bold">पे</div><div><p class="text-sm font-bold">PhonePe</p><p class="text-[11px] opacity-60">Recharge & Bills • UPI</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center"><i class="fa-solid fa-trophy"></i></div><div><p class="text-sm font-bold">Dream11</p><p class="text-[11px] opacity-60">Fantasy Sports • Play & Earn</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-pink-600 flex items-center justify-center font-bold">M</div><div><p class="text-sm font-bold">Moj</p><p class="text-[11px] opacity-60">Short Videos • Earn</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-yellow-600 flex items-center justify-center"><i class="fa-solid fa-sun"></i></div><div><p class="text-sm font-bold">RozDhan</p><p class="text-[11px] opacity-60">Read & Earn Daily</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-red-600 flex items-center justify-center"><i class="fa-solid fa-gamepad"></i></div><div><p class="text-sm font-bold">WinZo</p><p class="text-[11px] opacity-60">Play Games & Win</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center"><i class="fa-solid fa-chart-line"></i></div><div><p class="text-sm font-bold">Upstox</p><p class="text-[11px] opacity-60">Trading • Demat</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-green-500 flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Groww</p><p class="text-[11px] opacity-60">Invest • Stocks</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center"><i class="fa-solid fa-wallet"></i></div><div><p class="text-sm font-bold">Paytm</p><p class="text-[11px] opacity-60">UPI & Wallet Cashback</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+    <div class="card rounded-xl p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center font-bold">G</div><div><p class="text-sm font-bold">Google Pay</p><p class="text-[11px] opacity-60">UPI Payment • Rewards</p></div></div><button class="btn-green text-black font-bold text-xs px-4 py-2 rounded-lg">Earn ₹2</button></div>
+  </div>
 </div>
 
-<div id="apps"></div>
-
-<script>
-const BACKEND = "https://vinu-js-backend.onrender.com";
-let USER_ID = localStorage.getItem('vinu_id') || 'USER_' + Date.now();
-localStorage.setItem('vinu_id', USER_ID);
-let balance = 0;
-
-async function checkHealth(){
- try{
-  let r = await fetch(BACKEND + '/');
-  if(r.ok){ document.getElementById('status').innerHTML='Online ✅'; document.getElementById('status').className='online'; }
-  else{ throw 'off' }
- }catch{ document.getElementById('status').innerHTML='Offline ❌ (30s wait)'; document.getElementById('status').className='offline'; }
- getWallet();
-}
-
-async function getWallet(){
- try{
-  let res = await fetch(BACKEND + '/api/wallet/' + USER_ID);
-  let data = await res.json();
-  balance = data.balance || 0;
-  document.getElementById('balance').innerText = 'Rs.' + balance;
- }catch{}
-}
-
-async function claim(app){
- // Level 1 Self Earning
- let res = await fetch(BACKEND + '/api/claim', {
-  method:'POST',
-  headers:{'Content-Type':'application/json'},
-  body: JSON.stringify({userId: USER_ID, appName: app})
- });
- let d = await res.json();
- if(d.success){
-  alert('Rs.' + d.earned + ' Added! ' + d.msg);
-  getWallet();
-  if(d.taskBonus) alert('🎉 TASK BONUS: ' + d.taskBonus);
-  if(d.adBonus) alert('🔥 AD BONUS: ' + d.adBonus);
-  window.open('https://play.google.com/store', '_blank');
- }
-}
-
-const appList = ["Meesho","PhonePe","Dream11","Moj","RozDhan","WinZo","Upstox","Groww","Paytm","Google Pay"];
-let html='';
-appList.forEach(a=>{
- html+=`<div class="card"><span>${a} - Earn Rs.2</span><button class="btn" onclick="claim('${a}')">Open & Earn</button></div>`;
-});
-document.getElementById('apps').innerHTML=html;
-checkHealth();
-</script>
+<!-- Bottom Menu -->
+<div class="fixed bottom-0 left-0 right-0 bg-[#0f0f14] border-t border-white/10 p-2 max-w-md mx-auto flex justify-around">
+  <div class="text-center text-violet-400"><i class="fa-solid fa-house"></i><p class="text-[10px]">Home</p></div>
+  <div class="text-center text-white/40"><i class="fa-solid fa-gift"></i><p class="text-[10px]">Earn</p></div>
+  <div class="text-center text-white/40"><i class="fa-solid fa-wallet"></i><p class="text-[10px]">Wallet</p></div>
+  <div class="text-center text-white/40"><i class="fa-solid fa-user"></i><p class="text-[10px]">Profile</p></div>
+</div>
 </body>
 </html>
