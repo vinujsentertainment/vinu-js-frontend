@@ -3,37 +3,76 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#f4f5fb;padding:10px;padding-bottom:90px}
 .header{background:linear-gradient(135deg,#000,#FFD700);color:#fff;padding:12px;border-radius:18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:10px;z-index:10}
-.bal{font-size:24px;font-weight:900}.sec{background:#fff;border-radius:14px;padding:12px;margin:12px 0;border:1px solid #FFD700}
-.grid9{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.box9{background:#fff;border:1px solid #eee;border-radius:12px;padding:8px;text-align:center}
-.catbar{display:flex;gap:8px;overflow:auto;padding:8px 0;position:sticky;top:70px;background:#f4f5fb;z-index:9}.cat{background:#fff;border:1px solid #ddd;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap}.cat.active{background:#000;color:#FFD700;border-color:#FFD700}
-.card{background:#fff;border-radius:12px;padding:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-left:3px solid #FFD700}.logo{width:44px;height:44px;border-radius:10px;border:1px solid #eee}
-.btn{background:#000;color:#FFD700;border:1px solid #FFD700;padding:6px 12px;border-radius:20px;font-weight:800;font-size:11px}.btn:disabled{background:#ddd;color:#888}
+.bal{font-size:22px;font-weight:900}.sec{background:#fff;border-radius:14px;padding:12px;margin:12px 0;border:1px solid #FFD700;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.grid9{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.box9{background:#fff;border:1px solid #eee;border-radius:12px;padding:8px;text-align:center;cursor:pointer}
+.catbar{display:flex;gap:8px;overflow:auto;padding:8px 0;position:sticky;top:72px;background:#f4f5fb;z-index:9}.cat{background:#fff;border:1px solid #ddd;padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;white-space:nowrap;cursor:pointer}.cat.active{background:#000;color:#FFD700;border-color:#FFD700}
+.card{background:#fff;border-radius:12px;padding:10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;border-left:3px solid #FFD700}.logo{width:44px;height:44px;border-radius:10px;border:1px solid #eee;background:#fff;object-fit:contain}
+.btn{background:#000;color:#FFD700;border:1px solid #FFD700;padding:6px 12px;border-radius:20px;font-weight:800;font-size:11px;cursor:pointer}.btn:disabled{background:#ddd;color:#888}
+.botnav{position:fixed;bottom:0;left:0;right:0;background:#000;border-top:2px solid #FFD700;display:flex;justify-content:space-around;padding:8px 0;z-index:20}
+.botnav div{color:#888;text-align:center;font-size:10px;cursor:pointer}.botnav div.active{color:#FFD700;font-weight:800}
+.page{display:none}.page.active{display:block}
+.inp{width:100%;padding:10px;border:1px solid #ddd;border-radius:10px;margin:6px 0}
+.wbtn{background:linear-gradient(135deg,#000,#FFD700);color:#fff;border:none;padding:12px;width:100%;border-radius:12px;font-weight:800;margin-top:8px}
+.hist{font-size:11px;padding:8px;border-bottom:1px solid #eee;display:flex;justify-content:space-between}
 </style></head><body>
-<div class="header"><div style="display:flex;gap:10px;align-items:center"><img src="icon.png" style="width:40px;height:40px;border-radius:10px;border:1px solid #FFD700"><div><h1 style="font-size:14px;color:#FFD700">VINOD AVJS<br>ENTERTAINMENT</h1><p id="uid" style="font-size:8px"></p></div></div><div><p style="font-size:10px">Wallet</p><div class="bal">₹<span id="bal">0</span></div></div></div>
-<div class="sec"><h3 style="font-size:13px">💰 9 Tarah Se Kamao</h3><div class="grid9">
-<div class="box9" onclick="doEarn(5,'Spin')">🎡<br><b style="font-size:10px">Spin ₹5</b></div>
-<div class="box9" onclick="doEarn(2,'Daily')">📅<br><b style="font-size:10px">Daily ₹2</b></div>
-<div class="box9" onclick="doEarn(50,'Refer')">👥<br><b style="font-size:10px">Refer ₹50</b></div>
-<div class="box9" onclick="doEarn(5,'Quiz')">❓<br><b style="font-size:10px">Quiz ₹5</b></div>
-<div class="box9" onclick="doEarn(3,'Scratch')">🎟️<br><b style="font-size:10px">Scratch ₹3</b></div>
-<div class="box9" onclick="doEarn(10,'Survey')">📝<br><b style="font-size:10px">Survey ₹10</b></div>
+<div class="header"><div style="display:flex;gap:10px;align-items:center"><img src="icon.png" id="hicon" style="width:42px;height:42px;border-radius:10px;border:1px solid #FFD700;background:#fff" onerror="this.style.display='none';document.getElementById('hicon2').style.display='flex'"><div id="hicon2" style="display:none;width:42px;height:42px;background:#FFD700;color:#000;border-radius:10px;align-items:center;justify-content:center;font-weight:900;font-size:16px">VJS</div><div><h1 style="font-size:13px;color:#FFD700;line-height:1.1">VINOD AVJS<br>ENTERTAINMENT</h1><p id="uid" style="font-size:7px;opacity:.8"></p></div></div><div style="text-align:right"><p style="font-size:9px">Wallet</p><div class="bal">₹<span id="bal">0</span></div><p style="font-size:8px" id="total">Total ₹0</p></div></div>
+
+<div id="page-home" class="page active">
+<div class="sec"><h3 style="font-size:13px">💰 9 Tarah Se Kamao - Ad Money System</h3><p style="font-size:9px;color:#666;margin:4px 0">Har task pe Ad dekho, aapko paisa, mujhe ad revenue!</p><div class="grid9">
+<div class="box9" onclick="showAdEarn(5,'Spin')"><div>🎡</div><b style="font-size:10px">Spin</b><small style="font-size:9px;color:green">₹5</small></div>
+<div class="box9" onclick="showAdEarn(2,'Daily')"><div>📅</div><b style="font-size:10px">Daily</b><small style="font-size:9px;color:green">₹2</small></div>
+<div class="box9" onclick="showAdEarn(50,'Refer')"><div>👥</div><b style="font-size:10px">Refer</b><small style="font-size:9px;color:green">₹50</small></div>
+<div class="box9" onclick="showAdEarn(5,'Quiz')"><div>❓</div><b style="font-size:10px">Quiz</b><small style="font-size:9px;color:green">₹5</small></div>
+<div class="box9" onclick="showAdEarn(3,'Scratch')"><div>🎟️</div><b style="font-size:10px">Scratch</b><small style="font-size:9px;color:green">₹3</small></div>
+<div class="box9" onclick="showAdEarn(10,'Survey')"><div>📝</div><b style="font-size:10px">Survey</b><small style="font-size:9px;color:green">₹10</small></div>
 </div></div>
 <div class="catbar"><div class="cat active" onclick="filterCat('all',this)">All 310</div><div class="cat" onclick="filterCat('UPI',this)">UPI</div><div class="cat" onclick="filterCat('Social',this)">Social</div><div class="cat" onclick="filterCat('Shopping',this)">Shopping</div><div class="cat" onclick="filterCat('Fantasy',this)">Fantasy</div><div class="cat" onclick="filterCat('Finance',this)">Finance</div><div class="cat" onclick="filterCat('Food',this)">Food</div><div class="cat" onclick="filterCat('Entertainment',this)">Entertainment</div></div>
 <div id="apps"></div>
+</div>
+
+<div id="page-wallet" class="page">
+<div class="sec"><h3>💰 My Wallet</h3><div style="text-align:center;padding:10px"><p style="font-size:12px">Available Balance</p><h1 style="font-size:36px">₹<span id="bal2">0</span></h1><p style="font-size:11px;color:#666">Total Earned: ₹<span id="total2">0</span></p></div>
+<input id="upi" class="inp" placeholder="UPI ID daalo - jaise vinod@phonepe">
+<input id="amt" class="inp" type="number" placeholder="Amount - Min ₹100">
+<button class="wbtn" onclick="doWithdraw()">💸 Withdraw Karo - 24h me Paisa</button>
+<p style="font-size:9px;color:#666;margin-top:8px;text-align:center">Minimum ₹100 • UPI pe instant</p></div>
+<div class="sec"><h4>📊 Ad Earning - Paisa Kaha Se Aata Hai?</h4><p style="font-size:10px;line-height:1.5;margin-top:6px">
+<b>1. Ad Revenue:</b> User 30 sec wait karta hai, tab AdMob ad dikhta hai. Har ad ka ₹3-₹5 aapko.<br>
+<b>2. Affiliate:</b> PhonePe, Upstox, Dream11 ka real refer link lagao - har install pe ₹100-₹500.<br>
+<b>3. Withdraw:</b> User ₹100 kama lega to UPI pe withdraw karega. Aap manual bhej do.
+</p></div>
+<div class="sec"><h4>📜 Withdrawal History</h4><div id="wHist">Loading...</div></div>
+</div>
+
+<div id="page-history" class="page">
+<div class="sec"><h3>📜 Earning History</h3><div id="eHist">Loading...</div></div>
+</div>
+
+<div class="botnav">
+<div class="active" onclick="switchPage('home',this)">🏠<br>Home</div>
+<div onclick="switchPage('wallet',this)">💰<br>Wallet</div>
+<div onclick="switchPage('history',this)">📜<br>History</div>
+<div onclick="alert('Profile: '+userId)">👤<br>Profile</div>
+</div>
+
 <script>
 const BACKEND="https://vinu-js-backend.onrender.com";
 const userId=localStorage.getItem('vinu_user')||'user_'+Math.random().toString(36).substr(2,6);
 localStorage.setItem('vinu_user',userId);document.getElementById('uid').innerText=userId;
 const base=["PhonePe|phonepe.com|50|UPI","Google Pay|pay.google.com|50|UPI","Paytm|paytm.com|50|UPI","CRED|cred.club|50|UPI","BHIM|bhimupi.org.in|20|UPI","WhatsApp|whatsapp.com|10|Social","Instagram|instagram.com|10|Social","Facebook|facebook.com|10|Social","Telegram|telegram.org|10|Social","YouTube|youtube.com|10|Social","Flipkart|flipkart.com|20|Shopping","Amazon|amazon.in|20|Shopping","Meesho|meesho.com|15|Shopping","Myntra|myntra.com|15|Shopping","Nykaa|nykaa.com|15|Shopping","Dream11|dream11.com|50|Fantasy","MPL|mpl.live|50|Fantasy","WinZO|winzo.com|50|Fantasy","Ludo King|ludoking.com|10|Fantasy","Free Fire|freefire.com|15|Fantasy","Upstox|upstox.com|50|Finance","Groww|groww.in|50|Finance","Zerodha|zerodha.com|50|Finance","CRED|cred.club|50|Finance","Slice|sliceit.com|15|Finance","Swiggy|swiggy.com|20|Food","Zomato|zomato.com|20|Food","Ola|olacabs.com|15|Food","IRCTC|irctc.co.in|15|Food","MakeMyTrip|makemytrip.com|20|Food","Hotstar|hotstar.com|10|Entertainment","Netflix|netflix.com|15|Entertainment","Spotify|spotify.com|10|Entertainment","Canva|canva.com|10|Entertainment","MX Player|mxplayer.in|5|Entertainment"];
-let raw=[...base];
-for(let i=base.length+1;i<=310;i++) raw.push(`Top App ${i}|google.com|3|More`);
-const appsList=raw.map((s,i)=>{let p=s.split('|');return{id:i+1,name:p[0],domain:p[1],reward:+p[2],cat:p[3],icon:`https://logo.clearbit.com/${p[1]}`,link:`https://play.google.com/store/search?q=${p[0]}`} });
+let raw=[...base];for(let i=base.length+1;i<=310;i++) raw.push(`App ${i}|google.com|3|More`);
+const appsList=raw.map((s,i)=>{let p=s.split('|');return{id:i+1,name:p[0],domain:p[1],reward:+p[2],cat:p[3],icon:`https://www.google.com/s2/favicons?domain=${p[1]}&sz=64`,link:`https://play.google.com/store/search?q=${encodeURIComponent(p[0])}`}});
 let claimed=JSON.parse(localStorage.getItem('claimed_ids')||'[]');let curCat='all';
-async function loadWallet(){try{let r=await fetch(BACKEND+"/api/wallet/"+userId);let d=await r.json();document.getElementById('bal').innerText=d.balance}catch(e){}}
-function render(){let list=curCat=='all'?appsList:appsList.filter(a=>a.cat==curCat);let h=`<p style="font-size:11px;margin-bottom:6px">${list.length} Apps • VINOD AVJS</p>`;list.forEach(a=>{let done=claimed.includes(a.id);h+=`<div class="card"><div style="display:flex;gap:10px;align-items:center"><img class="logo" src="${a.icon}" onerror="this.src='https://www.google.com/s2/favicons?domain='+a.domain"><div><h4 style="font-size:12px">${a.name} <span style="font-size:8px;background:#FFF8DC;border:1px solid #FFD700;padding:1px 4px;border-radius:4px">${a.cat}</span></h4><p style="font-size:10px;color:#666">Earn ₹${a.reward} • 4.8★</p></div></div><button class="btn" id="b-${a.id}" onclick="start(${a.id})" ${done?'disabled':''}>${done?'Claimed':'Earn ₹'+a.reward}</button></div>`});document.getElementById('apps').innerHTML=h}
+function switchPage(p,el){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+p).classList.add('active');document.querySelectorAll('.botnav div').forEach(x=>x.classList.remove('active'));el.classList.add('active');if(p=='wallet')loadWalletHist();if(p=='history')loadEarnHist();}
+async function loadWallet(){try{let r=await fetch(BACKEND+"/api/wallet/"+userId);let d=await r.json();document.getElementById('bal').innerText=d.balance||0;document.getElementById('bal2').innerText=d.balance||0;document.getElementById('total').innerText="Total ₹"+(d.total_earned||0);document.getElementById('total2').innerText=d.total_earned||0;}catch(e){}}
+async function loadWalletHist(){try{let r=await fetch(BACKEND+"/api/withdrawals/"+userId);let d=await r.json();let h="";if(d.length==0)h="<p style='font-size:11px;color:#888'>Koi withdrawal nahi</p>";else d.forEach(x=>{h+=`<div class='hist'><span>${x.amount}₹ to ${x.upi_id}<br><small>${new Date(x.created_at).toLocaleString()} • ${x.status}</small></span><span style='color:${x.status=='Pending'?'orange':'green'}'>${x.status}</span></div>`});document.getElementById('wHist').innerHTML=h;}catch(e){}}
+async function loadEarnHist(){try{let r=await fetch(BACKEND+"/api/history/"+userId);let d=await r.json();let h="";if(d.length==0)h="<p style='font-size:11px;color:#888'>Koi earning nahi</p>";else d.forEach(x=>{h+=`<div class='hist'><span>${x.description}<br><small>${new Date(x.created_at).toLocaleString()}</small></span><span style='color:${x.amount>0?'green':'red'}'>${x.amount>0?'+':''}${x.amount}₹</span></div>`});document.getElementById('eHist').innerHTML=h;}catch(e){}}
+function render(){let list=curCat=='all'?appsList:appsList.filter(a=>a.cat==curCat);let h=`<p style="font-size:11px;margin-bottom:6px">${list.length} Apps • VINOD AVJS • Icon Fixed</p>`;list.forEach(a=>{let done=claimed.includes(a.id);h+=`<div class="card"><div style="display:flex;gap:10px;align-items:center;flex:1"><img class="logo" src="${a.icon}" loading="lazy" onerror="this.src='https://www.google.com/s2/favicons?domain=google.com&sz=64'"><div style="flex:1"><h4 style="font-size:12px">${a.name} <span style="font-size:8px;background:#FFF8DC;border:1px solid #FFD700;padding:1px 4px;border-radius:4px">${a.cat}</span></h4><p style="font-size:10px;color:#666">Earn ₹${a.reward} • 4.8★</p></div></div><button class="btn" id="b-${a.id}" onclick="start(${a.id})" ${done?'disabled':''}>${done?'Claimed':'Earn ₹'+a.reward}</button></div>`});document.getElementById('apps').innerHTML=h}
 function filterCat(c,el){curCat=c;document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));el.classList.add('active');render()}
-function start(id){let app=appsList.find(x=>x.id==id);window.open(app.link,'_blank');let btn=document.getElementById('b-'+id);btn.disabled=true;let s=30;let tm=setInterval(()=>{btn.innerText='Wait '+s+'s';s--;if(s<0){clearInterval(tm);btn.innerText='Verify ₹'+app.reward;btn.disabled=false;btn.onclick=()=>verify(id)}},1000)}
-async function verify(id){let app=appsList.find(x=>x.id==id);let btn=document.getElementById('b-'+id);btn.disabled=true;btn.innerText="Verifying...";try{let r=await fetch(BACKEND+"/api/tasks/verify-ad",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,appId:id,adWatched:true,reward:app.reward})});let d=await r.json();if(d.success){claimed.push(id);localStorage.setItem('claimed_ids',JSON.stringify(claimed));alert('✅ ₹'+app.reward+' Added!');document.getElementById('bal').innerText=d.newBalance;btn.innerText="Claimed ✅"}else{alert(d.message);btn.disabled=false;btn.innerText='Earn ₹'+app.reward}}catch(e){alert("Backend waking...");btn.disabled=false;btn.innerText="Retry"}}
-async function doEarn(amt,type){let fakeId=1000+Math.floor(Math.random()*9000);try{let r=await fetch(BACKEND+"/api/tasks/verify-ad",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,appId:fakeId,adWatched:true,reward:amt})});let d=await r.json();if(d.success){alert('✅ ₹'+amt+' Added from '+type+'!');document.getElementById('bal').innerText=d.newBalance}else alert(d.message)}catch(e){alert("Try again")}}
+function start(id){let app=appsList.find(x=>x.id==id);window.open(app.link,'_blank');let btn=document.getElementById('b-'+id);btn.disabled=true;let s=30;let tm=setInterval(()=>{btn.innerText='Ad '+s+'s';s--;if(s<0){clearInterval(tm);btn.innerText='Verify ₹'+app.reward;btn.disabled=false;btn.onclick=()=>verify(id)}},1000)}
+async function verify(id){let app=appsList.find(x=>x.id==id);let btn=document.getElementById('b-'+id);btn.disabled=true;btn.innerText="Verifying...";try{let r=await fetch(BACKEND+"/api/tasks/verify-ad",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,appId:id,adWatched:true,reward:app.reward})});let d=await r.json();if(d.success){claimed.push(id);localStorage.setItem('claimed_ids',JSON.stringify(claimed));alert('✅ ₹'+app.reward+' Added!');loadWallet();btn.innerText="Claimed ✅"}else{alert(d.message);btn.disabled=false;btn.innerText='Earn ₹'+app.reward}}catch(e){alert("Backend waking...");btn.disabled=false;btn.innerText="Retry"}}
+function showAdEarn(amt,type){if(!confirm(type+" - Ad dekho ₹"+amt+"?"))return;setTimeout(()=>doEarn(amt,type,1000+Math.floor(Math.random()*9000)),3000);alert("📺 Ad Loading... 3 sec me ₹"+amt+" milega! (Yaha AdMob lagao)");}
+async function doEarn(amt,type,fakeId){try{let r=await fetch(BACKEND+"/api/tasks/verify-ad",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,appId:fakeId,adWatched:true,reward:amt})});let d=await r.json();if(d.success){alert('✅ ₹'+amt+' Added from '+type+'!');loadWallet();}else alert(d.message)}catch(e){alert("Try again")}}
+async function doWithdraw(){let upi=document.getElementById('upi').value.trim();let amt=document.getElementById('amt').value.trim();if(!upi||!amt){alert("UPI aur Amount daalo");return}try{let r=await fetch(BACKEND+"/api/withdraw",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,amount:amt,upiId:upi})});let d=await r.json();if(d.success){alert(d.message);loadWallet();loadWalletHist();document.getElementById('amt').value="";}else alert(d.message)}catch(e){alert("Error")}}
 loadWallet();render();
 </script></body></html>
