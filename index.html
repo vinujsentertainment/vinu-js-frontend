@@ -1,57 +1,163 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vinu JS V18</title>
-<style>body{font-family:sans-serif;background:#f2f2f2;margin:0;padding-bottom:70px}.header{display:flex;justify-content:space-between;padding:15px;background:#fff;box-shadow:0 2px 5px #0001;position:sticky;top:0;z-index:9}.card{background:#fff;margin:10px;padding:15px;border-radius:15px;box-shadow:0 2px 8px #0001}.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.btn{padding:12px;border-radius:10px;text-align:center;background:#fff;box-shadow:0 2px 5px #0002;cursor:pointer;font-weight:600}.btn:active{transform:scale(.95)}.page{display:none}.page.active{display:block}.botnav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;box-shadow:0 -2px 10px #0002}.botnav div{padding:5px 20px;border-radius:20px;cursor:pointer}.botnav div.active{background:#000;color:#fff}</style>
-</head><body>
-<div class="header"><b>Vinu JS</b><div>Wallet: ₹<span id="walletBal">0</span></div></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vinu JS V18 FINAL</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
+body{background:#f5f5f7;padding-bottom:80px}
+.header{position:sticky;top:0;z-index:10;background:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #0001}
+.header b{font-size:18px}
+.card{background:#fff;margin:12px;border-radius:18px;padding:16px;box-shadow:0 4px 15px #0001}
+.card h3{margin-bottom:12px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.btn{background:#fff;border:1px solid #eee;border-radius:14px;padding:14px 5px;text-align:center;font-weight:700;box-shadow:0 2px 8px #0001;cursor:pointer;line-height:1.2}
+.btn:active{transform:scale(0.95);background:#000;color:#fff}
+.app-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-bottom:1px solid #f0f0f0}
+.app-row:last-child{border:0}
+.earn-btn{background:#000;color:#fff;border:0;padding:9px 16px;border-radius:25px;font-weight:700;cursor:pointer}
+.earn-btn:disabled{background:#ccc}
+.page{display:none}
+.page.active{display:block}
+.botnav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #eee;display:flex;justify-content:space-around;padding:10px 0;z-index:20}
+.botnav div{padding:8px 22px;border-radius:25px;cursor:pointer;font-weight:600}
+.botnav div.active{background:#000;color:#fff}
+.small{font-size:12px;color:#666}
+</style>
+</head>
+<body>
 
-<div id="page-home" class="page active">
-<div class="card"><h3>🔥 9 Tarah Se Kamao</h3>
-<div class="grid3">
-<div class="btn" onclick="earnExtra('spin')">🎡<br>Spin ₹5</div>
-<div class="btn" onclick="earnExtra('daily')">📅<br>Daily ₹2</div>
-<div class="btn" onclick="earnExtra('refer')">👥<br>Refer ₹50</div>
-<div class="btn" onclick="earnExtra('quiz')">❓<br>Quiz ₹5</div>
-<div class="btn" onclick="earnExtra('scratch')">🎟️<br>Scratch ₹3</div>
-<div class="btn" onclick="earnExtra('survey')">📝<br>Survey ₹10</div>
-</div></div>
-<div class="card"><h3>SECURE V18: 339 REAL Apps</h3><div id="appsList"></div></div>
+<div class="header">
+<b>Vinu JS</b>
+<div>Wallet: ₹<span id="bal1">0</span></div>
 </div>
 
-<div id="page-wallet" class="page"><div class="card"><h2>My Wallet ₹<span id="walletBal2">0</span></h2><p>Total: ₹<span id="totalEarn">0</span></p><input id="upiInput" placeholder="UPI ID daalo" style="width:100%;padding:10px;margin:10px 0"><button onclick="doWithdraw()" style="width:100%;padding:12px;background:#000;color:#fff;border-radius:10px">Withdraw ₹100 Min</button></div><div class="card" id="walletHist"></div></div>
-<div id="page-history" class="page"><div class="card"><h3>Earning History</h3><div id="earnHist"></div></div></div>
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="card">
+    <h3>🔥 9 Tarah Se Kamao</h3>
+    <div class="grid3">
+      <div class="btn" onclick="earnExtra('spin')">🎡<br>Spin ₹5</div>
+      <div class="btn" onclick="earnExtra('daily')">📅<br>Daily ₹2</div>
+      <div class="btn" onclick="earnExtra('refer')">👥<br>Refer ₹50</div>
+      <div class="btn" onclick="earnExtra('quiz')">❓<br>Quiz ₹5</div>
+      <div class="btn" onclick="earnExtra('scratch')">🎟️<br>Scratch ₹3</div>
+      <div class="btn" onclick="earnExtra('survey')">📝<br>Survey ₹10</div>
+    </div>
+  </div>
 
-<div class="botnav"><div class="active" onclick="switchPage('home',this)">Home</div><div onclick="switchPage('wallet',this)">Wallet</div><div onclick="switchPage('history',this)">History</div></div>
+  <div class="card">
+    <h3>SECURE V18: 339 REAL Apps</h3>
+    <div id="apps"></div>
+  </div>
+</div>
+
+<!-- WALLET -->
+<div id="page-wallet" class="page">
+  <div class="card">
+    <h2>My Wallet ₹<span id="bal2">0</span></h2>
+    <p class="small">Total Earned: ₹<span id="total">0</span></p>
+    <input id="upi" placeholder="UPI ID - ex: 98765@ybl" style="width:100%;padding:12px;border-radius:10px;border:1px solid #ddd;margin:12px 0">
+    <button onclick="withdraw()" style="width:100%;padding:12px;background:#000;color:#fff;border:0;border-radius:12px;font-weight:700">Withdraw ₹100 Min</button>
+  </div>
+  <div class="card"><h3>Wallet History</h3><div id="whist">Loading...</div></div>
+</div>
+
+<!-- HISTORY -->
+<div id="page-history" class="page">
+  <div class="card"><h3>Earning History</h3><div id="ehist">Loading...</div></div>
+</div>
+
+<div class="botnav">
+  <div id="nav-home" class="active" onclick="openPage('home')">Home</div>
+  <div id="nav-wallet" onclick="openPage('wallet')">Wallet</div>
+  <div id="nav-history" onclick="openPage('history')">History</div>
+</div>
 
 <script>
-const BACKEND="https://vinu-js-backend.onrender.com";
-const NAMES=["PhonePe","Google Pay","Paytm","CRED","BHIM","FreeCharge","MobiKwik","Amazon Pay","Navi","Slice","Fibe","PayLater","KreditBee","MoneyTap","Bajaj Finserv","JioFinance","PhonePe Switch","Google Maps","Whatsapp","Facebook","Instagram","Meesho","Flipkart","Amazon","Myntra","Ajio","Nykaa","Zomato","Swiggy","Blinkit"];
-const CATS=["UPI","UPI","UPI","UPI","UPI","UPI","UPI","UPI","Loan","Loan","Loan","Loan","Loan","Loan","Loan","Loan","Social","Social","Social","Shopping","Shopping","Shopping","Shopping","Shopping","Food","Food","Food","Food","Food"];
-const appsList=NAMES.map((name,i)=>({id:i+1,name,cat:CATS[i],reward:i<8?50:i<20?20:5}));
-let curCat='all'; let claimed=JSON.parse(localStorage.getItem('claimed')||'[]');
-let userId=localStorage.getItem('vinu_uid')||'user_'+Math.random().toString(36).substr(2,9); localStorage.setItem('vinu_uid',userId);
+const BACKEND = "https://vinu-js-backend.onrender.com";
+const APPS_NAME = ["PhonePe","Google Pay","Paytm","CRED","BHIM","FreeCharge","MobiKwik","Amazon Pay","Navi","Slice","Fibe","PayLater","KreditBee","MoneyTap","Bajaj Finserv","JioFinance","Meesho","Flipkart","Amazon","Myntra","Ajio","Nykaa","Zomato","Swiggy","Blinkit","Zepto","BigBasket","JioMart","Paytm Mall","PhonePe Switch"];
+const APPS = APPS_NAME.map((n,i)=>({id:i+1,name:n,cat:i<8?'UPI':i<16?'Loan':'Shopping',reward:i<8?50:i<15?20:5}));
 
-function switchPage(p,el){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active')); document.getElementById('page-'+p).classList.add('active'); document.querySelectorAll('.botnav div').forEach(x=>x.classList.remove('active')); el.classList.add('active'); if(p!='home'){loadWallet(); loadWalletHist(); loadEarnHist();}}
+let userId = localStorage.getItem('vinu_uid');
+if(!userId){ userId='user_'+Math.random().toString(36).slice(2,10); localStorage.setItem('vinu_uid',userId); }
+let claimed = JSON.parse(localStorage.getItem('claimed_v18')||'[]');
 
-async function loadWallet(){try{let r=await fetch(BACKEND+'/api/wallet/'+userId); let d=await r.json(); document.getElementById('walletBal').innerText=d.balance||0; document.getElementById('walletBal2').innerText=d.balance||0; document.getElementById('totalEarn').innerText=d.total_earned||0;}catch{}}
-async function loadWalletHist(){try{let r=await fetch(BACKEND+'/api/history/'+userId); let d=await r.json(); document.getElementById('walletHist').innerHTML=d.map(x=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee"><span>${x.description}</span><b>+${x.amount}₹</b></div>`).join('')||'Koi history nahi';}catch{}}
-async function loadEarnHist(){try{let r=await fetch(BACKEND+'/api/history/'+userId); let d=await r.json(); document.getElementById('earnHist').innerHTML=d.map(x=>`<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee"><span>${x.description}</span><span>${new Date(x.created_at).toLocaleDateString()}</span></div>`).join('');}catch{}}
+function openPage(p){
+  document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  document.querySelectorAll('.botnav div').forEach(e=>e.classList.remove('active'));
+  document.getElementById('nav-'+p).classList.add('active');
+  if(p!=='home'){ loadWallet(); loadHist(); }
+}
 
-function render(){let list=curCat=='all'?appsList:appsList.filter(a=>a.cat==curCat); document.getElementById('appsList').innerHTML=list.map(a=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid #eee"><div><b>${a.name}</b><br><small>${a.cat} • Earn ₹${a.reward}</small></div><button onclick="start(${a.id})" style="padding:8px 15px;border-radius:20px;background:${claimed.includes(a.id)?'#ccc':'#000'};color:#fff;border:0" ${claimed.includes(a.id)?'disabled':''}>${claimed.includes(a.id)?'Done':'Earn ₹'+a.reward}</button></div>`).join('');}
-function filterCat(c,el){curCat=c; render();}
-function start(id){let app=appsList.find(x=>x.id==id); if(confirm(`${app.name} install kiya? Verify kare?`)) verify(id);}
-async function verify(id){let app=appsList.find(x=>x.id==id); try{let r=await fetch(BACKEND+'/api/tasks/verify-ad-secure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,appId:id,custom_data:userId+'_'+id+'_'+Date.now()})}); let d=await r.json(); if(d.success){alert(`✅ ₹${d.reward} Added!`); claimed.push(id); localStorage.setItem('claimed',JSON.stringify(claimed)); loadWallet(); render();}else alert(d.message);}catch(e){alert('Error '+e.message);}}
+async function loadWallet(){
+  try{
+    let r = await fetch(BACKEND+'/api/wallet/'+userId);
+    let d = await r.json();
+    document.getElementById('bal1').innerText = d.balance||0;
+    document.getElementById('bal2').innerText = d.balance||0;
+    document.getElementById('total').innerText = d.total_earned||d.balance||0;
+  }catch(e){ document.getElementById('bal1').innerText='0'; }
+}
+
+async function loadHist(){
+  try{
+    let r = await fetch(BACKEND+'/api/history/'+userId);
+    let d = await r.json();
+    let html = d.map(x=>`<div class="app-row"><span>${x.description}</span><b>+₹${x.amount}</b></div>`).join('');
+    document.getElementById('whist').innerHTML = html||'Koi history nahi';
+    document.getElementById('ehist').innerHTML = html||'Koi history nahi';
+  }catch(e){ document.getElementById('whist').innerHTML='No data'; }
+}
+
+function renderApps(){
+  document.getElementById('apps').innerHTML = APPS.map(a=>`
+    <div class="app-row">
+      <div><b>${a.name}</b><br><span class="small">${a.cat} • Earn ₹${a.reward}</span></div>
+      <button class="earn-btn" ${claimed.includes(a.id)?'disabled':''} onclick="doApp(${a.id})">${claimed.includes(a.id)?'Done':'Earn ₹'+a.reward}</button>
+    </div>`).join('');
+}
+
+async function doApp(id){
+  if(!confirm('App install kiya? Verify kare?')) return;
+  try{
+    let r = await fetch(BACKEND+'/api/tasks/verify-ad-secure',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({userId,appId:id,custom_data:userId+'_'+id+'_'+Date.now()})
+    });
+    let d = await r.json();
+    if(d.success){
+      alert('✅ ₹'+d.reward+' Added!');
+      claimed.push(id); localStorage.setItem('claimed_v18',JSON.stringify(claimed));
+      loadWallet(); renderApps();
+    }else alert(d.message);
+  }catch(e){ alert('Backend waking up... 30 sec baad try karo'); }
+}
 
 async function earnExtra(type){
   try{
-    let r=await fetch(BACKEND+'/api/earn/'+type,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId})});
-    let d=await r.json();
+    let r = await fetch(BACKEND+'/api/earn/'+type,{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({userId})
+    });
+    let d = await r.json();
     if(d.success){
-      if(type=='refer') alert(d.message);
-      else { alert(`✅ ₹${d.reward} Added! Wallet: ₹${d.newBalance}`); loadWallet(); loadWalletHist(); loadEarnHist(); }
+      if(type==='refer') alert(d.message);
+      else { alert('✅ ₹'+d.reward+' Added! New Balance: ₹'+d.newBalance); loadWallet(); loadHist(); }
     }else alert(d.message);
-  }catch(e){alert('Error '+e.message);}
+  }catch(e){ alert('Backend sleep pe hai, 30 sec wait karke fir click karo'); }
 }
-async function doWithdraw(){let upi=document.getElementById('upiInput').value; if(!upi) return alert('UPI daalo'); let r=await fetch(BACKEND+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,amount:100,upiId:upi})}); let d=await r.json(); alert(d.message||d.error);}
 
-loadWallet(); render();
+async function withdraw(){
+  let upi = document.getElementById('upi').value;
+  if(!upi) return alert('UPI ID daalo');
+  let r = await fetch(BACKEND+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,amount:100,upiId:upi})});
+  let d = await r.json(); alert(d.message||'Request sent');
+}
+
+loadWallet(); renderApps(); loadHist();
 </script>
-</body></html>
+</body>
+</html>
