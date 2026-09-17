@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VINOD AVJS ENTERTAINMENT - MD VINOD BAIDORIYA</title>
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>body{background:#f4f6f9;font-family:system-ui}.page{display:none}.page.active{display:block}.botnav{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #e5e7eb;z-index:50}.nav-item{padding:6px 14px;border-radius:20px;text-align:center;font-size:11px;font-weight:700;cursor:pointer}.nav-item.active{background:#000;color:#fff}.app-card{background:#fff;border-radius:16px;padding:12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 2px 8px #0000000d;margin-bottom:10px}.icon{width:48px;height:48px;border-radius:12px;background:#fff;object-fit:contain;border:1px solid #eee;padding:3px}</style>
-</head>
-<body>
-<div class="sticky top-0 z-40 bg-white p-4 shadow flex justify-between items-center">
-<div><h1 class="font-black text-[15px]">VINOD AVJS ENTERTAINMENT</h1><p class="text-[11px] text-gray-500">MD: VINOD BAIDORIYA | 5★ VERIFIED</p></div>
-<div class="bg-black text-white px-4 py-2 rounded-full text-sm font-bold">₹<span id="bal">0</span></div>
-</div>
-
-<div id="page-home" class="page active p-3">
-<div class="bg-gradient-to-r from-black to-zinc-800 text-white rounded-[20px] p-5 mb-3"><p class="text-xs opacity-70">ID: <span id="uidText"></span></p><h2 class="text-2xl font-black mt-1">300 Apps Se Kamao</h2><p class="text-xs mt-1 opacity-80">Har App ₹5-₹50 Real Cash - Icon + Direct Open</p><button onclick="openPage('apps')" class="mt-3 bg-white text-black px-5 py-2 rounded-full font-bold text-sm">Start Earning →</button></div>
-<div class="bg-white rounded-[20px] p-4 mb-3"><h3 class="font-bold mb-3">🔥 9 Tarah Se Extra Kamao</h3><div class="grid grid-cols-3 gap-3"><div class="bg-gray-50 p-3 rounded-xl text-center font-bold text-xs" onclick="doExtra('spin')">🎡<br>Spin ₹5</div><div class="bg-gray-50 p-3 rounded-xl text-center font-bold text-xs" onclick="doExtra('daily')">📅<br>Daily ₹2</div><div class="bg-gray-50 p-3 rounded-xl text-center font-bold text-xs" onclick="doExtra('refer')">👥<br>Refer ₹50</div><div class="bg-gray-50 p-3 rounded-xl text-center font-bold text-xs" onclick="doExtra('quiz')">❓<br>Quiz ₹5</div><div class="bg-gray-50 p-3 rounded-xl text-center font-bold text-xs" onclick="doExtra('scratch')">🎟️<br>Scratch ₹3</div><div class="bg-gray-50 p-3 rounded-xl text-center font-bold text-xs" onclick="doExtra('survey')">📝<br>Survey ₹10</div></div></div>
-<div class="bg-yellow-100 border border-yellow-300 rounded-[16px] p-4 flex justify-between items-center"><div><b class="text-sm">Ad Free Chahiye?</b><br><span class="text-xs">5 Min Auto Ad Band</span></div><button onclick="openPage('premium')" class="bg-black text-white px-4 py-2 rounded-full text-xs font-bold">₹99 Only</button></div>
-</div>
-
-<div id="page-apps" class="page p-3"><div class="flex gap-2 mb-3 overflow-x-auto"><button onclick="filterCat('all',this)" class="catBtn bg-black text-white px-4 py-2 rounded-full text-xs font-bold">All 300</button><button onclick="filterCat('UPI',this)" class="catBtn bg-white px-4 py-2 rounded-full text-xs">UPI</button><button onclick="filterCat('Loan',this)" class="catBtn bg-white px-4 py-2 rounded-full text-xs">Loan</button><button onclick="filterCat('Shopping',this)" class="catBtn bg-white px-4 py-2 rounded-full text-xs">Shopping</button><button onclick="filterCat('Social',this)" class="catBtn bg-white px-4 py-2 rounded-full text-xs">Social</button></div><div id="appsList"></div></div>
-<div id="page-wallet" class="page p-3"><div class="bg-white rounded-[20px] p-5 text-center"><p class="text-xs text-gray-500">Wallet Balance</p><h1 class="text-4xl font-black">₹<span id="bal2">0</span></h1><p class="text-xs mt-1">Total: ₹<span id="totalEarn">0</span> | ID: <span id="uid2"></span></p><input id="upiId" placeholder="UPI ID ex: vinod@ybl" class="w-full border p-3 rounded-xl mt-4 text-sm"><button onclick="withdraw()" class="w-full bg-black text-white p-3 rounded-xl mt-3 font-bold">Withdraw (Min ₹100)</button></div><div class="bg-white rounded-[20px] p-4 mt-3"><h3 class="font-bold">AdMoney System</h3><button onclick="doExtra('admob')" class="w-full mt-3 border p-3 rounded-xl font-bold text-sm">AdMob Ad - Earn ₹2 (5 min)</button><button onclick="doExtra('fb')" class="w-full mt-2 border p-3 rounded-xl font-bold text-sm">Facebook Ad - Earn ₹2</button><button onclick="doExtra('rigi')" class="w-full mt-2 border p-3 rounded-xl font-bold text-sm">RigiTV Ad - Earn ₹3</button></div></div>
-<div id="page-history" class="page p-3"><div class="bg-white rounded-[20px] p-4"><h3 class="font-bold mb-2">History & Withdrawal</h3><div id="hist" class="text-xs"></div></div></div>
-<div id="page-profile" class="page p-3"><div class="bg-white rounded-[20px] p-5 text-center"><div class="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center text-2xl font-black mx-auto"><i class="fa fa-user"></i></div><h2 class="font-black mt-3">VINOD BAIDORIYA</h2><p class="text-xs text-gray-500">MD - VINOD AVJS ENTERTAINMENT</p><p class="text-xs mt-2">ID: <b id="uid3"></b></p></div></div>
-<div id="page-premium" class="page p-3"><div class="bg-white rounded-[20px] p-6 text-center"><h2 class="text-2xl font-black">Premium ₹99</h2><h1 class="text-4xl font-black my-4">₹99 Lifetime</h1><button onclick="buyPremium()" class="w-full bg-black text-white p-4 rounded-xl mt-5 font-black">Buy Premium - Ad Band</button></div></div>
-<div class="h-20"></div>
-<div class="botnav"><div class="nav-item active" id="n-home" onclick="openPage('home')"><i class="fa fa-home"></i><br>Home</div><div class="nav-item" id="n-apps" onclick="openPage('apps')"><i class="fa fa-mobile"></i><br>Tasks</div><div class="nav-item" id="n-wallet" onclick="openPage('wallet')"><i class="fa fa-wallet"></i><br>Wallet</div><div class="nav-item" id="n-history" onclick="openPage('history')"><i class="fa fa-clock"></i><br>History</div><div class="nav-item" id="n-profile" onclick="openPage('profile')"><i class="fa fa-user"></i><br>Profile</div></div>
-<div id="adModal" class="fixed inset-0 bg-black/80 z-[100] hidden flex items-center justify-center p-5"><div class="bg-white rounded-[20px] p-6 w-full max-w-sm text-center"><h2 class="font-black">Ad Playing...</h2><div class="w-full bg-gray-200 h-2 rounded-full mt-4"><div id="adProgress" class="bg-black h-2 rounded-full" style="width:0%"></div></div><p class="text-xs mt-2"><span id="adTimer">5</span> sec</p><button id="adClose" class="hidden mt-4 bg-black text-white px-6 py-2 rounded-full text-sm font-bold">Close & Earn</button></div></div>
+<!-- VINOD AVJS ROYAL KING - MD VINOD BAIDORIYA -->
+<!-- Vercel frontend sirf UI, saara paisa ka logic Render backend -->
 <script>
-const BACKEND = "https://vinu-js-backend.onrender.com";
-let userId = localStorage.getItem('avjs_uid')||'AVJS_'+Math.random().toString(36).slice(2,9).toUpperCase(); localStorage.setItem('avjs_uid',userId);
-let isPremium=false; let claimed=JSON.parse(localStorage.getItem('avjs_claimed_v22')||'[]'); let curCat='all';
-const REAL=[{n:"PhonePe",c:"UPI",d:"phonepe.com",p:"com.phonepe.app",r:50},{n:"Google Pay",c:"UPI",d:"pay.google.com",p:"com.google.android.apps.nbu.paisa.user",r:50},{n:"Paytm",c:"UPI",d:"paytm.com",p:"net.one97.paytm",r:50},{n:"CRED",c:"Finance",d:"cred.club",p:"com.dreamplug.androidapp",r:50},{n:"BHIM",c:"UPI",d:"bhimupi.org.in",p:"in.org.npci.upiapp",r:30},{n:"Navi",c:"Loan",d:"navi.com",p:"com.navi.lending",r:30},{n:"KreditBee",c:"Loan",d:"kreditbee.in",p:"com.kreditbee.android",r:30},{n:"Flipkart",c:"Shopping",d:"flipkart.com",p:"com.flipkart.android",r:10},{n:"Amazon",c:"Shopping",d:"amazon.com",p:"com.amazon.mShop.android.shopping",r:10},{n:"Meesho",c:"Shopping",d:"meesho.com",p:"com.meesho.supply",r:10},{n:"WhatsApp",c:"Social",d:"whatsapp.com",p:"com.whatsapp",r:5},{n:"Facebook",c:"Social",d:"facebook.com",p:"com.facebook.katana",r:5},{n:"Instagram",c:"Social",d:"instagram.com",p:"com.instagram.android",r:5},{n:"YouTube",c:"Social",d:"youtube.com",p:"com.google.android.youtube",r:5},{n:"Groww",c:"Finance",d:"groww.in",p:"com.nextbillion.groww",r:10},{n:"Zomato",c:"Shopping",d:"zomato.com",p:"com.application.zomato",r:10},{n:"Swiggy",c:"Shopping",d:"swiggy.com",p:"in.swiggy.android",r:10}];
-let APPS=[]; for(let i=0;i<300;i++){let b=REAL[i%REAL.length]; APPS.push({id:i+1,name:b.n+(i>=REAL.length?` ${Math.floor(i/REAL.length)+1}`:''),cat:b.c,domain:b.d,pkg:b.p,reward:b.r});}
-function openPage(p){document.querySelectorAll('.page').forEach(e=>e.classList.remove('active')); document.getElementById('page-'+p).classList.add('active'); document.querySelectorAll('.nav-item').forEach(e=>e.classList.remove('active')); let n=document.getElementById('n-'+p); if(n) n.classList.add('active'); if(['wallet','history','home'].includes(p)) loadAll();}
-function filterCat(c,el){curCat=c; document.querySelectorAll('.catBtn').forEach(b=>{b.className='catBtn bg-white px-4 py-2 rounded-full text-xs'}); el.className='catBtn bg-black text-white px-4 py-2 rounded-full text-xs font-bold'; renderApps();}
-function renderApps(){let list=curCat==='all'?APPS:APPS.filter(a=>a.cat===curCat); document.getElementById('appsList').innerHTML=list.slice(0,150).map(a=>`<div class="app-card"><div class="flex gap-3 items-center"><img src="https://www.google.com/s2/favicons?domain=${a.domain}&sz=128" class="icon" onerror="this.src='https://www.google.com/s2/favicons?domain=google.com&sz=128'"><div><b class="text-[13px]">${a.name}</b><br><span class="text-[11px] text-gray-500">${a.cat} • 5★ • ₹${a.reward}</span></div></div><div class="flex gap-2"><a href="https://play.google.com/store/apps/details?id=${a.pkg}" target="_blank" class="bg-gray-100 px-3 py-2 rounded-full text-[11px] font-bold">Open</a><button ${claimed.includes(a.id)?'disabled':''} onclick="startTask(${a.id})" class="bg-black text-white px-4 py-2 rounded-full text-[11px] font-bold">${claimed.includes(a.id)?'Done':'Earn ₹'+a.reward}</button></div></div>`).join('');}
-function showAd(cb){if(isPremium){cb(); return;} document.getElementById('adModal').classList.remove('hidden'); let w=0,t=5; let prog=document.getElementById('adProgress'), timer=document.getElementById('adTimer'), close=document.getElementById('adClose'); close.classList.add('hidden'); let it=setInterval(()=>{w+=20; t--; prog.style.width=w+'%'; timer.innerText=t; if(t<=0){clearInterval(it); close.classList.remove('hidden'); close.onclick=()=>{document.getElementById('adModal').classList.add('hidden'); cb();};}},1000);}
-function startTask(id){showAd(()=>directVerify(id));}
-async function directVerify(id){const tid=`${userId}_${id}_${Date.now()}`; try{let r=await fetch(BACKEND+'/api/tasks/verify-ad-secure',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,appId:id,transaction_id:tid})}); let d=await r.json(); if(d.success){alert('✅ ₹'+d.reward+' Added!'); claimed.push(id); localStorage.setItem('avjs_claimed_v22',JSON.stringify(claimed)); loadAll(); renderApps();} else alert(d.message);}catch{alert('Backend waking... 20 sec baad try karo');}}
-async function doExtra(type){try{let r=await fetch(BACKEND+'/api/earn/'+type,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId})}); let d=await r.json(); alert(d.success?`✅ ₹${d.reward} Added!`:`⚠️ ${d.message}`); if(d.success) loadAll();}catch{alert('Error');}}
-async function loadAll(){document.getElementById('uidText').innerText=userId; document.getElementById('uid2').innerText=userId; document.getElementById('uid3').innerText=userId; try{let r=await fetch(BACKEND+'/api/wallet/'+userId); let d=await r.json(); document.getElementById('bal').innerText=d.balance||0; document.getElementById('bal2').innerText=d.balance||0; document.getElementById('totalEarn').innerText=d.total_earned||0; isPremium=d.is_premium;}catch{} try{let r=await fetch(BACKEND+'/api/history/'+userId); let d=await r.json(); document.getElementById('hist').innerHTML=d.map(x=>`<div class="flex justify-between py-2 border-b text-xs"><span>${x.description}</span><b>${x.amount>0?'+':''}₹${x.amount}</b></div>`).join('')||'No history';}catch{}}
-function withdraw(){let upi=document.getElementById('upiId').value; if(!upi) return alert('UPI daalo'); fetch(BACKEND+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,amount:100,upiId:upi})}).then(r=>r.json()).then(d=>alert(d.message));}
-function buyPremium(){fetch(BACKEND+'/api/premium/verify',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId})}).then(r=>r.json()).then(d=>{alert(d.message); loadAll();});}
-loadAll(); renderApps(); setInterval(()=>{if(!isPremium && document.visibilityState==='visible') showAd(()=>{});}, 5*60*1000);
+const BACKEND = "https://YOUR-RENDER-URL.onrender.com";
+let userId = localStorage.getItem('rk_uid') || 'RK_'+Math.random().toString(36).slice(2,10).toUpperCase();
+localStorage.setItem('rk_uid', userId);
+
+// Wallet hamesha server se
+async function loadWallet(){
+  let r = await fetch(`${BACKEND}/api/wallet/${userId}`);
+  let d = await r.json();
+  document.getElementById('walletBal').innerText = `₹${(d.balance||0).toFixed(2)}`;
+  // is_premium bhi server se, localStorage se nahi
+  if(d.is_premium) document.body.classList.add('premium');
+}
+
+// Earn - amount frontend me nahi
+async function doEarn(type){
+  let res = await fetch(`${BACKEND}/api/earn/${type}`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({userId}) // sirf userId, amount nahi
+  });
+  let data = await res.json();
+  alert(data.success?`+₹${data.reward}`:data.message);
+  loadWallet();
+}
+
+// Task complete - ad verification ke baad hi
+async function completeTask(appId, ssvTxId){
+  let res = await fetch(`${BACKEND}/api/tasks/complete`,{
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({userId, appId, ssv_transaction_id: ssvTxId})
+  });
+  // reward server decide karega
+}
+
+// AdMob SSV setup (Android/Web SDK me)
+// rewardedAd.setCustomData(userId + '|' + appId);
+// Google khud call karega: GET /api/admob/ssv?user_id=...&transaction_id=...&signature=...
 </script>
-</body>
-</html>
