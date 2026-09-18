@@ -1,58 +1,79 @@
-<!DOCTYPE html><html lang="hi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VINOD AVJS ROYAL KING - Earning</title>
-<style>*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}body{background:#0f0f0f;color:#fff}.header{padding:14px;background:#1a1a1a;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}.logo{color:#FFD700;font-weight:900}.wallet{background:#FFD700;color:#000;padding:6px 12px;border-radius:20px;font-weight:700;font-size:13px}.tabs{display:flex;gap:8px;padding:10px;overflow:auto;background:#111}.tab{padding:8px 14px;border-radius:20px;background:#222;white-space:nowrap;cursor:pointer}.tab.active{background:#FFD700;color:#000}.card{background:#1e1e1e;margin:10px;border-radius:12px;padding:14px}.btn{background:#FFD700;color:#000;border:none;padding:10px 16px;border-radius:8px;font-weight:700;width:100%;margin-top:8px;cursor:pointer}.small{font-size:12px;color:#aaa}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}</style>
-</head><body>
-<div class="header"><div class="logo">👑 ROYAL KING</div><div class="wallet" id="walletBal">₹0 | 100 Coins</div></div>
-<div class="tabs">
-<div class="tab active" onclick="showTab('home',this)">🏠 Home</div>
-<div class="tab" onclick="showTab('earn',this)">💰 Earn</div>
-<div class="tab" onclick="showTab('wallet',this)">👛 Wallet</div>
-<div class="tab" onclick="showTab('refer',this)">👥 Refer</div>
-</div>
-<div id="home" class="section"><div class="card"><h3>🔥 Featured Stories & Apps</h3><div id="contentList">Loading...</div></div></div>
-<div id="earn" class="section" style="display:none">
-<div class="card"><h3>Daily Bonus</h3><p class="small">Roz app kholo aur kamao</p><button class="btn" onclick="doEarn('daily')">Claim ₹2 + 10 Coins</button></div>
-<div class="card"><h3>Rewarded Ad</h3><p class="small">30 sec ad dekho - High Earning</p><button class="btn" onclick="watchAd()">Watch Ad +20 Coins</button></div>
-<div class="card"><h3>Spin Wheel</h3><button class="btn" onclick="doEarn('spin')">Spin Now +25 Coins</button></div>
-<div class="grid">
-<div class="card">Messenger<br><button class="btn" onclick="doEarn('task')">Open +10</button></div>
-<div class="card">Browser<br><button class="btn" onclick="doEarn('task')">Open +10</button></div>
-<div class="card">TV Shows<br><button class="btn" onclick="doEarn('task')">Open +10</button></div>
-<div class="card">News<br><button class="btn" onclick="doEarn('task')">Open +10</button></div>
-</div>
-</div>
-<div id="wallet" class="section" style="display:none">
-<div class="card"><h3>Available Balance</h3><h1 id="balBig">₹0</h1><p>Coins: <span id="coinBig">100</span></p>
-<input id="upi" placeholder="UPI ID dalo" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none">
-<button class="btn" onclick="withdraw()">Withdraw (Min 200 Coins + 5 Refer)</button><p class="small" id="withdrawMsg"></p></div>
-<div class="card"><h3>Transactions</h3><div id="txList">No transactions</div></div>
-</div>
-<div id="refer" class="section" style="display:none">
-<div class="card"><h3>Refer & Earn</h3><p>Code: <b id="myCode">LOADING</b></p><p class="small">1 Refer = 100 Coins + ₹5 | 5 Refer ke baad withdraw unlock (Tumhara Point 8)</p>
-<input id="refInput" placeholder="Referral code hai to dalo" style="width:100%;padding:10px;border-radius:8px;border:none;margin-top:8px">
-<button class="btn" onclick="applyRefer()">Apply Code</button><p style="margin-top:8px">Total Referrals: <span id="refCount">0</span></p></div>
-</div>
-<script>
-const BACKEND="https://vinu-js-backend.onrender.com";
-let UID=localStorage.getItem('rk_uid'); if(!UID){UID='USER_'+Date.now(); localStorage.setItem('rk_uid',UID);}
-async function loadWallet(){
- let r=await fetch(BACKEND+'/api/wallet/'+UID); let d=await r.json();
- document.getElementById('walletBal').innerText=`₹${d.balance||0} | ${d.coins||100} Coins`;
- document.getElementById('balBig').innerText=`₹${d.balance||0}`; document.getElementById('coinBig').innerText=d.coins||100;
- document.getElementById('myCode').innerText=d.referral_code||'RKTEST'; document.getElementById('refCount').innerText=d.referrals||0; loadTx();
+const express = require('express');
+const cors = require('cors');
+const app = express();
+app.use(cors({origin:'*'}));
+app.use(express.json());
+
+let pool=null;
+if(process.env.DATABASE_URL){
+  const {Pool}=require('pg');
+  pool=new Pool({connectionString:process.env.DATABASE_URL, ssl:{rejectUnauthorized:false}});
+  pool.query(`CREATE TABLE IF NOT EXISTS users(user_id TEXT PRIMARY KEY, referral_code TEXT UNIQUE);
+  CREATE TABLE IF NOT EXISTS wallets(user_id TEXT PRIMARY KEY, balance INT DEFAULT 0, coins INT DEFAULT 100, referrals INT DEFAULT 0);
+  CREATE TABLE IF NOT EXISTS wallet_transactions(id SERIAL PRIMARY KEY, user_id TEXT, type TEXT, amount INT, coins INT, description TEXT, transaction_id TEXT UNIQUE, created_at TIMESTAMP DEFAULT NOW());
+  CREATE TABLE IF NOT EXISTS withdrawals(id SERIAL PRIMARY KEY, user_id TEXT, upi TEXT, coins INT, status TEXT DEFAULT 'pending', created_at TIMESTAMP DEFAULT NOW())`)
+ .then(()=>console.log('✅ DB TABLES READY'));
 }
-async function loadContent(){
- let r=await fetch(BACKEND+'/api/content'); let d=await r.json();
- document.getElementById('contentList').innerHTML=d.map(c=>`<div style="margin:6px 0;padding:8px;background:#2a2a2a;border-radius:8px">${c.thumb} ${c.title} <button style="float:right;background:#FFD700;border:none;padding:4px 8px;border-radius:6px" onclick="doEarn('content')">Unlock</button></div>`).join('');
+
+const getWallet=async(uid)=>{
+  if(!pool) return {balance:0, coins:100, referral_code:'RKTEST', referrals:0};
+  let u=await pool.query('SELECT * FROM users WHERE user_id=$1',[uid]);
+  if(!u.rows.length){
+    let code='RK'+Math.random().toString(36).toUpperCase().slice(2,6);
+    await pool.query('INSERT INTO users(user_id,referral_code) VALUES($1,$2)',[uid,code]);
+    await pool.query('INSERT INTO wallets(user_id) VALUES($1) ON CONFLICT DO NOTHING',[uid]);
+  }
+  let w=await pool.query('SELECT * FROM wallets WHERE user_id=$1',[uid]);
+  let user=await pool.query('SELECT * FROM users WHERE user_id=$1',[uid]);
+  return {...user.rows[0],...w.rows[0]};
 }
-async function doEarn(type){
- let r=await fetch(BACKEND+'/api/earn/'+type,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:UID})});
- let d=await r.json(); alert(d.message||`Credited: ${d.reward} Rs + ${d.coins} coins`); if(d.success) loadWallet();
-}
-async function watchAd(){ let tx='TX_'+Date.now()+'_'+UID; let r=await fetch(BACKEND+'/api/admob/ssv?user_id='+UID+'&transaction_id='+tx); let t=await r.text(); alert('Ad Reward: '+t); loadWallet(); }
-async function loadTx(){ let r=await fetch(BACKEND+'/api/history/'+UID); let d=await r.json(); document.getElementById('txList').innerHTML=(d.transactions||[]).map(t=>`<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #333"><span>${t.type} - ${t.description||''}</span><span>+${t.amount||0} / ${t.coins||0}c</span></div>`).join('')||'No transactions'; }
-function showTab(id,el){ document.querySelectorAll('.section').forEach(s=>s.style.display='none'); document.getElementById(id).style.display='block'; document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); el.classList.add('active'); if(id=='wallet'||id=='refer') loadWallet(); }
-async function applyRefer(){ let code=document.getElementById('refInput').value; let r=await fetch(BACKEND+'/api/referral/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:UID, referralCode:code})}); let d=await r.json(); alert(d.message); loadWallet(); }
-async function withdraw(){ let upi=document.getElementById('upi').value; if(!upi) return alert('UPI dalo'); let r=await fetch(BACKEND+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:UID, upi:upi, coins:200})}); let d=await r.json(); document.getElementById('withdrawMsg').innerText=d.message; loadWallet(); }
-loadWallet(); loadContent();
-</script></body></html>
+
+app.get('/',(req,res)=>res.send('👑 FINAL LIVE '+new Date().toISOString()));
+app.get('/api/content',(req,res)=>res.json([{title:'Royal King Kahani',type:'audio',thumb:'👑'},{title:'Messenger Pro',type:'app',thumb:'💬'},{title:'Fast Browser',type:'app',thumb:'🌐'},{title:'TV Shows',type:'app',thumb:'📺'}]));
+app.get('/api/wallet/:uid',async(req,res)=>res.json(await getWallet(req.params.uid)));
+app.post('/api/earn/:type',async(req,res)=>{
+  const {userId}=req.body; const type=req.params.type;
+  const map={daily:{a:2,c:10},spin:{a:2,c:25},task:{a:1,c:10},content:{a:1,c:5}};
+  const r=map[type]||{a:1,c:10};
+  if(!pool) return res.json({success:true,reward:r.a,coins:r.c});
+  if(type==='daily'){
+    let chk=await pool.query("SELECT 1 FROM wallet_transactions WHERE user_id=$1 AND type='daily' AND created_at::date=NOW()::date",[userId]);
+    if(chk.rows.length) return res.json({success:false,message:'Daily ho gaya'});
+  }
+  let tx=`${type}_${userId}_${Date.now()}`;
+  await pool.query('INSERT INTO wallet_transactions(user_id,type,amount,coins,description,transaction_id) VALUES($1,$2,$3,$4,$5,$6)',[userId,type,r.a,r.c,type,tx]);
+  await pool.query('UPDATE wallets SET balance=balance+$1, coins=coins+$2 WHERE user_id=$3',[r.a,r.c,userId]);
+  res.json({success:true,reward:r.a,coins:r.c});
+});
+app.get('/api/admob/ssv',async(req,res)=>{
+  const {user_id,transaction_id}=req.query;
+  if(!pool) return res.send('OK');
+  let c=await pool.query('SELECT 1 FROM wallet_transactions WHERE transaction_id=$1',[transaction_id]);
+  if(c.rows.length) return res.send('ALREADY_CREDITED');
+  await pool.query('INSERT INTO wallet_transactions(user_id,type,amount,coins,description,transaction_id) VALUES($1,$2,$3,$4,$5,$6)',[user_id,'ad_reward',2,20,'Ad Verified',transaction_id]);
+  await pool.query('UPDATE wallets SET balance=balance+2, coins=coins+20 WHERE user_id=$1',[user_id]);
+  res.send('OK');
+});
+app.get('/api/history/:uid',async(req,res)=>{
+  if(!pool) return res.json({transactions:[]});
+  let r=await pool.query('SELECT * FROM wallet_transactions WHERE user_id=$1 ORDER BY id DESC LIMIT 30',[req.params.uid]);
+  res.json({transactions:r.rows});
+});
+app.post('/api/referral/apply',async(req,res)=>{
+  let {userId,referralCode}=req.body;
+  let o=await pool.query('SELECT user_id FROM users WHERE referral_code=$1',[referralCode]);
+  if(!o.rows.length) return res.json({message:'Galat Code'});
+  await pool.query('UPDATE wallets SET coins=coins+100,balance=balance+5,referrals=referrals+1 WHERE user_id=$1',[o.rows[0].user_id]);
+  res.json({message:'Referral Done - Dost ko 100 Coins mile'});
+});
+app.post('/api/withdraw',async(req,res)=>{
+  let {userId,upi,coins}=req.body; let w=await getWallet(userId);
+  if(w.coins<200) return res.json({success:false,message:'Min 200 Coins'});
+  if(w.referrals<5) return res.json({success:false,message:'5 Referral chahiye - Point 8'});
+  await pool.query('INSERT INTO withdrawals(user_id,upi,coins) VALUES($1,$2,$3)',[userId,upi,coins]);
+  await pool.query('UPDATE wallets SET coins=coins-$1 WHERE user_id=$2',[coins,userId]);
+  res.json({success:true,message:'Request bheja'});
+});
+app.get('/api/admin/withdrawals',async(req,res)=>{let r=await pool.query('SELECT * FROM withdrawals ORDER BY id DESC');res.json(r.rows);});
+app.post('/api/admin/approve/:id',async(req,res)=>{await pool.query("UPDATE withdrawals SET status='approved' WHERE id=$1",[req.params.id]);res.json({ok:true});});
+app.listen(process.env.PORT||10000,()=>console.log('FINAL LIVE'));
