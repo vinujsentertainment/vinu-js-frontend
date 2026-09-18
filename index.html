@@ -104,7 +104,18 @@ function applyRefer(){
  let code=document.getElementById('refInput').value;
  fetch(BACKEND+'/api/referral/apply',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:UID, referralCode:code})}).then(r=>r.json()).then(d=>alert(d.message));
 }
-
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Admin - Royal King</title>
+<style>body{background:#111;color:#fff;font-family:system-ui;padding:12px}.card{background:#222;padding:12px;border-radius:10px;margin:10px 0}.btn{background:#FFD700;color:#000;border:none;padding:8px 12px;border-radius:6px;font-weight:700}</style>
+</head><body>
+<h2>👑 ROYAL KING - Admin Panel</h2>
+<div id="list">Loading withdrawals...</div>
+<script>
+const BACKEND="https://vinu-js-backend.onrender.com";
+async function load(){ let r=await fetch(BACKEND+'/api/admin/withdrawals'); let d=await r.json(); document.getElementById('list').innerHTML=d.map(x=>`<div class=card>USER:${x.user_id}<br>UPI:${x.upi}<br>Coins:${x.coins}<br>Status:${x.status}<br><button class=btn onclick="approve(${x.id})">Approve Paid</button></div>`).join('')||'No withdraw'; }
+async function approve(id){ await fetch(BACKEND+'/api/admin/approve/'+id,{method:'POST'}); load(); }
+load();
+</script>
+</body></html>
 loadWallet(); loadContent();
 </script>
 </body>
