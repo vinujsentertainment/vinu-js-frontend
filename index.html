@@ -1,114 +1,90 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VINUJS SUPER</title>
+<title>VJ VINUJS SUPER - 500 Real Apps</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0e0a1a;color:#fff;padding-bottom:80px}
-.top{background:#18122a;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2a2345;position:sticky;top:0;z-index:20}
-.logo{display:flex;gap:10px;align-items:center}
-.vj{width:44px;height:44px;background:linear-gradient(135deg,#ff2e8a,#8a4dff);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
-.top h2{font-size:16px;line-height:16px}
-.top h2 span{color:#ff6eb5}
-.top p{font-size:11px;color:#9a90b8}
-.avail{text-align:right}
-.avail small{color:#9a90b8;font-size:10px;display:block}
-.avail b{color:#ffcc00;font-size:18px}
-.main{padding:14px}
-.card-wrap{background:#1a1430;border:1px solid #2e264e;border-radius:20px;padding:14px}
-.title{font-size:22px;font-weight:800;margin-bottom:12px;display:flex;gap:8px;align-items:center}
-.search{background:#0e0a1a;border:1px solid #2e264e;border-radius:14px;padding:12px;display:flex;gap:8px;margin-bottom:14px}
-.search input{background:transparent;border:none;color:#fff;width:100%;outline:none}
-.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:10px}
-.tab{white-space:nowrap;padding:8px 16px;border-radius:20px;background:#201a3a;border:1px solid #3a3260;font-size:13px}
-.tab.active{background:#ff3b8a;border-color:#ff3b8a;color:#fff}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.app{background:#201a3a;border:1px solid #3a3260;border-radius:16px;padding:12px}
-.app img{width:28px;height:28px;border-radius:6px;background:#fff;margin-bottom:8px}
-.app b{font-size:14px;display:block}
-.app small{color:#8a7fbe;font-size:11px;display:block;margin:2px 0 6px 0}
-.app p{font-size:11px;color:#9a90b8;line-height:13px;height:38px;overflow:hidden}
-.btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff2e8a,#8a4dff);color:#fff;font-weight:700}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#18122a;border-top:1px solid #2a2345;display:flex;justify-content:space-around;padding:8px 0}
-.bottom div{text-align:center;font-size:10px;color:#9a90b8}
-.bottom b{display:block;font-size:16px}
+body{background:#0d0a1e;color:#fff;padding-bottom:80px}
+.header{position:sticky;top:0;z-index:99;background:#16112c;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2a2545}
+.badge{background:linear-gradient(90deg,#ffcc00,#ffb700);color:#000;padding:5px 14px;border-radius:20px;font-weight:900}
+.tabs{position:sticky;top:58px;z-index:98;background:#0d0a1e;padding:10px;display:flex;gap:8px;overflow:auto;white-space:nowrap;border-bottom:1px solid #1e1a33}
+.tabs div{padding:8px 16px;border-radius:20px;background:#1e1938;border:1px solid #3a3460;font-size:12px}
+.tabs div.active{background:linear-gradient(90deg,#ff2a8a,#7a3bff);border:none}
+.grid{padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.app{background:#1a1540;border:1px solid #2d2750;border-radius:16px;padding:10px;text-align:center}
+.app img{width:52px;height:52px;border-radius:12px;background:#fff;object-fit:contain;padding:4px}
+.app b{font-size:12px;display:block;margin:6px 0 2px 0;height:28px;overflow:hidden}
+.app small{font-size:10px;color:#8e88b0;display:block;margin-bottom:8px}
+.app button{width:100%;padding:8px;border:none;border-radius:10px;background:linear-gradient(90deg,#ff2a8a,#7a3bff);color:#fff;font-weight:700;font-size:12px}
+.search{margin:10px;background:#1a1540;border:1px solid #2d2750;border-radius:12px;padding:10px;display:flex;gap:8px}
+.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
 </style>
-</head>
-<body>
-<div class="top">
-<div class="logo"><div class="vj">VJ</div><div><h2>VINUJS <span>SUPER</span></h2><p>VINU J S ENTERTAINMENT • Secure Earnings</p></div></div>
-<div class="avail"><small>AVAILABLE</small><b id="bal">₹0.00</b></div>
+</head><body>
+
+<div class="header">
+<div><div style="font-weight:900;color:#ffcc00">VJ VINUJS SUPER</div><small style="color:#9a90b8;font-size:10px">500 Apps • Secure</small></div>
+<div class="badge" id="bal">₹0.00</div>
 </div>
 
-<div class="main">
-<div class="card-wrap">
-<div class="title">📱 500 Apps</div>
-<div class="search">🔍<input id="search" placeholder="Search apps..." oninput="doSearch()"></div>
 <div class="tabs" id="tabs"></div>
+<div class="search"><span>🔍</span><input id="q" placeholder="Search 500 apps..." oninput="render()"></div>
 <div class="grid" id="list"></div>
-</div>
-</div>
-
-<div class="bottom">
-<div onclick="location.reload()"><b>🏠</b>Home</div>
-<div><b>📱</b>Apps</div>
-<div onclick="showEarn()"><b>💰</b>Earn</div>
-<div onclick="doWithdraw()"><b>👛</b>Wallet</div>
-<div><b>👤</b>Login</div>
-</div>
 
 <script>
-const API = "https://vinu-js-backend.onrender.com"; // Apna Render URL yahan daalo
-const userId = localStorage.getItem('vj_id') || 'VJ_'+Date.now(); localStorage.setItem('vj_id',userId);
-const CATS = ["All","Entertainment","Shopping","Social","Tools","Finance","Games","Education"];
-let curCat = "All";
-const NAMES = ["Rigi TV","YouTube","Amazon","Flipkart","Instagram","Facebook","Meesho","PhonePe","Paytm","Moj","Josh","Dream11","WinZO","Ludo","Zupee","Kuku FM","ShareChat","Telegram","Whatsapp","Truecaller","JioSaavn","MX Player","Snapchat","Chingari","Roposo","Gaana","Spotify","Hotstar","Netflix","Airtel"];
+const API="https://vinu-js-backend.onrender.com";
+const userId=localStorage.getItem('vj')||'VJ_'+Date.now(); localStorage.setItem('vj',userId);
+const CATS=["All","Social","Entertainment","Games","Shopping","Finance","Tools","Video"];
 
-let APPS = [];
-for(let i=0;i<500;i++){
-  let n = NAMES[i%NAMES.length] + (i>=NAMES.length? " "+(Math.floor(i/NAMES.length)+1):"");
-  let cat = CATS[1 + (i% (CATS.length-1))];
-  let isEarn = i<20;
-  APPS.push({id:i+1,name:n,cat:cat,icon:`https://logo.clearbit.com/${n.split(' ')[0].toLowerCase()}.com?size=128`, reward:isEarn? (i<5?15:5):0, net:isEarn?"admob":""});
+// REAL DOMAIN LIST - Isse icon real aayega, 'f' nahi
+const REAL = {
+"Facebook":"facebook.com","Instagram":"instagram.com","WhatsApp":"whatsapp.com","Telegram":"telegram.org","Snapchat":"snapchat.com","ShareChat":"sharechat.com","Moj":"mojapp.in","Josh":"myjosh.in","Chingari":"chingari.io","Roposo":"roposo.com",
+"YouTube":"youtube.com","Hotstar":"hotstar.com","Netflix":"netflix.com","MX Player":"mxplayer.in","JioSaavn":"jiosaavn.com","Spotify":"spotify.com","Gaana":"gaana.com","Kuku FM":"kukufm.com","Rigi":"rigi.club",
+"Ludo King":"ludoking.com","Dream11":"dream11.com","WinZO":"winzogames.com","MPL":"mpl.live","Zupee":"zupee.com","Rummy Circle":"rummycircle.com",
+"Flipkart":"flipkart.com","Amazon":"amazon.in","Meesho":"meesho.com","Myntra":"myntra.com",
+"PhonePe":"phonepe.com","Google Pay":"pay.google.com","Paytm":"paytm.com","Gullak":"gullak.app","CRED":"cred.club","True Balance":"truebalance.io"
+};
+
+let APPS=[];
+let idx=0;
+for(let name in REAL){
+  for(let v=0; v<12; v++){
+    let c = v%2==0? (name==="Facebook"||name==="Instagram"? "Social" : name==="YouTube"? "Video" : "Games") : CATS[2+ (idx%5)];
+    APPS.push({id:++idx, name: v==0?name : `${name} ${v+1}`, cat: idx<20? CATS[idx%CATS.length] : c, domain: REAL[name], reward: idx<=14? (idx<=5?15:5):0 });
+  }
 }
+// 500 tak pura karo
+while(APPS.length<500){ let k=Object.keys(REAL)[APPS.length%Object.keys(REAL).length]; APPS.push({id:APPS.length+1,name:`${k} ${APPS.length}`,cat:CATS[APPS.length%CATS.length],domain:REAL[k],reward:0}); }
 
+let cur="All";
+function renderTabs(){
+  document.getElementById('tabs').innerHTML=CATS.map(c=>`<div class="${cur===c?'active':''}" onclick="cur='${c}';render()">${c} ${c==='All'?`(${APPS.length})`:''}</div>`).join('');
+}
 function render(){
-  let tabsH = CATS.map(c=>`<div class="tab ${c===curCat?'active':''}" onclick="filterCat('${c}')">${c}</div>`).join('');
-  document.getElementById('tabs').innerHTML=tabsH;
-  let s = document.getElementById('search').value.toLowerCase();
-  let filtered = APPS.filter(a=> (curCat==="All"||a.cat===curCat) && a.name.toLowerCase().includes(s));
-  document.getElementById('list').innerHTML = filtered.slice(0,100).map(a=>`
+  renderTabs();
+  let q=document.getElementById('q').value.toLowerCase();
+  let list=APPS.filter(a=> (cur==='All'||a.cat===cur) && a.name.toLowerCase().includes(q)).slice(0,100);
+  document.getElementById('list').innerHTML=list.map(a=>`
     <div class="app">
-      <img src="${a.icon}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968764.png'">
-      <b>${a.name}</b><small>${a.cat}</small>
-      <p>${a.reward>0? 'Watch ad & earn real cash. Verified SSV.' : 'Official destination / discovery. Launching an app does not generate cash.'}</p>
-      ${a.reward>0? `<button class="btn" onclick="earn('${a.net}',${a.reward})">Earn ₹${a.reward} ↗</button>` : `<button class="btn" style="opacity:.8" onclick="window.open('https://play.google.com/store/search?q=${a.name}','_blank')">Open ↗</button>`}
+      <img src="https://www.google.com/s2/favicons?domain=${a.domain}&sz=128"
+           onerror="this.src='https://logo.clearbit.com/${a.domain}?size=128'"
+           loading="lazy">
+      <b>${a.name}</b>
+      <small>${a.cat} • ${a.reward>0?'Earning':''}</small>
+      ${a.reward>0?`<button onclick="earn('${a.domain}',${a.reward})">Earn ₹${a.reward}</button>`:`<button style="background:#2a2545" onclick="window.open('https://play.google.com/store/search?q=${a.name}','_blank')">Open</button>`}
     </div>
   `).join('');
 }
 
-async function earn(net, rew){
-  if(!confirm(`${net.toUpperCase()} ka 15 sec ad dekho, ₹${rew} milega?`)) return;
-  const sig = `${net}_${Date.now()}_${Math.random()}`;
-  const res = await fetch(`${API}/api/reward/verify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,network:net,reward:rew,signature:sig})});
-  const d = await res.json();
-  if(d.success){ alert(`₹${d.reward} add ho gaya`); loadBal(); } else alert(d.message);
+async function earn(domain,amt){
+  if(!confirm(domain+" - 15 sec ad dekho, ₹"+amt+" milega?")) return;
+  const sig=domain+"_"+Date.now();
+  try{
+    const r=await fetch(API+"/api/reward/verify",{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,network:'admob',reward:amt,signature:sig})});
+    const d=await r.json(); if(d.success){ alert("₹"+amt+" mil gaya"); loadBal(); } else alert(d.message);
+  }catch(e){ alert("Backend connect nahi - Render URL check karo"); }
 }
-async function loadBal(){
-  try{ const r=await fetch(`${API}/api/wallet/${userId}`); const d=await r.json(); document.getElementById('bal').innerText=`₹${(d.balance||0).toFixed(2)}`; }catch(e){}
-}
-function filterCat(c){ curCat=c; render(); }
-function doSearch(){ render(); }
-function showEarn(){ curCat="All"; document.getElementById('search').value=""; filterCat("All"); window.scrollTo(0,0); APPS.sort((a,b)=>b.reward-a.reward); render(); setTimeout(()=>{APPS.sort((a,b)=>a.id-b.id)},2000); }
-async function doWithdraw(){
-  const upi = prompt("UPI ID daalo:");
-  if(!upi) return;
-  const amt = prompt("Amount? Min 100");
-  const r = await fetch(`${API}/api/withdraw`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,upiId:upi,amount:Number(amt)})});
-  const d = await r.json(); alert(d.message||d.error);
-}
+async function loadBal(){ try{ const r=await fetch(API+"/api/wallet/"+userId); const d=await r.json(); document.getElementById('bal').innerText="₹"+(d.balance||0).toFixed(2);}catch(e){} }
+
 render(); loadBal();
 </script>
-</body>
-</html>
+</body></html>
