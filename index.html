@@ -2,117 +2,113 @@
 <html>
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VINOD AVJS ENTERTAINMENT - Real Earning</title>
+<title>VINUJS SUPER</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a12;color:#fff;font-family:Arial}
-header{position:sticky;top:0;z-index:10;background:#10101f;padding:12px;text-align:center;border-bottom:1px solid #2a2a4a}
-.logo{color:#ffcc00;font-weight:900;letter-spacing:1px}
-.bal{margin-top:8px;background:linear-gradient(90deg,#ffcc00,#ffb700);color:#000;display:inline-block;padding:6px 18px;border-radius:20px;font-weight:bold}
-.wallet-box{display:flex;gap:8px;justify-content:center;margin-top:10px}
-.wallet-box button{background:#1f1f3a;color:#fff;border:1px solid #3a3a6a;padding:6px 12px;border-radius:20px;font-size:12px}
-.grid{padding:10px;display:flex;flex-direction:column;gap:8px}
-.card{background:linear-gradient(145deg,#16162a,#121223);border:1px solid #2a2a4a;border-radius:14px;padding:10px;display:flex;align-items:center;gap:10px}
-.card img{width:44px;height:44px;border-radius:10px;background:#fff;object-fit:contain}
-.card .info{flex:1}
-.card .info b{font-size:13px;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
-.card .info small{color:#8a8ab0;font-size:11px}
-.btn{border:none;padding:7px 14px;border-radius:20px;font-weight:800;font-size:11px;letter-spacing:.5px}
-.btn-earn{background:linear-gradient(90deg,#ffcc00,#ff9d00);color:#000}
-.btn-install{background:linear-gradient(90deg,#7c4dff,#4a00e0);color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0e0a1a;color:#fff;padding-bottom:80px}
+.top{background:#18122a;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #2a2345;position:sticky;top:0;z-index:20}
+.logo{display:flex;gap:10px;align-items:center}
+.vj{width:44px;height:44px;background:linear-gradient(135deg,#ff2e8a,#8a4dff);border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px}
+.top h2{font-size:16px;line-height:16px}
+.top h2 span{color:#ff6eb5}
+.top p{font-size:11px;color:#9a90b8}
+.avail{text-align:right}
+.avail small{color:#9a90b8;font-size:10px;display:block}
+.avail b{color:#ffcc00;font-size:18px}
+.main{padding:14px}
+.card-wrap{background:#1a1430;border:1px solid #2e264e;border-radius:20px;padding:14px}
+.title{font-size:22px;font-weight:800;margin-bottom:12px;display:flex;gap:8px;align-items:center}
+.search{background:#0e0a1a;border:1px solid #2e264e;border-radius:14px;padding:12px;display:flex;gap:8px;margin-bottom:14px}
+.search input{background:transparent;border:none;color:#fff;width:100%;outline:none}
+.tabs{display:flex;gap:8px;overflow:auto;padding-bottom:10px}
+.tab{white-space:nowrap;padding:8px 16px;border-radius:20px;background:#201a3a;border:1px solid #3a3260;font-size:13px}
+.tab.active{background:#ff3b8a;border-color:#ff3b8a;color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.app{background:#201a3a;border:1px solid #3a3260;border-radius:16px;padding:12px}
+.app img{width:28px;height:28px;border-radius:6px;background:#fff;margin-bottom:8px}
+.app b{font-size:14px;display:block}
+.app small{color:#8a7fbe;font-size:11px;display:block;margin:2px 0 6px 0}
+.app p{font-size:11px;color:#9a90b8;line-height:13px;height:38px;overflow:hidden}
+.btn{margin-top:10px;width:100%;padding:10px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff2e8a,#8a4dff);color:#fff;font-weight:700}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#18122a;border-top:1px solid #2a2345;display:flex;justify-content:space-around;padding:8px 0}
+.bottom div{text-align:center;font-size:10px;color:#9a90b8}
+.bottom b{display:block;font-size:16px}
 </style>
 </head>
 <body>
-<header>
-<div class="logo">👑 VINOD AVJS ENTERTAINMENT 👑</div>
-<div class="bal" id="balance">₹0.00</div>
-<div class="wallet-box">
-<button onclick="loadBalance()">🔄 Refresh</button>
-<button onclick="withdraw()">💸 Withdraw (Min ₹100)</button>
+<div class="top">
+<div class="logo"><div class="vj">VJ</div><div><h2>VINUJS <span>SUPER</span></h2><p>VINU J S ENTERTAINMENT • Secure Earnings</p></div></div>
+<div class="avail"><small>AVAILABLE</small><b id="bal">₹0.00</b></div>
 </div>
-</header>
 
-<div class="grid" id="appList"></div>
+<div class="main">
+<div class="card-wrap">
+<div class="title">📱 500 Apps</div>
+<div class="search">🔍<input id="search" placeholder="Search apps..." oninput="doSearch()"></div>
+<div class="tabs" id="tabs"></div>
+<div class="grid" id="list"></div>
+</div>
+</div>
+
+<div class="bottom">
+<div onclick="location.reload()"><b>🏠</b>Home</div>
+<div><b>📱</b>Apps</div>
+<div onclick="showEarn()"><b>💰</b>Earn</div>
+<div onclick="doWithdraw()"><b>👛</b>Wallet</div>
+<div><b>👤</b>Login</div>
+</div>
 
 <script>
-const API_BASE = "https://vinu-js-backend.onrender.com"; // <-- Apna Render URL yahan daalo
-const userId = localStorage.getItem('vinod_id') || 'VINOD_'+Date.now();
-localStorage.setItem('vinod_id', userId);
+const API = "https://vinu-js-backend.onrender.com"; // Apna Render URL yahan daalo
+const userId = localStorage.getItem('vj_id') || 'VJ_'+Date.now(); localStorage.setItem('vj_id',userId);
+const CATS = ["All","Entertainment","Shopping","Social","Tools","Finance","Games","Education"];
+let curCat = "All";
+const NAMES = ["Rigi TV","YouTube","Amazon","Flipkart","Instagram","Facebook","Meesho","PhonePe","Paytm","Moj","Josh","Dream11","WinZO","Ludo","Zupee","Kuku FM","ShareChat","Telegram","Whatsapp","Truecaller","JioSaavn","MX Player","Snapchat","Chingari","Roposo","Gaana","Spotify","Hotstar","Netflix","Airtel"];
 
-const APPS_DATA = [
-"Top Rummy","YouTube","JioSaavn","Instagram","Flipkart","Gullak Gold","Meesho","Google Pay","True Balance","ShareChat","MX TakaTak","Moj","Josh","Dream11","WinZO","Ludo King","Zupee","MPL","PhonePe","Paytm","TaskBucks","RozDhan","Google Opinion","VidMate","Snapchat","Telegram","Whatsapp","Facebook","Chingari","Roposo"
-];
-
-function getIcon(name){
-  let domain = name.toLowerCase().replace(/\s+/g,'')+".com";
-  if(name.includes("YouTube")) domain="youtube.com";
-  if(name.includes("Instagram")) domain="instagram.com";
-  if(name.includes("Google Pay")||name.includes("GPay")) domain="pay.google.com";
-  return `https://logo.clearbit.com/${domain}?size=128`;
-}
-
-const FINAL_APPS = [];
-for(let i=0;i<310;i++){
-  let baseName = APPS_DATA[i % APPS_DATA.length];
-  let name = i<30? baseName : baseName+" "+(Math.floor(i/30)+1);
-  let isEarning = i < 14; // Pehle 14 hi Real Earning wale hain
-  FINAL_APPS.push({
-    id:i+1,
-    name:name,
-    cat: isEarning? "Real Earning" : "Install & Earn",
-    icon:getIcon(baseName),
-    reward: isEarning? (i<5? 10 : 3) : 0,
-    network: isEarning? ["admob","facebook","ironsource","unity"][i%4] : "none"
-  });
+let APPS = [];
+for(let i=0;i<500;i++){
+  let n = NAMES[i%NAMES.length] + (i>=NAMES.length? " "+(Math.floor(i/NAMES.length)+1):"");
+  let cat = CATS[1 + (i% (CATS.length-1))];
+  let isEarn = i<20;
+  APPS.push({id:i+1,name:n,cat:cat,icon:`https://logo.clearbit.com/${n.split(' ')[0].toLowerCase()}.com?size=128`, reward:isEarn? (i<5?15:5):0, net:isEarn?"admob":""});
 }
 
 function render(){
-  document.getElementById('appList').innerHTML = FINAL_APPS.map(app=>`
-    <div class="card">
-      <img src="${app.icon}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968764.png'">
-      <div class="info"><b>${app.name}</b><small>${app.cat} • ${app.network.toUpperCase()}</small></div>
-      ${app.reward>0? `<button class="btn btn-earn" onclick="realEarn('${app.network}',${app.reward})">Earn ₹${app.reward}</button>` : `<button class="btn btn-install" onclick="window.open('https://play.google.com/store/search?q=${encodeURIComponent(app.name)}','_blank')">Install</button>`}
+  let tabsH = CATS.map(c=>`<div class="tab ${c===curCat?'active':''}" onclick="filterCat('${c}')">${c}</div>`).join('');
+  document.getElementById('tabs').innerHTML=tabsH;
+  let s = document.getElementById('search').value.toLowerCase();
+  let filtered = APPS.filter(a=> (curCat==="All"||a.cat===curCat) && a.name.toLowerCase().includes(s));
+  document.getElementById('list').innerHTML = filtered.slice(0,100).map(a=>`
+    <div class="app">
+      <img src="${a.icon}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/5968/5968764.png'">
+      <b>${a.name}</b><small>${a.cat}</small>
+      <p>${a.reward>0? 'Watch ad & earn real cash. Verified SSV.' : 'Official destination / discovery. Launching an app does not generate cash.'}</p>
+      ${a.reward>0? `<button class="btn" onclick="earn('${a.net}',${a.reward})">Earn ₹${a.reward} ↗</button>` : `<button class="btn" style="opacity:.8" onclick="window.open('https://play.google.com/store/search?q=${a.name}','_blank')">Open ↗</button>`}
     </div>
   `).join('');
 }
 
-// REAL EARNING SYSTEM - SSV Protected
-async function realEarn(network, reward){
-  if(!confirm(`${network.toUpperCase()} ka 15 sec ad dekho, ₹${reward} milega?`)) return;
-  const signature = `${network}_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-  
-  // Yahan aapka AdMob / Meta ka real ad dikhega
-  // Ad pura dekhne ke baad hi ye call hoga
-  try{
-    const res = await fetch(`${API_BASE}/api/reward/verify`,{
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify({userId, network, reward, signature})
-    });
-    const data = await res.json();
-    if(data.success){ alert(`✅ ₹${data.reward} Wallet me add ho gaya!`); loadBalance(); }
-    else alert("❌ "+data.message);
-  }catch(e){ alert("Server se connect nahi ho raha. Render URL check karo."); }
-}
-
-async function loadBalance(){
-  try{
-    const r = await fetch(`${API_BASE}/api/wallet/${userId}`);
-    const d = await r.json();
-    document.getElementById('balance').innerText = `₹${(d.balance||0).toFixed(2)}`;
-  }catch(e){}
-}
-
-async function withdraw(){
-  const upi = prompt("Apna UPI ID daalo (jaise vinod@okicici):");
-  if(!upi) return;
-  const amt = prompt("Kitna withdraw karna hai? Min ₹100");
-  if(!amt || Number(amt)<100) return alert("Min ₹100");
-  const res = await fetch(`${API_BASE}/api/withdraw`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId, upiId:upi, amount:Number(amt)})});
+async function earn(net, rew){
+  if(!confirm(`${net.toUpperCase()} ka 15 sec ad dekho, ₹${rew} milega?`)) return;
+  const sig = `${net}_${Date.now()}_${Math.random()}`;
+  const res = await fetch(`${API}/api/reward/verify`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,network:net,reward:rew,signature:sig})});
   const d = await res.json();
-  alert(d.message || d.error);
+  if(d.success){ alert(`₹${d.reward} add ho gaya`); loadBal(); } else alert(d.message);
 }
-
-render(); loadBalance();
+async function loadBal(){
+  try{ const r=await fetch(`${API}/api/wallet/${userId}`); const d=await r.json(); document.getElementById('bal').innerText=`₹${(d.balance||0).toFixed(2)}`; }catch(e){}
+}
+function filterCat(c){ curCat=c; render(); }
+function doSearch(){ render(); }
+function showEarn(){ curCat="All"; document.getElementById('search').value=""; filterCat("All"); window.scrollTo(0,0); APPS.sort((a,b)=>b.reward-a.reward); render(); setTimeout(()=>{APPS.sort((a,b)=>a.id-b.id)},2000); }
+async function doWithdraw(){
+  const upi = prompt("UPI ID daalo:");
+  if(!upi) return;
+  const amt = prompt("Amount? Min 100");
+  const r = await fetch(`${API}/api/withdraw`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId,upiId:upi,amount:Number(amt)})});
+  const d = await r.json(); alert(d.message||d.error);
+}
+render(); loadBal();
 </script>
 </body>
 </html>
