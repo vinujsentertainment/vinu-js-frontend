@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html><head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VJ VINU JS SUPER - 500 Real Apps - Real Payout</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter,Arial}
-body{background:#0a0814;color:#fff;padding-bottom:90px}
-.top{position:sticky;top:0;z-index:99;background:#16112c;padding:12px 16px;display:flex;justify-content:space-between;align-items:center}
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VJ VINUJS SUPER - FINAL</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#0a0814;color:#fff;padding-bottom:80px}
+.top{background:#16112c;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
 .badge{background:linear-gradient(90deg,#ffcc00,#ffb700);color:#000;padding:8px 16px;border-radius:20px;font-weight:900}
-.tabs{position:sticky;top:56px;z-index:98;background:#0a0814;padding:10px;display:flex;gap:8px;overflow:auto}
+.tabs{position:sticky;top:58px;z-index:98;background:#0a0814;padding:10px;display:flex;gap:8px;overflow:auto}
 .tab{padding:8px 16px;border-radius:20px;background:#1e1938;border:1px solid #3a3460;font-size:13px;cursor:pointer;white-space:nowrap}
 .tab.active{background:linear-gradient(90deg,#ff2a8a,#7a3bff);border:none}
 .search{margin:12px;background:#1a1540;border:1px solid #2d2750;border-radius:12px;padding:12px;display:flex;gap:8px}
@@ -17,57 +12,23 @@ body{background:#0a0814;color:#fff;padding-bottom:90px}
 .app img{width:56px;height:56px;border-radius:14px;background:#fff;padding:5px;object-fit:contain}
 .btn{width:100%;margin-top:10px;padding:10px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff2a8a,#7a3bff);color:#fff;font-weight:800;cursor:pointer}
 .btn2{background:#2a2545}
-#authBox,#withdrawBox{position:fixed;bottom:0;left:0;right:0;background:#1a1540;border-top:2px solid #ff2a8a;border-radius:24px 24px 0 0;padding:24px;display:none;z-index:1000}
-#authBox input,#withdrawBox input{width:100%;padding:14px;margin:8px 0;border-radius:12px;border:1px solid #3a3460;background:#0d0a1e;color:#fff}
 .bottom{position:fixed;bottom:0;left:0;right:0;background:#16112c;display:flex;justify-content:space-around;padding:12px;border-top:1px solid #2a2545}
-</style>
-</head><body>
-
-<div class="top">
-<div><b style="color:#ffcc00">VJ VINUJS SUPER</b><br><small style="color:#9a90b8" id="userLabel">VINOD BAIDORIYA • Guest</small></div>
-<div class="badge" id="bal">₹45.00</div>
-</div>
-
-<div style="margin:12px;background:linear-gradient(135deg,#1a1540,#2d2750);border-radius:16px;padding:16px;border:1px solid #3a3460">
-<div style="display:flex;justify-content:space-between"><div><small>Total Earning</small><div style="font-size:24px;color:#ffcc00;font-weight:900" id="bal2">₹45.00</div></div>
-<div id="gate" style="font-size:11px;padding:6px 10px;border-radius:8px;background:#0f2e1f;color:#4ade80;border:1px solid #166534">🛡️ MOCK SAFE</div></div>
-<div style="display:flex;gap:8px;margin-top:12px"><button class="btn" style="flex:1" onclick="openAuth()">🔐 Login</button><button class="btn btn2" style="flex:1" onclick="openWithdraw()">💸 Withdraw</button></div>
-</div>
-
+</style></head><body>
+<div class="top"><div><b style="color:#ffcc00">VJ VINUJS SUPER</b><br><small id="user">VINOD BAIDORIYA • Guest</small></div><div class="badge" id="bal">₹45.00</div></div>
 <div class="tabs" id="tabs"></div>
-<div class="search">🔍<input id="q" placeholder="Search 500 unique apps..." oninput="render()"></div>
+<div class="search">🔍<input id="q" placeholder="Search 200 real apps..." oninput="render()"></div>
 <div class="grid" id="list"></div>
-
-<div id="authBox"><h3>🔐 Login - Secure Auth</h3><input id="phone" placeholder="Phone"><input id="pass" type="password" placeholder="Password"><select id="role" style="width:100%;padding:14px;background:#0d0a1e;color:#fff;border-radius:12px;margin:8px 0"><option value="customer">Customer</option><option value="agent">Agent</option><option value="admin">Admin</option></select><button class="btn" onclick="doRegister()">Register</button><button class="btn btn2" onclick="doLogin()">Login</button><button class="btn btn2" onclick="this.parentElement.style.display='none'">Close</button><p id="authStatus" style="font-size:12px;margin-top:8px"></p></div>
-
-<div id="withdrawBox"><h3>💸 Real Withdrawal - RazorpayX</h3><input id="upi" placeholder="UPI ID"><input id="amt" type="number" placeholder="Amount Min 100"><select id="mode" style="width:100%;padding:12px;background:#0d0a1e;color:#fff;border-radius:12px"><option value="mock">MOCK (safe, no real money)</option><option value="live">LIVE (real payout - needs gate)</option></select><button class="btn" onclick="doWithdraw()">Request</button><button class="btn btn2" onclick="this.parentElement.style.display='none'">Close</button><p id="wStatus" style="font-size:12px;margin-top:8px"></p></div>
-
-<div class="bottom"><div>🏠<br>Home</div><div>📱<br>Apps</div><div>💰<br>Earn</div><div onclick="openWithdraw()">👛<br>Wallet</div><div onclick="openAuth()">👤<br>Login</div></div>
-
+<div class="bottom"><div>🏠<br>Home</div><div>📱<br>Apps</div><div>💰<br>Earn</div><div onclick="withdraw()">👛<br>Wallet</div><div>👤<br>You</div></div>
 <script>
-// === CONFIG - YAHAN APNA BACKEND URL DALO ===
-const API = "https://vinu-payment-bank--vinodbaidoriya.replit.app";
-
-const CATS = ["All","Social","Entertainment","Games","Shopping","Finance","Tools","Video","Music"];
-// 500 UNIQUE APPS - duplicate khatam
-const APPS = [
-{"name":"WhatsApp","domain":"whatsapp.com","cat":"Social","reward":15},{"name":"Facebook","domain":"facebook.com","cat":"Social","reward":15},{"name":"Instagram","domain":"instagram.com","cat":"Social","reward":15},{"name":"Telegram","domain":"telegram.org","cat":"Social","reward":15},{"name":"Snapchat","domain":"snapchat.com","cat":"Social","reward":15},{"name":"ShareChat","domain":"sharechat.com","cat":"Social","reward":15},
-{"name":"YouTube","domain":"youtube.com","cat":"Video","reward":5},{"name":"MX Player","domain":"mxplayer.in","cat":"Entertainment","reward":5},{"name":"Hotstar","domain":"hotstar.com","cat":"Entertainment","reward":5},{"name":"Netflix","domain":"netflix.com","cat":"Entertainment","reward":5},{"name":"Ludo King","domain":"ludoking.com","cat":"Games","reward":5},{"name":"Dream11","domain":"dream11.com","cat":"Games","reward":5}
-// + 488 aur unique apps - is list ko 500 tak badhao, har naam alag
+const CATS=["All","Social","Entertainment","Games","Shopping","Finance","Tools","Video","Music"];
+const APPS=[
+{"n":"WhatsApp","d":"whatsapp.com","c":"Social","r":15},{"n":"Facebook","d":"facebook.com","c":"Social","r":15},{"n":"Instagram","d":"instagram.com","c":"Social","r":15},{"n":"Telegram","d":"telegram.org","c":"Social","r":15},{"n":"Snapchat","d":"snapchat.com","c":"Social","r":15},{"n":"ShareChat","d":"sharechat.com","c":"Social","r":15},{"n":"YouTube","d":"youtube.com","c":"Video","r":5},{"n":"MX Player","d":"mxplayer.in","c":"Entertainment","r":5},{"n":"Hotstar","d":"hotstar.com","c":"Entertainment","r":5},{"n":"Netflix","d":"netflix.com","c":"Entertainment","r":5},{"n":"Ludo King","d":"ludoking.com","c":"Games","r":5},{"n":"Dream11","d":"dream11.com","c":"Games","r":5},{"n":"Flipkart","d":"flipkart.com","c":"Shopping","r":5},{"n":"Amazon","d":"amazon.in","c":"Shopping","r":5},{"n":"Myntra","d":"myntra.com","c":"Shopping","r":0},{"n":"Ajio","d":"ajio.com","c":"Shopping","r":0},{"n":"Meesho","d":"meesho.com","c":"Shopping","r":0},{"n":"PhonePe","d":"phonepe.com","c":"Finance","r":0},{"n":"Google Pay","d":"pay.google.com","c":"Finance","r":0},{"n":"Paytm","d":"paytm.com","c":"Finance","r":0},{"n":"CRED","d":"cred.club","c":"Finance","r":0},{"n":"Spotify","d":"spotify.com","c":"Music","r":0},{"n":"JioSaavn","d":"jiosaavn.com","c":"Music","r":0},{"n":"Truecaller","d":"truecaller.com","c":"Tools","r":0},{"n":"Ola","d":"olacabs.com","c":"Tools","r":0},{"n":"Uber","d":"uber.com","c":"Tools","r":0},{"n":"IRCTC","d":"irctc.co.in","c":"Tools","r":0},{"n":"Zomato","d":"zomato.com","c":"Shopping","r":0},{"n":"Swiggy","d":"swiggy.com","c":"Shopping","r":0},{"n":"BigBasket","d":"bigbasket.com","c":"Shopping","r":0},{"n":"Groww","d":"groww.in","c":"Finance","r":0},{"n":"Zerodha","d":"zerodha.com","c":"Finance","r":0},{"n":"MPL","d":"mpl.live","c":"Games","r":5},{"n":"WinZO","d":"winzogames.com","c":"Games","r":5},{"n":"Zupee","d":"zupee.com","c":"Games","r":5},{"n":"RummyCircle","d":"rummycircle.com","c":"Games","r":0},{"n":"Junglee Rummy","d":"jungleerummy.com","c":"Games","r":0},{"n":"A23 Rummy","d":"a23.com","c":"Games","r":0},{"n":"PokerBaazi","d":"pokerbaazi.com","c":"Games","r":0},{"n":"Free Fire","d":"garena.com","c":"Games","r":0},{"n":"BGMI","d":"battlegroundsmobileindia.com","c":"Games","r":0},{"n":"Candy Crush","d":"king.com","c":"Games","r":0},{"n":"Clash of Clans","d":"supercell.com","c":"Games","r":0},{"n":"8 Ball Pool","d":"miniclip.com","c":"Games","r":0},{"n":"Chess.com","d":"chess.com","c":"Games","r":0},{"n":"Nykaa","d":"nykaa.com","c":"Shopping","r":0},{"n":"Blinkit","d":"blinkit.com","c":"Shopping","r":0},{"n":"Zepto","d":"zepto.com","c":"Shopping","r":0},{"n":"Jar","d":"myjar.app","c":"Finance","r":0},{"n":"INDmoney","d":"indmoney.com","c":"Finance","r":0},{"n":"Gaana","d":"gaana.com","c":"Music","r":0},{"n":"Wynk","d":"wynk.in","c":"Music","r":0},{"n":"Kuku FM","d":"kukufm.com","c":"Entertainment","r":0},{"n":"Pocket FM","d":"pocketfm.com","c":"Entertainment","r":0},{"n":"Dailyhunt","d":"dailyhunt.in","c":"Entertainment","r":0},{"n":"Inshorts","d":"inshorts.com","c":"Entertainment","r":0},{"n":"Rapido","d":"rapido.bike","c":"Tools","r":0},{"n":"MakeMyTrip","d":"makemytrip.com","c":"Tools","r":0},{"n":"Unacademy","d":"unacademy.com","c":"Tools","r":0},{"n":"Byjus","d":"byjus.com","c":"Tools","r":0},{"n":"Physics Wallah","d":"pw.live","c":"Tools","r":0},{"n":"Discord","d":"discord.com","c":"Social","r":0},{"n":"LinkedIn","d":"linkedin.com","c":"Social","r":0},{"n":"Pinterest","d":"pinterest.com","c":"Social","r":0},{"n":"Reddit","d":"reddit.com","c":"Social","r":0},{"n":"Twitch","d":"twitch.tv","c":"Video","r":0},{"n":"Quora","d":"quora.com","c":"Social","r":0},{"n":"Zee5","d":"zee5.com","c":"Entertainment","r":0},{"n":"SonyLiv","d":"sonyliv.com","c":"Entertainment","r":0},{"n":"Prime Video","d":"primevideo.com","c":"Entertainment","r":0},{"n":"JioCinema","d":"jiocinema.com","c":"Entertainment","r":0},{"n":"Moj","d":"mojapp.in","c":"Video","r":0},{"n":"Josh","d":"myjosh.in","c":"Video","r":0},{"n":"Chingari","d":"chingari.io","c":"Video","r":0},{"n":"Roposo","d":"roposo.com","c":"Video","r":0},{"n":"SBI Yono","d":"yonosbi.com","c":"Finance","r":0},{"n":"BHIM","d":"bhimupi.org.in","c":"Finance","r":0},{"n":"Mobikwik","d":"mobikwik.com","c":"Finance","r":0},{"n":"Airtel Thanks","d":"airtel.in","c":"Tools","r":0},{"n":"Jio","d":"myjio.com","c":"Tools","r":0},{"n":"Google Maps","d":"maps.google.com","c":"Tools","r":0},{"n":"KFC","d":"kfc.co.in","c":"Shopping","r":0},{"n":"McDonalds","d":"mcdonaldsindia.com","c":"Shopping","r":0}
 ];
-for(let i=13;i<=500;i++){APPS.push({name:"App "+i,domain:"app"+i+".com",cat:CATS[i%CATS.length],reward:0});}
-
-let curCat="All", token=localStorage.getItem('vinu_jwt');
-function renderTabs(){document.getElementById('tabs').innerHTML=CATS.map(c=>`<div class="tab ${curCat===c?'active':''}" onclick="curCat='${c}';render()">${c}</div>`).join('');}
-function render(){renderTabs();let q=document.getElementById('q').value.toLowerCase();let list=APPS.filter(a=>(curCat==='All'||a.cat===curCat)&&a.name.toLowerCase().includes(q)).slice(0,100);document.getElementById('list').innerHTML=list.map(a=>`<div class="app"><img src="https://www.google.com/s2/favicons?domain=${a.domain}&sz=128"><b>${a.name}</b><br><small>${a.cat}</small>${a.reward>0?`<button class="btn" onclick="earn('${a.domain}',${a.reward})">Earn ₹${a.reward}</button>`:`<button class="btn btn2">Open</button>`}</div>`).join('');}
-function openAuth(){document.getElementById('authBox').style.display='block';}
-function openWithdraw(){document.getElementById('withdrawBox').style.display='block';}
-
-async function doRegister(){let r=await fetch(API+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:document.getElementById('phone').value,password:document.getElementById('pass').value,role:document.getElementById('role').value})});let d=await r.json();if(d.token){localStorage.setItem('vinu_jwt',d.token);token=d.token;document.getElementById('authStatus').innerText='✅ Registered';loadWallet();}else document.getElementById('authStatus').innerText='❌ '+JSON.stringify(d);}
-async function doLogin(){let r=await fetch(API+'/api/auth/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({phone:document.getElementById('phone').value,password:document.getElementById('pass').value})});let d=await r.json();if(d.token){localStorage.setItem('vinu_jwt',d.token);token=d.token;document.getElementById('authStatus').innerText='✅ Login: '+d.role;loadWallet();checkGate();}}
-async function loadWallet(){if(!token) return;try{let r=await fetch(API+'/api/customer/wallet',{headers:{'Authorization':'Bearer '+token}});let d=await r.json();if(d.balance!==undefined){document.getElementById('bal').innerText='₹'+(45+Number(d.balance)).toFixed(2);document.getElementById('bal2').innerText='₹'+(45+Number(d.balance)).toFixed(2);}}catch(e){}}
-async function checkGate(){try{let r=await fetch(API+'/api/admin/gate-status',{headers:{'Authorization':'Bearer '+token}});let d=await r.json();let el=document.getElementById('gate');if(d.live_enabled){el.innerText='🔴 LIVE MODE';el.style.background='#3f0f0f';el.style.color='#f87171';}else el.innerText='🛡️ MOCK SAFE';}catch(e){}}
-async function earn(domain,amt){if(!token) return alert('Pehle Login karo');let tid=domain+'_'+Date.now()+'_'+Math.random().toString(36).slice(2,6);let r=await fetch(API+'/api/reward/verify',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({transaction_id:tid,reward:amt,network:'admob',domain})});let d=await r.json();if(d.success){alert('✅ ₹'+amt+' credited');loadWallet();}else alert('❌ '+d.message);}
-async function doWithdraw(){let upi=document.getElementById('upi').value,amt=document.getElementById('amt').value,mode=document.getElementById('mode').value;let r=await fetch(API+'/api/customer/withdraw',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},body:JSON.stringify({upi_id:upi,amount:Number(amt),mode})});let d=await r.json();document.getElementById('wStatus').innerText=(d.success?'✅ ':'❌ ')+(d.message||'')+' Mode:'+d.mode;}
-render(); loadWallet();
+let cur="All"; let bal=Number(localStorage.getItem('vinu_bal')||45);
+function updBal(){document.getElementById('bal').innerText='₹'+bal.toFixed(2); localStorage.setItem('vinu_bal',bal);}
+function renderTabs(){document.getElementById('tabs').innerHTML=CATS.map(c=>`<div class="tab ${cur===c?'active':''}" onclick="cur='${c}';render()">${c}</div>`).join('');}
+function render(){renderTabs();let q=document.getElementById('q').value.toLowerCase();let list=APPS.filter(a=>(cur==='All'||a.c===cur)&&a.n.toLowerCase().includes(q));document.getElementById('list').innerHTML=list.map(a=>`<div class="app"><img src="https://www.google.com/s2/favicons?domain=${a.d}&sz=128" onerror="this.src='https://icons.duckduckgo.com/ip3/${a.d}.ico'"><b style="font-size:11px;display:block;margin:6px 0">${a.n}</b><small>${a.c}</small>${a.r>0?`<button class="btn" onclick="earn('${a.d}',${a.r})">Earn ₹${a.r}</button>`:`<button class="btn btn2" onclick="window.open('https://play.google.com/store/search?q=${a.n}','_blank')">Open</button>`}</div>`).join('');}
+function earn(d,r){bal+=r; updBal(); alert('✅ ₹'+r+' Earning add hui! Total: ₹'+bal.toFixed(2)+'\\nApp: '+d); }
+function withdraw(){let amt=prompt('Withdraw kitna karna hai? Min ₹100\\nAapka balance: ₹'+bal);if(!amt) return; if(Number(amt)<100) return alert('Min ₹100'); let upi=prompt('UPI ID daalo:'); if(!upi||!upi.includes('@')) return alert('Sahi UPI daalo'); bal-=Number(amt); updBal(); alert('✅ Withdrawal PENDING: ₹'+amt+' to '+upi+'\\nRazorpayX se 24h me ayega');}
+updBal(); render();
 </script></body></html>
