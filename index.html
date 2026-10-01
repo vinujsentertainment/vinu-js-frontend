@@ -1,34 +1,109 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VJ VINUJS SUPER - FINAL</title><style>*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}body{background:#0a0814;color:#fff;padding-bottom:80px}
-.top{background:#16112c;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:99}
-.badge{background:linear-gradient(90deg,#ffcc00,#ffb700);color:#000;padding:8px 16px;border-radius:20px;font-weight:900}
-.tabs{position:sticky;top:58px;z-index:98;background:#0a0814;padding:10px;display:flex;gap:8px;overflow:auto}
-.tab{padding:8px 16px;border-radius:20px;background:#1e1938;border:1px solid #3a3460;font-size:13px;cursor:pointer;white-space:nowrap}
-.tab.active{background:linear-gradient(90deg,#ff2a8a,#7a3bff);border:none}
-.search{margin:12px;background:#1a1540;border:1px solid #2d2750;border-radius:12px;padding:12px;display:flex;gap:8px}
-.search input{flex:1;background:transparent;border:none;color:#fff;outline:none}
-.grid{padding:10px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.app{background:#1a1540;border:1px solid #2d2750;border-radius:18px;padding:14px;text-align:center}
-.app img{width:56px;height:56px;border-radius:14px;background:#fff;padding:5px;object-fit:contain}
-.btn{width:100%;margin-top:10px;padding:10px;border:none;border-radius:12px;background:linear-gradient(90deg,#ff2a8a,#7a3bff);color:#fff;font-weight:800;cursor:pointer}
-.btn2{background:#2a2545}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#16112c;display:flex;justify-content:space-around;padding:12px;border-top:1px solid #2a2545}
-</style></head><body>
-<div class="top"><div><b style="color:#ffcc00">VJ VINUJS SUPER</b><br><small id="user">VINOD BAIDORIYA • Guest</small></div><div class="badge" id="bal">₹45.00</div></div>
-<div class="tabs" id="tabs"></div>
-<div class="search">🔍<input id="q" placeholder="Search 200 real apps..." oninput="render()"></div>
-<div class="grid" id="list"></div>
-<div class="bottom"><div>🏠<br>Home</div><div>📱<br>Apps</div><div>💰<br>Earn</div><div onclick="withdraw()">👛<br>Wallet</div><div>👤<br>You</div></div>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VINU Pay - PhonePe Style</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Inter, Arial}
+body{background:#f2f0ff}
+.header{background:#5f259f;padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
+.header b{font-size:18px}
+.balCard{background:#5f259f;color:#fff;margin:0;padding:16px 16px 28px 16px;border-radius:0 0 28px 28px}
+.balBox{background:#fff;color:#000;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 10px 20px rgba(0,0,0,0.15)}
+.badge{background:#ffcc00;padding:6px 12px;border-radius:20px;font-weight:900}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:14px;background:#fff;margin:10px;border-radius:16px}
+.item{text-align:center;font-size:11px;font-weight:600}
+.item div{width:48px;height:48px;border-radius:14px;margin:0 auto 6px auto;display:flex;align-items:center;justify-content:center;font-size:24px}
+.purple{background:#ece3ff} .blue{background:#e0f0ff} .green{background:#dcffe8} .yellow{background:#fff4cc}
+.earnSec{background:#fff;margin:10px;padding:14px;border-radius:16px;border:1px dashed #5f259f}
+.btn{width:100%;padding:12px;background:#5f259f;color:#fff;border:none;border-radius:12px;font-weight:900;margin-top:10px}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #ddd}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <b>VINU Pay</b>
+  <span style="background:#fff;color:#5f259f;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:900">● Secure</span>
+</div>
+
+<div class="balCard">
+  <small style="opacity:0.9">Available Balance • UPI Enabled</small>
+  <h1 style="margin:6px 0 12px 0" id="mainBal">₹45.00</h1>
+  <div class="balBox">
+    <div><small style="color:#666">VINU WALLET</small><br><b id="walletBal">₹45.00</b></div>
+    <div class="badge" id="earnBadge">EARN ₹15</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="item"><div class="purple">💸</div>Send<br>Money</div>
+  <div class="item"><div class="blue">📲</div>Mobile<br>Recharge</div>
+  <div class="item"><div class="green">💡</div>Electricity</div>
+  <div class="item"><div class="yellow">📺</div>DTH</div>
+  <div class="item"><div class="purple">🏦</div>To Bank</div>
+  <div class="item"><div class="blue">📷</div>QR Scan</div>
+  <div class="item"><div class="green">💳</div>Cards</div>
+  <div class="item"><div class="yellow">🎁</div>Offers</div>
+</div>
+
+<div class="earnSec">
+  <b style="color:#5f259f">💰 Real Earning Zone - VINU SUPER</b><br>
+  <small style="color:#555">Ad dekho aur turant wallet me paisa pao. Min Withdraw ₹50</small>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px" id="earnGrid"></div>
+  <button class="btn" onclick="withdraw()">💸 Withdraw to UPI - Min ₹50</button>
+  <input id="upiInput" placeholder="example@upi" style="width:100%;margin-top:10px;padding:10px;border-radius:10px;border:1px solid #ccc">
+</div>
+
+<div style="height:80px"></div>
+<div class="bottom">
+  <span>🏠<br><small>Home</small></span>
+  <span>📊<br><small>History</small></span>
+  <span>💜<br><small>Earn</small></span>
+  <span>👤<br><small>Profile</small></span>
+</div>
+
 <script>
-const CATS=["All","Social","Entertainment","Games","Shopping","Finance","Tools","Video","Music"];
-const APPS=[
-{"n":"WhatsApp","d":"whatsapp.com","c":"Social","r":15},{"n":"Facebook","d":"facebook.com","c":"Social","r":15},{"n":"Instagram","d":"instagram.com","c":"Social","r":15},{"n":"Telegram","d":"telegram.org","c":"Social","r":15},{"n":"Snapchat","d":"snapchat.com","c":"Social","r":15},{"n":"ShareChat","d":"sharechat.com","c":"Social","r":15},{"n":"YouTube","d":"youtube.com","c":"Video","r":5},{"n":"MX Player","d":"mxplayer.in","c":"Entertainment","r":5},{"n":"Hotstar","d":"hotstar.com","c":"Entertainment","r":5},{"n":"Netflix","d":"netflix.com","c":"Entertainment","r":5},{"n":"Ludo King","d":"ludoking.com","c":"Games","r":5},{"n":"Dream11","d":"dream11.com","c":"Games","r":5},{"n":"Flipkart","d":"flipkart.com","c":"Shopping","r":5},{"n":"Amazon","d":"amazon.in","c":"Shopping","r":5},{"n":"Myntra","d":"myntra.com","c":"Shopping","r":0},{"n":"Ajio","d":"ajio.com","c":"Shopping","r":0},{"n":"Meesho","d":"meesho.com","c":"Shopping","r":0},{"n":"PhonePe","d":"phonepe.com","c":"Finance","r":0},{"n":"Google Pay","d":"pay.google.com","c":"Finance","r":0},{"n":"Paytm","d":"paytm.com","c":"Finance","r":0},{"n":"CRED","d":"cred.club","c":"Finance","r":0},{"n":"Spotify","d":"spotify.com","c":"Music","r":0},{"n":"JioSaavn","d":"jiosaavn.com","c":"Music","r":0},{"n":"Truecaller","d":"truecaller.com","c":"Tools","r":0},{"n":"Ola","d":"olacabs.com","c":"Tools","r":0},{"n":"Uber","d":"uber.com","c":"Tools","r":0},{"n":"IRCTC","d":"irctc.co.in","c":"Tools","r":0},{"n":"Zomato","d":"zomato.com","c":"Shopping","r":0},{"n":"Swiggy","d":"swiggy.com","c":"Shopping","r":0},{"n":"BigBasket","d":"bigbasket.com","c":"Shopping","r":0},{"n":"Groww","d":"groww.in","c":"Finance","r":0},{"n":"Zerodha","d":"zerodha.com","c":"Finance","r":0},{"n":"MPL","d":"mpl.live","c":"Games","r":5},{"n":"WinZO","d":"winzogames.com","c":"Games","r":5},{"n":"Zupee","d":"zupee.com","c":"Games","r":5},{"n":"RummyCircle","d":"rummycircle.com","c":"Games","r":0},{"n":"Junglee Rummy","d":"jungleerummy.com","c":"Games","r":0},{"n":"A23 Rummy","d":"a23.com","c":"Games","r":0},{"n":"PokerBaazi","d":"pokerbaazi.com","c":"Games","r":0},{"n":"Free Fire","d":"garena.com","c":"Games","r":0},{"n":"BGMI","d":"battlegroundsmobileindia.com","c":"Games","r":0},{"n":"Candy Crush","d":"king.com","c":"Games","r":0},{"n":"Clash of Clans","d":"supercell.com","c":"Games","r":0},{"n":"8 Ball Pool","d":"miniclip.com","c":"Games","r":0},{"n":"Chess.com","d":"chess.com","c":"Games","r":0},{"n":"Nykaa","d":"nykaa.com","c":"Shopping","r":0},{"n":"Blinkit","d":"blinkit.com","c":"Shopping","r":0},{"n":"Zepto","d":"zepto.com","c":"Shopping","r":0},{"n":"Jar","d":"myjar.app","c":"Finance","r":0},{"n":"INDmoney","d":"indmoney.com","c":"Finance","r":0},{"n":"Gaana","d":"gaana.com","c":"Music","r":0},{"n":"Wynk","d":"wynk.in","c":"Music","r":0},{"n":"Kuku FM","d":"kukufm.com","c":"Entertainment","r":0},{"n":"Pocket FM","d":"pocketfm.com","c":"Entertainment","r":0},{"n":"Dailyhunt","d":"dailyhunt.in","c":"Entertainment","r":0},{"n":"Inshorts","d":"inshorts.com","c":"Entertainment","r":0},{"n":"Rapido","d":"rapido.bike","c":"Tools","r":0},{"n":"MakeMyTrip","d":"makemytrip.com","c":"Tools","r":0},{"n":"Unacademy","d":"unacademy.com","c":"Tools","r":0},{"n":"Byjus","d":"byjus.com","c":"Tools","r":0},{"n":"Physics Wallah","d":"pw.live","c":"Tools","r":0},{"n":"Discord","d":"discord.com","c":"Social","r":0},{"n":"LinkedIn","d":"linkedin.com","c":"Social","r":0},{"n":"Pinterest","d":"pinterest.com","c":"Social","r":0},{"n":"Reddit","d":"reddit.com","c":"Social","r":0},{"n":"Twitch","d":"twitch.tv","c":"Video","r":0},{"n":"Quora","d":"quora.com","c":"Social","r":0},{"n":"Zee5","d":"zee5.com","c":"Entertainment","r":0},{"n":"SonyLiv","d":"sonyliv.com","c":"Entertainment","r":0},{"n":"Prime Video","d":"primevideo.com","c":"Entertainment","r":0},{"n":"JioCinema","d":"jiocinema.com","c":"Entertainment","r":0},{"n":"Moj","d":"mojapp.in","c":"Video","r":0},{"n":"Josh","d":"myjosh.in","c":"Video","r":0},{"n":"Chingari","d":"chingari.io","c":"Video","r":0},{"n":"Roposo","d":"roposo.com","c":"Video","r":0},{"n":"SBI Yono","d":"yonosbi.com","c":"Finance","r":0},{"n":"BHIM","d":"bhimupi.org.in","c":"Finance","r":0},{"n":"Mobikwik","d":"mobikwik.com","c":"Finance","r":0},{"n":"Airtel Thanks","d":"airtel.in","c":"Tools","r":0},{"n":"Jio","d":"myjio.com","c":"Tools","r":0},{"n":"Google Maps","d":"maps.google.com","c":"Tools","r":0},{"n":"KFC","d":"kfc.co.in","c":"Shopping","r":0},{"n":"McDonalds","d":"mcdonaldsindia.com","c":"Shopping","r":0}
+let bal = Number(localStorage.getItem('vinu_phonepe_bal')||45);
+const AD_LINK = "https://www.highperformanceformat.com/31092164";
+
+const OFFERS = [
+  ["WhatsApp","whatsapp.com"],["Facebook","facebook.com"],
+  ["Instagram","instagram.com"],["YouTube","youtube.com"],
+  ["PhonePe","phonepe.com"],["Paytm","paytm.com"],
+  ["Amazon","amazon.in"],["Flipkart","flipkart.com"]
 ];
-let cur="All"; let bal=Number(localStorage.getItem('vinu_bal')||45);
-function updBal(){document.getElementById('bal').innerText='₹'+bal.toFixed(2); localStorage.setItem('vinu_bal',bal);}
-function renderTabs(){document.getElementById('tabs').innerHTML=CATS.map(c=>`<div class="tab ${cur===c?'active':''}" onclick="cur='${c}';render()">${c}</div>`).join('');}
-function render(){renderTabs();let q=document.getElementById('q').value.toLowerCase();let list=APPS.filter(a=>(cur==='All'||a.c===cur)&&a.n.toLowerCase().includes(q));document.getElementById('list').innerHTML=list.map(a=>`<div class="app"><img src="https://www.google.com/s2/favicons?domain=${a.d}&sz=128" onerror="this.src='https://icons.duckduckgo.com/ip3/${a.d}.ico'"><b style="font-size:11px;display:block;margin:6px 0">${a.n}</b><small>${a.c}</small>${a.r>0?`<button class="btn" onclick="earn('${a.d}',${a.r})">Earn ₹${a.r}</button>`:`<button class="btn btn2" onclick="window.open('https://play.google.com/store/search?q=${a.n}','_blank')">Open</button>`}</div>`).join('');}
-function earn(d,r){bal+=r; updBal(); alert('✅ ₹'+r+' Earning add hui! Total: ₹'+bal.toFixed(2)+'\\nApp: '+d); }
-function withdraw(){let amt=prompt('Withdraw kitna karna hai? Min ₹100\\nAapka balance: ₹'+bal);if(!amt) return; if(Number(amt)<100) return alert('Min ₹100'); let upi=prompt('UPI ID daalo:'); if(!upi||!upi.includes('@')) return alert('Sahi UPI daalo'); bal-=Number(amt); updBal(); alert('✅ Withdrawal PENDING: ₹'+amt+' to '+upi+'\\nRazorpayX se 24h me ayega');}
-updBal(); render();
-</script></body></html>
+
+function render(){
+  document.getElementById('mainBal').innerText = '₹'+bal+'.00';
+  document.getElementById('walletBal').innerText = '₹'+bal+'.00';
+  document.getElementById('earnGrid').innerHTML = OFFERS.map(o=>`
+    <div style="background:#f8f5ff;border:1px solid #e6ddff;border-radius:12px;padding:10px;text-align:center">
+      <img src="https://www.google.com/s2/favicons?domain=${o[1]}&sz=128" style="width:36px;height:36px;background:#fff;border-radius:8px;padding:3px"><br>
+      <b style="font-size:12px">${o[0]}</b><br>
+      <button onclick="earn(15,'${o[0]}')" style="margin-top:6px;width:100%;padding:6px;border:none;border-radius:8px;background:#5f259f;color:#fff;font-weight:800;font-size:11px">Earn ₹15</button>
+    </div>
+  `).join('');
+}
+function earn(amt,name){
+  window.open(AD_LINK,'_blank');
+  setTimeout(()=>{
+    bal+=amt;localStorage.setItem('vinu_phonepe_bal',bal);render();
+    alert('✅ ₹'+amt+' Added for '+name+'\nTotal: ₹'+bal);
+  },2500);
+}
+function withdraw(){
+  let upi=document.getElementById('upiInput').value;
+  if(!upi.includes('@')) return alert('Sahi UPI ID daalo');
+  if(bal<50) return alert('Min ₹50 chahiye, abhi ₹'+bal+' hai');
+  alert('Withdrawal Request: ₹'+bal+' to '+upi+'\n24h me RazorpayX se ayega\n(Razorpay Live Mode ON karna padega)');
+  // bal=0;localStorage.setItem('vinu_phonepe_bal',0);render();
+}
+render();
+</script>
+
+<!-- Aapka Adsterra Social Bar -->
+<script src="//pl345813...highperformanceformat.com/xx.js"></script>
+</body>
+</html>
