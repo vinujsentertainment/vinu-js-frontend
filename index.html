@@ -1,115 +1,33 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>VINU Pay</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Inter, Roboto, Arial}
-body{background:#f3f0ff;padding-bottom:90px}
-.header{background:#5f259f;padding:14px 16px;color:#fff;display:flex;justify-content:space-between;align-items:center}
-.balCard{background:#5f259f;color:#fff;padding:10px 16px 26px 16px;border-radius:0 0 28px 28px}
-.balBox{background:#fff;color:#000;border-radius:16px;padding:14px;display:flex;justify-content:space-between;align-items:center;margin-top:12px}
-.badge{background:#ffcc00;padding:7px 14px;border-radius:20px;font-weight:900;font-size:14px}
-.grid{background:#fff;margin:12px;border-radius:20px;padding:12px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.g-item{text-align:center;font-size:11px;font-weight:600;color:#333}
-.g-icon{width:52px;height:52px;border-radius:15px;margin:0 auto 6px auto;display:flex;align-items:center;justify-content:center;font-size:26px}
-.earnWrap{background:#fff;margin:12px;border-radius:20px;padding:14px;border:2px dashed #c9b6ff}
-.earnGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
-.earnCard{background:#f8f5ff;border:1px solid #e9e0ff;border-radius:16px;padding:12px;text-align:center}
-.eBtn{width:100%;margin-top:8px;padding:8px;border:none;border-radius:10px;background:#5f259f;color:#fff;font-weight:800}
-.wBtn{width:100%;padding:14px;background:#5f259f;color:#fff;border:none;border-radius:14px;font-weight:900;font-size:15px;margin-top:14px}
-.upiInp{width:100%;padding:12px;border-radius:12px;border:1px solid #ddd;margin-top:10px}
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;display:flex;justify-content:space-around;padding:10px 0;border-top:1px solid #e5e5e5}
-.bottom div{text-align:center;font-size:12px}
-</style>
-</head>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VINU Pay FIXED</title>
+<style>*{box-sizing:border-box;font-family:Arial}body{margin:0;background:#f3f0ff;padding-bottom:80px}.top{background:#5f259f;color:#fff;padding:14px;display:flex;justify-content:space-between}.card{background:#5f259f;color:#fff;padding:0 16px 20px 16px;border-radius:0 0 25px 25px}.white{background:#fff;color:#000;display:flex;justify-content:space-between;padding:12px;border-radius:14px;margin-top:10px}.grid{background:#fff;margin:12px;padding:12px;border-radius:18px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;text-align:center;font-size:11px}.earn{background:#fff;margin:12px;padding:14px;border-radius:18px;border:2px dashed #a68cff}.eGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.eCard{background:#f8f5ff;padding:10px;border-radius:14px;text-align:center;border:1px solid #e9e0ff}.eBtn{width:100%;padding:8px;background:#5f259f;color:#fff;border:none;border-radius:10px;font-weight:800;margin-top:6px}</style></head>
 <body>
-
-<div class="header">
-  <b>VINU Pay</b>
-  <span style="background:#fff;color:#5f259f;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:900">● Secure</span>
-</div>
-
-<div class="balCard">
-  <small>Available Balance • UPI Enabled</small>
-  <h1 id="mainBal" style="margin:6px 0">₹45.00</h1>
-  <div class="balBox">
-    <div><small style="color:#888">VINU WALLET</small><br><b id="walletBal">₹45.00</b></div>
-    <div class="badge" id="topBadge">EARN ₹15</div>
-  </div>
-</div>
-
-<div class="grid">
-  <div class="g-item"><div class="g-icon" style="background:#e6f8ed">💸</div>Send Money</div>
-  <div class="g-item"><div class="g-icon" style="background:#e3f0ff">📱</div>Mobile Recharge</div>
-  <div class="g-item"><div class="g-icon" style="background:#fff8d6">💡</div>Electricity</div>
-  <div class="g-item"><div class="g-icon" style="background:#e8f0ff">📺</div>DTH</div>
-  <div class="g-item"><div class="g-icon" style="background:#e6e3ff">🏦</div>To Bank</div>
-  <div class="g-item"><div class="g-icon" style="background:#f0f0f0">📷</div>QR Scan</div>
-  <div class="g-item"><div class="g-icon" style="background:#ffefcc">💳</div>Cards</div>
-  <div class="g-item"><div class="g-icon" style="background:#ffe6e6">🎁</div>Offers</div>
-</div>
-
-<div class="earnWrap">
-  <b style="color:#5f259f">💰 Real Earning Zone - VINU SUPER</b><br>
-  <small style="color:#666">Ad dekho aur turant wallet me paisa pao. Min Withdraw ₹50</small>
-  <div class="earnGrid" id="earnGrid"></div>
-  <button class="wBtn" onclick="doWithdraw()">💸 Withdraw to UPI - Min ₹50</button>
-  <input id="upiInput" class="upiInp" placeholder="example@upi - Yahan UPI ID likho">
-</div>
-
-<div class="bottom">
-  <div>🏠<br>Home</div><div>📊<br>History</div><div style="color:#5f259f">💜<br>Earn</div><div>👤<br>Profile</div>
-</div>
-
+<div class="top"><b>VINU Pay - FIXED</b><span style="background:#fff;color:#5f259f;padding:4px 10px;border-radius:12px;font-size:12px">● Working</span></div>
+<div class="card"><small>Available Balance</small><h1 id="b1">₹45.00</h1><div class="white"><div><small>VINU WALLET</small><br><b id="b2">₹45.00</b></div><div style="background:#ffcc00;padding:6px 12px;border-radius:20px;font-weight:900" id="b3">₹45</div></div></div>
+<div class="grid"><div>💸<br>Send</div><div>📱<br>Recharge</div><div>💡<br>Bill</div><div>📺<br>DTH</div></div>
+<div class="earn"><b>Real Earning - Tap to Earn</b><div class="eGrid" id="eg"></div>
+<button onclick="withdraw()" style="width:100%;padding:12px;background:#5f259f;color:#fff;border:none;border-radius:12px;margin-top:12px;font-weight:900">Withdraw - Min ₹50</button>
+<input id="upi" placeholder="UPI ID likho" style="width:100%;padding:10px;margin-top:8px;border-radius:10px;border:1px solid #ccc"></div>
 <script>
-let bal = parseInt(localStorage.getItem('vinu_final_bal') || '45');
-const AD_LINK = "https://www.highperformanceformat.com/31092164";
-
-const APPS = [
-  ["WhatsApp","whatsapp.com"],["Facebook","facebook.com"],
-  ["Instagram","instagram.com"],["YouTube","youtube.com"],
-  ["PhonePe","phonepe.com"],["Paytm","paytm.com"],
-  ["Amazon","amazon.in"],["Flipkart","flipkart.com"]
-];
-
-function refresh(){
-  document.getElementById('mainBal').innerText = '₹'+bal+'.00';
-  document.getElementById('walletBal').innerText = '₹'+bal+'.00';
-  document.getElementById('topBadge').innerText = '₹'+bal;
+let bal = Number(localStorage.getItem('vinu_fix_bal') || 45);
+function showBal(){document.getElementById('b1').innerText='₹'+bal+'.00';document.getElementById('b2').innerText='₹'+bal+'.00';document.getElementById('b3').innerText='₹'+bal;}
+function earn(name){
+  // PEHLE PAISA ADD - 100% kaam karega
+  bal = bal + 15;
+  localStorage.setItem('vinu_fix_bal', bal);
+  showBal();
+  alert('✅ ₹15 Added for '+name+' = Total ₹'+bal);
+  // BAAD ME AD - agar block bhi ho to paise pe asar nahi
+  setTimeout(()=>{ window.open('https://www.highperformanceformat.com/31092164','_blank'); }, 500);
 }
-
-function build(){
-  document.getElementById('earnGrid').innerHTML = APPS.map(a=>`
-    <div class="earnCard">
-      <img src="https://www.google.com/s2/favicons?domain=${a[1]}&sz=128" style="width:42px;height:42px;border-radius:10px;background:#fff;padding:4px"><br>
-      <b style="font-size:13px">${a[0]}</b><br>
-      <button class="eBtn" onclick="earnMoney('${a[0]}')">Earn ₹15</button>
-    </div>
-  `).join('');
-  refresh();
+function withdraw(){
+  let u=document.getElementById('upi').value;
+  if(!u.includes('@')){alert('UPI sahi likho');return;}
+  if(bal<50){alert('₹50 chahiye, abhi ₹'+bal+' hai');return;}
+  alert('Request: ₹'+bal+' to '+u);
 }
-
-function earnMoney(name){
-  // Ad kholo - earning ke liye
-  window.open(AD_LINK, '_blank');
-  // Balance turant add
-  bal += 15;
-  localStorage.setItem('vinu_final_bal', bal);
-  refresh();
-  alert('✅ ₹15 Added for '+name+'\nTotal Balance: ₹'+bal);
-}
-
-function doWithdraw(){
-  let upi = document.getElementById('upiInput').value.trim();
-  if(!upi.includes('@')){ alert('Sahi UPI ID likho jaise vinod@paytm'); return; }
-  if(bal < 50){ alert('Minimum ₹50 chahiye. Abhi ₹'+bal+' hai. Aur 2-3 task karo.'); return; }
-  alert('💸 Withdraw Request Success!\nAmount: ₹'+bal+'\nTo: '+upi+'\n\nAdmin 24 ghante me bhej dega. Razorpay Live Mode ON kar lena.');
-  // bal=0; localStorage.setItem('vinu_final_bal',0); refresh(); // Real me yahan se 0 karna hai
-}
-
-build();
+document.getElementById('eg').innerHTML = ["WhatsApp","Facebook","Instagram","YouTube","PhonePe","Paytm","Amazon","Flipkart"].map(n=>`<div class="eCard"><img src="https://www.google.com/s2/favicons?domain=${n.toLowerCase()}.com&sz=64" style="width:32px"><br><b style="font-size:12px">${n}</b><br><button class="eBtn" onclick="earn('${n}')">Earn ₹15</button></div>`).join('');
+showBal();
+// Test alert ki JS load hua ya nahi
+console.log('VINU Pay Fixed Loaded - Bal:',bal);
 </script>
-</body>
-</html>
+</body></html>
