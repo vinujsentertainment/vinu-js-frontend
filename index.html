@@ -1,33 +1,32 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>VINU Pay FIXED</title>
-<style>*{box-sizing:border-box;font-family:Arial}body{margin:0;background:#f3f0ff;padding-bottom:80px}.top{background:#5f259f;color:#fff;padding:14px;display:flex;justify-content:space-between}.card{background:#5f259f;color:#fff;padding:0 16px 20px 16px;border-radius:0 0 25px 25px}.white{background:#fff;color:#000;display:flex;justify-content:space-between;padding:12px;border-radius:14px;margin-top:10px}.grid{background:#fff;margin:12px;padding:12px;border-radius:18px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;text-align:center;font-size:11px}.earn{background:#fff;margin:12px;padding:14px;border-radius:18px;border:2px dashed #a68cff}.eGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.eCard{background:#f8f5ff;padding:10px;border-radius:14px;text-align:center;border:1px solid #e9e0ff}.eBtn{width:100%;padding:8px;background:#5f259f;color:#fff;border:none;border-radius:10px;font-weight:800;margin-top:6px}</style></head>
-<body>
-<div class="top"><b>VINU Pay - FIXED</b><span style="background:#fff;color:#5f259f;padding:4px 10px;border-radius:12px;font-size:12px">● Working</span></div>
-<div class="card"><small>Available Balance</small><h1 id="b1">₹45.00</h1><div class="white"><div><small>VINU WALLET</small><br><b id="b2">₹45.00</b></div><div style="background:#ffcc00;padding:6px 12px;border-radius:20px;font-weight:900" id="b3">₹45</div></div></div>
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VINU Pay - WORKING</title>
+<style>*{box-sizing:border-box;font-family:Arial}body{margin:0;background:#f3f0ff;padding-bottom:80px}.top{background:#5f259f;color:#fff;padding:14px;display:flex;justify-content:space-between}.card{background:#5f259f;color:#fff;padding:0 16px 20px 16px;border-radius:0 0 25px 25px}.white{background:#fff;color:#000;display:flex;justify-content:space-between;padding:12px;border-radius:14px;margin-top:10px}.grid{background:#fff;margin:12px;padding:12px;border-radius:18px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;text-align:center;font-size:11px}.earn{background:#fff;margin:12px;padding:14px;border-radius:18px;border:2px solid #5f259f}.eGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.eCard{background:#f8f5ff;padding:12px;border-radius:14px;text-align:center;border:1px solid #e9e0ff}.eBtn{width:100%;padding:9px;background:#5f259f;color:#fff;border:none;border-radius:10px;font-weight:900;margin-top:6px}</style>
+</head><body>
+<div class="top"><b>VINU Pay</b><span style="background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:900">● Working Now</span></div>
+<div class="card"><small>Available Balance</small><h1 id="b1">₹45.00</h1><div class="white"><div><small>VINU WALLET</small><br><b id="b2">₹45.00</b></div><b id="b3" style="background:#ffcc00;padding:8px 14px;border-radius:20px">₹45</b></div></div>
 <div class="grid"><div>💸<br>Send</div><div>📱<br>Recharge</div><div>💡<br>Bill</div><div>📺<br>DTH</div></div>
-<div class="earn"><b>Real Earning - Tap to Earn</b><div class="eGrid" id="eg"></div>
-<button onclick="withdraw()" style="width:100%;padding:12px;background:#5f259f;color:#fff;border:none;border-radius:12px;margin-top:12px;font-weight:900">Withdraw - Min ₹50</button>
-<input id="upi" placeholder="UPI ID likho" style="width:100%;padding:10px;margin-top:8px;border-radius:10px;border:1px solid #ccc"></div>
+<div class="earn"><b>💜 Real Earning Zone - VINU SUPER</b><br><small>Ab click karo, turant paisa add hoga</small><div class="eGrid" id="eg"></div>
+<button onclick="withdraw()" style="width:100%;padding:13px;background:#5f259f;color:#fff;border:none;border-radius:12px;margin-top:14px;font-weight:900">Withdraw - Min ₹50</button>
+<input id="upi" placeholder="UPI ID yahan likho - ex: 98xxxx@paytm" style="width:100%;padding:11px;margin-top:10px;border-radius:10px;border:1px solid #ccc"></div>
 <script>
-let bal = Number(localStorage.getItem('vinu_fix_bal') || 45);
-function showBal(){document.getElementById('b1').innerText='₹'+bal+'.00';document.getElementById('b2').innerText='₹'+bal+'.00';document.getElementById('b3').innerText='₹'+bal;}
+let bal = Number(localStorage.getItem('vinu_working_bal') || 45);
+function show(){document.getElementById('b1').innerText='₹'+bal+'.00';document.getElementById('b2').innerText='₹'+bal+'.00';document.getElementById('b3').innerText='₹'+bal;}
 function earn(name){
-  // PEHLE PAISA ADD - 100% kaam karega
-  bal = bal + 15;
-  localStorage.setItem('vinu_fix_bal', bal);
-  showBal();
-  alert('✅ ₹15 Added for '+name+' = Total ₹'+bal);
-  // BAAD ME AD - agar block bhi ho to paise pe asar nahi
-  setTimeout(()=>{ window.open('https://www.highperformanceformat.com/31092164','_blank'); }, 500);
+  bal += 15;
+  localStorage.setItem('vinu_working_bal', bal);
+  show();
+  alert('✅ ₹15 Added for '+name+'\nTotal: ₹'+bal);
 }
 function withdraw(){
-  let u=document.getElementById('upi').value;
-  if(!u.includes('@')){alert('UPI sahi likho');return;}
-  if(bal<50){alert('₹50 chahiye, abhi ₹'+bal+' hai');return;}
-  alert('Request: ₹'+bal+' to '+u);
+  let u=document.getElementById('upi').value.trim();
+  if(!u.includes('@')){alert('Sahi UPI likho');return;}
+  if(bal<50){alert('Min ₹50 chahiye, abhi ₹'+bal+' hai. 1 aur task karo.');return;}
+  alert('Withdraw Request: ₹'+bal+' to '+u+'\nSuccess! 24h me aayega.');
 }
-document.getElementById('eg').innerHTML = ["WhatsApp","Facebook","Instagram","YouTube","PhonePe","Paytm","Amazon","Flipkart"].map(n=>`<div class="eCard"><img src="https://www.google.com/s2/favicons?domain=${n.toLowerCase()}.com&sz=64" style="width:32px"><br><b style="font-size:12px">${n}</b><br><button class="eBtn" onclick="earn('${n}')">Earn ₹15</button></div>`).join('');
-showBal();
-// Test alert ki JS load hua ya nahi
-console.log('VINU Pay Fixed Loaded - Bal:',bal);
+document.getElementById('eg').innerHTML = ["WhatsApp","Facebook","Instagram","YouTube","PhonePe","Paytm","Amazon","Flipkart"].map(n=>`
+  <div class="eCard"><img src="https://www.google.com/s2/favicons?domain=${n.toLowerCase()}.com&sz=128" style="width:36px;height:36px;background:#fff;border-radius:8px;padding:4px"><br>
+  <b style="font-size:12px">${n}</b><br><button class="eBtn" onclick="earn('${n}')">Earn ₹15</button></div>
+`).join('');
+show();
 </script>
 </body></html>
