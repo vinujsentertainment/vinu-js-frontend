@@ -6,54 +6,58 @@
 <title>VINU Pay Real</title>
 <script src="https://pl31192663.profitableratecpm.com/0b/1c/c6/0b1cc6c3e8b9a5a0e0e0e0e0e0e0e0e0.js"></script>
 <style>
-body{margin:0;font-family:Arial;background:#f3f3f3}
-.top{background:#5e21a3;color:#fff;padding:14px;text-align:center;font-weight:bold;position:sticky;top:0}
-.card{background:#5e21a3;color:#fff;padding:18px;border-radius:0 0 20px 20px}
-.w{display:flex;justify-content:space-between;background:#fff;color:#000;padding:12px;border-radius:12px;margin-top:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
-.grid div{background:#fff;padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
-button{width:100%;padding:10px;background:#5e21a3;color:#fff;border:none;border-radius:8px;font-weight:bold}
-input{width:94%;padding:10px;border:1px solid #ccc;border-radius:8px}
+body{margin:0;font-family:Arial;background:#f2f2f2}
+.top{background:#5e21a3;color:#fff;padding:16px;text-align:center;font-weight:bold;font-size:18px}
+.header{background:#5e21a3;color:#fff;padding:20px 20px 30px 20px;border-radius:0 0 24px 24px}
+.card-white{background:#fff;color:#000;padding:14px;border-radius:14px;display:flex;justify-content:space-between;margin-top:15px}
+.card-white b{font-size:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px}
+.item{background:#fff;padding:20px;border-radius:16px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.item b{font-size:17px}
+.btn{width:100%;padding:12px;background:#5e21a3;color:#fff;border:none;border-radius:10px;font-weight:bold;margin-top:12px;font-size:15px;cursor:pointer}
+.withdraw{background:#fff;margin:14px;padding:18px;border-radius:16px}
+input{width:92%;padding:12px;border:1px solid #ccc;border-radius:10px;margin-bottom:12px;font-size:15px}
 </style>
 </head>
 <body>
 <div class="top">VINU PAY - REAL EARNING LIVE</div>
-<div class="card">
-<div>Available Balance</div><h1 id="b1">₹45.00</h1>
-<div class="w"><div>VINU WALLET<br><b id="b2">₹45.00</b></div><div>Total Earned<br><b id="b3">₹500.00</b></div></div>
+<div class="header">
+  <div style="opacity:0.9">Available Balance</div>
+  <h1 style="margin:10px 0 15px 0;font-size:42px" id="b1">₹45.00</h1>
+  <div class="card-white">
+    <div>VINU WALLET<br><b id="b2">₹45.00</b></div>
+    <div style="text-align:right">Total Earned<br><b>₹500.00</b></div>
+  </div>
 </div>
-<div class="grid" id="g"></div>
-<div style="background:#fff;margin:12px;padding:12px;border-radius:12px">
-<h3>Withdraw via UPI</h3>
-<input id="upi" placeholder="UPI ID likho" style="margin-bottom:10px">
-<input id="amt" placeholder="Amount" type="number">
-<button onclick="withdraw()" style="margin-top:10px">Withdraw Now</button>
-<p id="msg"></p>
-</div>
-<script>
-const API = window.location.origin;
-const grid = document.getElementById('g');
-const items = [
- {name:'Daily Check-in',earn:'₹5'},
- {name:'Watch Ad',earn:'₹2'},
- {name:'Play Game',earn:'₹10'},
- {name:'Refer & Earn',earn:'₹50'}
-];
-grid.innerHTML = items.map(i=>`<div><b>${i.name}</b><br><small>${i.earn}</small><br><br><button onclick="earn('${i.name}')">Earn</button></div>`).join('');
 
-async function earn(type){
- alert(type+' - Reward Added!');
- document.getElementById('b1').innerText='₹'+(45+5)+'.00';
+<div class="grid">
+  <div class="item"><b>Daily Check-in</b><br>₹5<br><button class="btn" onclick="earn(5)">Earn</button></div>
+  <div class="item"><b>Watch Ad</b><br>₹2<br><button class="btn" onclick="earn(2)">Earn</button></div>
+  <div class="item"><b>Play Game</b><br>₹10<br><button class="btn" onclick="earn(10)">Earn</button></div>
+  <div class="item"><b>Refer & Earn</b><br>₹50<br><button class="btn" onclick="earn(50)">Earn</button></div>
+</div>
+
+<div class="withdraw">
+  <h3 style="margin-top:0">Withdraw via UPI</h3>
+  <input id="upi" placeholder="UPI ID likho">
+  <input id="amt" placeholder="Amount" type="number">
+  <button class="btn" onclick="withdraw()">Withdraw Now</button>
+  <p id="msg" style="text-align:center;color:green"></p>
+</div>
+
+<script>
+let bal = 45;
+function earn(a){
+  bal += a;
+  document.getElementById('b1').innerText = '₹'+bal+'.00';
+  document.getElementById('b2').innerText = '₹'+bal+'.00';
+  alert('₹'+a+' Added!');
 }
-async function withdraw(){
- const upi=document.getElementById('upi').value;
- const amt=document.getElementById('amt').value;
- if(!upi || !amt){document.getElementById('msg').innerText='UPI & Amount dalo';return;}
- document.getElementById('msg').innerText='Request Sent to '+upi+' for ₹'+amt;
- // API call to your backend
- try{
-  await fetch(API+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({upi,amount:amt})})
- }catch(e){}
+function withdraw(){
+  let u=document.getElementById('upi').value;
+  let amt=document.getElementById('amt').value;
+  if(!u || !amt){document.getElementById('msg').innerText='UPI & Amount bharo';return;}
+  document.getElementById('msg').innerText='Withdraw Request ₹'+amt+' to '+u+' Sent!';
 }
 </script>
 </body>
