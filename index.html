@@ -1,32 +1,42 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>VINU Pay - WORKING</title>
-<style>*{box-sizing:border-box;font-family:Arial}body{margin:0;background:#f3f0ff;padding-bottom:80px}.top{background:#5f259f;color:#fff;padding:14px;display:flex;justify-content:space-between}.card{background:#5f259f;color:#fff;padding:0 16px 20px 16px;border-radius:0 0 25px 25px}.white{background:#fff;color:#000;display:flex;justify-content:space-between;padding:12px;border-radius:14px;margin-top:10px}.grid{background:#fff;margin:12px;padding:12px;border-radius:18px;display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;text-align:center;font-size:11px}.earn{background:#fff;margin:12px;padding:14px;border-radius:18px;border:2px solid #5f259f}.eGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}.eCard{background:#f8f5ff;padding:12px;border-radius:14px;text-align:center;border:1px solid #e9e0ff}.eBtn{width:100%;padding:9px;background:#5f259f;color:#fff;border:none;border-radius:10px;font-weight:900;margin-top:6px}</style>
-</head><body>
-<div class="top"><b>VINU Pay</b><span style="background:#00ff88;color:#000;padding:4px 10px;border-radius:20px;font-size:12px;font-weight:900">● Working Now</span></div>
-<div class="card"><small>Available Balance</small><h1 id="b1">₹45.00</h1><div class="white"><div><small>VINU WALLET</small><br><b id="b2">₹45.00</b></div><b id="b3" style="background:#ffcc00;padding:8px 14px;border-radius:20px">₹45</b></div></div>
-<div class="grid"><div>💸<br>Send</div><div>📱<br>Recharge</div><div>💡<br>Bill</div><div>📺<br>DTH</div></div>
-<div class="earn"><b>💜 Real Earning Zone - VINU SUPER</b><br><small>Ab click karo, turant paisa add hoga</small><div class="eGrid" id="eg"></div>
-<button onclick="withdraw()" style="width:100%;padding:13px;background:#5f259f;color:#fff;border:none;border-radius:12px;margin-top:14px;font-weight:900">Withdraw - Min ₹50</button>
-<input id="upi" placeholder="UPI ID yahan likho - ex: 98xxxx@paytm" style="width:100%;padding:11px;margin-top:10px;border-radius:10px;border:1px solid #ccc"></div>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VINU Pay Real</title>
+<script src="https://pl31192663.profitableratecpmnetwork.com/7b/f3/c7/7bf3c7762088dbb824fb774e8b54345d.js"></script>
+<style>
+body{margin:0;font-family:Arial;background:#f3eeff}.top{background:#5e21a3;color:#fff;padding:14px;font-weight:900;text-align:center}
+.card{background:#5e21a3;color:#fff;padding:18px;border-radius:0 0 24px 24px}.w{background:#fff;color:#000;padding:12px;border-radius:14px;display:flex;justify-content:space-between;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.box{background:#fff;padding:14px;border-radius:14px;text-align:center}
+button{width:100%;padding:10px;background:#5e21a3;color:#fff;border:0;border-radius:10px;font-weight:900}
+</style>
+</head>
+<body>
+<div class="top">VINU PAY - REAL EARNING LIVE</div>
+<div class="card">
+<div>Available Balance</div><h1 id="b1">₹45.00</h1>
+<div class="w"><div>VINU WALLET<br><b id="b2">₹45.00</b></div><b id="b3" style="background:#ffcc00;padding:8px 14px;border-radius:20px">₹45</b></div>
+</div>
+<div class="grid" id="g"></div>
+<div style="background:#fff;margin:12px;padding:14px;border-radius:14px">
+<input id="upi" placeholder="UPI ID likho" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px">
+<button onclick="withd()" style="margin-top:10px;background:#000">Withdraw ₹100 Min</button>
+</div>
 <script>
-let bal = Number(localStorage.getItem('vinu_working_bal') || 45);
-function show(){document.getElementById('b1').innerText='₹'+bal+'.00';document.getElementById('b2').innerText='₹'+bal+'.00';document.getElementById('b3').innerText='₹'+bal;}
-function earn(name){
-  bal += 15;
-  localStorage.setItem('vinu_working_bal', bal);
-  show();
-  alert('✅ ₹15 Added for '+name+'\nTotal: ₹'+bal);
+let bal=Number(localStorage.getItem('vinuReal')||45);
+function show(){b1.innerText='₹'+bal+'.00';b2.innerText='₹'+bal+'.00';b3.innerText='₹'+bal;}
+let link="https://www.profitableratecpmnetwork.com/fjqx7bku6?key=aafc520549b009c41172af26f14180a3";
+function earn(n,e){
+ e.target.innerText="Opening Ad...";
+ window.open(link,"_blank");
+ setTimeout(()=>{bal+=5;localStorage.setItem('vinuReal',bal);show();e.target.innerText="Earn ₹5";alert("₹5 Added for "+n)},7000);
 }
-function withdraw(){
-  let u=document.getElementById('upi').value.trim();
-  if(!u.includes('@')){alert('Sahi UPI likho');return;}
-  if(bal<50){alert('Min ₹50 chahiye, abhi ₹'+bal+' hai. 1 aur task karo.');return;}
-  alert('Withdraw Request: ₹'+bal+' to '+u+'\nSuccess! 24h me aayega.');
+function withd(){
+ let u=upi.value.trim(); if(!u.includes('@')) return alert("Sahi UPI likho");
+ if(bal<100) return alert("Min ₹100 chahiye, abhi ₹"+bal+" hai");
+ alert("Withdraw request: ₹"+bal+" to "+u+" - Saved!");
 }
-document.getElementById('eg').innerHTML = ["WhatsApp","Facebook","Instagram","YouTube","PhonePe","Paytm","Amazon","Flipkart"].map(n=>`
-  <div class="eCard"><img src="https://www.google.com/s2/favicons?domain=${n.toLowerCase()}.com&sz=128" style="width:36px;height:36px;background:#fff;border-radius:8px;padding:4px"><br>
-  <b style="font-size:12px">${n}</b><br><button class="eBtn" onclick="earn('${n}')">Earn ₹15</button></div>
-`).join('');
+g.innerHTML=["WhatsApp","Facebook","Instagram","YouTube","PhonePe","Paytm","Amazon","Flipkart"].map(n=>`<div class="box"><b>${n}</b><br><button onclick="earn('${n}',event)">Earn ₹5</button></div>`).join('');
 show();
 </script>
 </body></html>
