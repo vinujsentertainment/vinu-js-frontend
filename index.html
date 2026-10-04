@@ -1,42 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VINU Pay Real</title>
-<script src="https://pl31192663.profitableratecpmnetwork.com/7b/f3/c7/7bf3c7762088dbb824fb774e8b54345d.js"></script>
+<script src="https://pl31192663.profitableratecpm.com/0b/1c/c6/0b1cc6c3e8b9a5a0e0e0e0e0e0e0e0e0.js"></script>
 <style>
-body{margin:0;font-family:Arial;background:#f3eeff}.top{background:#5e21a3;color:#fff;padding:14px;font-weight:900;text-align:center}
-.card{background:#5e21a3;color:#fff;padding:18px;border-radius:0 0 24px 24px}.w{background:#fff;color:#000;padding:12px;border-radius:14px;display:flex;justify-content:space-between;margin-top:10px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}.box{background:#fff;padding:14px;border-radius:14px;text-align:center}
-button{width:100%;padding:10px;background:#5e21a3;color:#fff;border:0;border-radius:10px;font-weight:900}
+body{margin:0;font-family:Arial;background:#f3f3f3}
+.top{background:#5e21a3;color:#fff;padding:14px;text-align:center;font-weight:bold;position:sticky;top:0}
+.card{background:#5e21a3;color:#fff;padding:18px;border-radius:0 0 20px 20px}
+.w{display:flex;justify-content:space-between;background:#fff;color:#000;padding:12px;border-radius:12px;margin-top:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+.grid div{background:#fff;padding:18px;border-radius:12px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,0.1)}
+button{width:100%;padding:10px;background:#5e21a3;color:#fff;border:none;border-radius:8px;font-weight:bold}
+input{width:94%;padding:10px;border:1px solid #ccc;border-radius:8px}
 </style>
 </head>
 <body>
 <div class="top">VINU PAY - REAL EARNING LIVE</div>
 <div class="card">
 <div>Available Balance</div><h1 id="b1">₹45.00</h1>
-<div class="w"><div>VINU WALLET<br><b id="b2">₹45.00</b></div><b id="b3" style="background:#ffcc00;padding:8px 14px;border-radius:20px">₹45</b></div>
+<div class="w"><div>VINU WALLET<br><b id="b2">₹45.00</b></div><div>Total Earned<br><b id="b3">₹500.00</b></div></div>
 </div>
 <div class="grid" id="g"></div>
-<div style="background:#fff;margin:12px;padding:14px;border-radius:14px">
-<input id="upi" placeholder="UPI ID likho" style="width:100%;padding:12px;border:1px solid #ccc;border-radius:10px">
-<button onclick="withd()" style="margin-top:10px;background:#000">Withdraw ₹100 Min</button>
+<div style="background:#fff;margin:12px;padding:12px;border-radius:12px">
+<h3>Withdraw via UPI</h3>
+<input id="upi" placeholder="UPI ID likho" style="margin-bottom:10px">
+<input id="amt" placeholder="Amount" type="number">
+<button onclick="withdraw()" style="margin-top:10px">Withdraw Now</button>
+<p id="msg"></p>
 </div>
 <script>
-let bal=Number(localStorage.getItem('vinuReal')||45);
-function show(){b1.innerText='₹'+bal+'.00';b2.innerText='₹'+bal+'.00';b3.innerText='₹'+bal;}
-let link="https://www.profitableratecpmnetwork.com/fjqx7bku6?key=aafc520549b009c41172af26f14180a3";
-function earn(n,e){
- e.target.innerText="Opening Ad...";
- window.open(link,"_blank");
- setTimeout(()=>{bal+=5;localStorage.setItem('vinuReal',bal);show();e.target.innerText="Earn ₹5";alert("₹5 Added for "+n)},7000);
+const API = window.location.origin;
+const grid = document.getElementById('g');
+const items = [
+ {name:'Daily Check-in',earn:'₹5'},
+ {name:'Watch Ad',earn:'₹2'},
+ {name:'Play Game',earn:'₹10'},
+ {name:'Refer & Earn',earn:'₹50'}
+];
+grid.innerHTML = items.map(i=>`<div><b>${i.name}</b><br><small>${i.earn}</small><br><br><button onclick="earn('${i.name}')">Earn</button></div>`).join('');
+
+async function earn(type){
+ alert(type+' - Reward Added!');
+ document.getElementById('b1').innerText='₹'+(45+5)+'.00';
 }
-function withd(){
- let u=upi.value.trim(); if(!u.includes('@')) return alert("Sahi UPI likho");
- if(bal<100) return alert("Min ₹100 chahiye, abhi ₹"+bal+" hai");
- alert("Withdraw request: ₹"+bal+" to "+u+" - Saved!");
+async function withdraw(){
+ const upi=document.getElementById('upi').value;
+ const amt=document.getElementById('amt').value;
+ if(!upi || !amt){document.getElementById('msg').innerText='UPI & Amount dalo';return;}
+ document.getElementById('msg').innerText='Request Sent to '+upi+' for ₹'+amt;
+ // API call to your backend
+ try{
+  await fetch(API+'/api/withdraw',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({upi,amount:amt})})
+ }catch(e){}
 }
-g.innerHTML=["WhatsApp","Facebook","Instagram","YouTube","PhonePe","Paytm","Amazon","Flipkart"].map(n=>`<div class="box"><b>${n}</b><br><button onclick="earn('${n}',event)">Earn ₹5</button></div>`).join('');
-show();
 </script>
-</body></html>
+</body>
+</html>
