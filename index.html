@@ -1,400 +1,336 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111827">
+<title>VINOD AVJS ROYAL KING</title>
 
-  <title>VINOD AVJS ROYAL KING</title>
-
-  <meta name="theme-color" content="#111827">
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 18px;
-      background: #0f172a;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: auto;
-    }
-
-    header {
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    header h1 {
-      font-size: 25px;
-      color: #facc15;
-    }
-
-    .card {
-      background: #1e293b;
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 16px;
-      box-shadow: 0 5px 15px #0003;
-    }
-
-    .balance {
-      font-size: 34px;
-      color: #4ade80;
-      font-weight: bold;
-      margin: 12px 0;
-    }
-
-    button {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border: 0;
-      border-radius: 9px;
-      background: #facc15;
-      color: #111827;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
-
-    input {
-      width: 100%;
-      padding: 13px;
-      margin-top: 10px;
-      border-radius: 8px;
-      border: 1px solid #475569;
-      background: #0f172a;
-      color: white;
-      font-size: 16px;
-    }
-
-    .muted {
-      color: #cbd5e1;
-      font-size: 14px;
-      line-height: 1.5;
-    }
-
-    .status {
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-      margin-top: 12px;
-      color: #93c5fd;
-    }
-
-    .item {
-      border-bottom: 1px solid #475569;
-      padding: 12px 0;
-      overflow-wrap: anywhere;
-    }
-
-    a {
-      color: #facc15;
-    }
-  </style>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  padding:16px;
+  background:#0b1020;
+  color:#fff;
+  font-family:Arial,sans-serif
+}
+.container{max-width:520px;margin:auto}
+header{text-align:center;padding:20px 5px}
+header h1{color:#facc15;font-size:25px}
+header p{color:#cbd5e1}
+.card{
+  background:#182238;
+  border:1px solid #34415c;
+  border-radius:17px;
+  padding:18px;
+  margin-bottom:16px
+}
+.card h2{font-size:19px;margin-top:0}
+.balance{font-size:36px;color:#4ade80;font-weight:bold}
+.muted{color:#cbd5e1;font-size:14px;line-height:1.6}
+button{
+  width:100%;
+  padding:13px;
+  margin-top:10px;
+  border:0;
+  border-radius:9px;
+  background:#facc15;
+  color:#111827;
+  font-weight:bold;
+  font-size:15px;
+  cursor:pointer
+}
+button.secondary{background:#334155;color:#fff}
+button:disabled{opacity:.5}
+input{
+  width:100%;
+  padding:13px;
+  margin-top:8px;
+  border:1px solid #475569;
+  border-radius:9px;
+  background:#0b1020;
+  color:white;
+  font-size:16px
+}
+.status{margin-top:12px;color:#93c5fd;overflow-wrap:anywhere}
+.item{padding:12px 0;border-bottom:1px solid #34415c;overflow-wrap:anywhere}
+.badge{color:#facc15}
+footer{text-align:center;color:#94a3b8;font-size:12px;padding:12px}
+</style>
 </head>
 
 <body>
-  <main class="container">
+<main class="container">
 
-    <header>
-      <h1>👑 VINOD AVJS ROYAL KING</h1>
-      <p class="muted">Wallet & Rewards Dashboard</p>
-    </header>
+<header>
+  <h1>👑 VINOD AVJS ROYAL KING</h1>
+  <p>Wallet • Rewards • Dashboard</p>
+</header>
 
-    <section class="card">
-      <h2>👤 आपका अकाउंट</h2>
-      <p class="muted">User ID:</p>
-      <div id="userId">अभी अकाउंट नहीं बना है</div>
+<section class="card">
+  <h2>👤 आपका अकाउंट</h2>
+  <p class="muted">आपकी User ID</p>
+  <div id="userId">अकाउंट लोड हो रहा है...</div>
 
-      <button id="createBtn" onclick="createAccount()">
-        नया अकाउंट बनाएँ
-      </button>
+  <button id="createBtn" onclick="createAccount()">
+    नया अकाउंट बनाएँ
+  </button>
 
-      <button onclick="loadWallet()">
-        बैलेंस अपडेट करें
-      </button>
+  <button class="secondary" onclick="loadWallet()">
+    🔄 बैलेंस अपडेट करें
+  </button>
 
-      <div id="accountStatus" class="status"></div>
-    </section>
+  <div id="accountStatus" class="status"></div>
+</section>
 
-    <section class="card">
-      <h2>💰 आपका वॉलेट</h2>
-      <div class="balance" id="balance">₹0.00</div>
-      <p class="muted">
-        न्यूनतम निकासी: ₹100<br>
-        बैलेंस केवल सत्यापित राजस्व से बढ़ेगा।
-      </p>
-    </section>
+<section class="card">
+  <h2>💰 मेरा वॉलेट</h2>
+  <div class="balance" id="balance">₹0.00</div>
+  <p class="muted">
+    उपलब्ध बैलेंस सर्वर से प्राप्त किया जाता है।
+    विज्ञापन खोलने से सीधे पैसे नहीं जुड़ते।
+  </p>
+</section>
 
-    <section class="card">
-      <h2>💸 Withdrawal Request</h2>
+<section class="card">
+  <h2>📢 विज्ञापन</h2>
+  <p class="muted">
+    विज्ञापन वैकल्पिक हैं। वास्तविक विज्ञापन आय
+    नेटवर्क की रिपोर्ट और सत्यापन पर निर्भर करती है।
+    कृत्रिम या प्रोत्साहित क्लिक न करें।
+  </p>
+  <button onclick="openAd()">विज्ञापन खोलें</button>
+</section>
 
-      <label for="withdrawAmount">राशि (₹)</label>
+<section class="card">
+  <h2>💸 Withdrawal Request</h2>
+  <p class="muted">
+    न्यूनतम निकासी: ₹100
+  </p>
 
-      <input
-        id="withdrawAmount"
-        type="number"
-        min="100"
-        max="1000000"
-        step="1"
-        placeholder="कम से कम ₹100"
-      >
+  <label for="amount">निकासी राशि (₹)</label>
+  <input id="amount" type="number" min="100"
+         max="1000000" step="0.01"
+         placeholder="उदाहरण: 100">
 
-      <button onclick="requestWithdrawal()">
-        Withdrawal Request भेजें
-      </button>
+  <button onclick="withdraw()">Request भेजें</button>
+  <div id="withdrawStatus" class="status"></div>
 
-      <div id="withdrawStatus" class="status"></div>
-    </section>
+  <button class="secondary" onclick="loadWithdrawals()">
+    Withdrawal History देखें
+  </button>
+  <div id="withdrawals"></div>
+</section>
 
-    <section class="card">
-      <h2>📢 विज्ञापन</h2>
+<section class="card">
+  <h2>📜 Transaction History</h2>
+  <div id="transactions" class="muted">
+    अकाउंट लोड होने के बाद जानकारी यहाँ दिखाई देगी।
+  </div>
+</section>
 
-      <p class="muted">
-        विज्ञापन खोलना वैकल्पिक है। केवल विज्ञापन खोलने
-        या क्लिक करने से वॉलेट में पैसे नहीं जुड़ते।
-        विज्ञापन नेटवर्क की नीतियों का पालन करें।
-      </p>
+<footer>
+  VINOD AVJS ROYAL KING<br>
+  कमाई और भुगतान सत्यापित राजस्व तथा लागू शर्तों के अधीन हैं।
+</footer>
 
-      <button onclick="openAdvertisement()">
-        विज्ञापन खोलें
-      </button>
-    </section>
+</main>
 
-    <section class="card">
-      <h2>📜 Transaction History</h2>
-      <div id="transactions" class="muted">
-        अकाउंट बनने के बाद यहाँ जानकारी दिखाई देगी।
-      </div>
-    </section>
+<script>
+"use strict";
 
-    <section class="card">
-      <h2>💳 Withdrawal History</h2>
-      <button onclick="loadWithdrawals()">
-        Withdrawal Status देखें
-      </button>
-      <div id="withdrawals" class="muted"></div>
-    </section>
+// Render Backend
+const API = "https://vinu-js-backend.onrender.com";
 
-    <p class="muted" style="text-align:center">
-      VINOD AVJS ROYAL KING<br>
-      वास्तविक कमाई विज्ञापन नेटवर्क के सत्यापित
-      राजस्व और लागू शर्तों पर निर्भर है।
-    </p>
+// आपकी Adsterra Smartlink
+const AD_URL =
+"https://www.profitableratecpmnetwork.com/fjqx7bku6?key=aafc520549b009c41172af26f14180a3";
 
-  </main>
+const $ = id => document.getElementById(id);
 
-  <script>
-    // Render backend URL
-    const API = "https://vinu-js-backend.onrender.com";
+let userId = localStorage.getItem("royalKingUserId") || "";
 
-    // आपकी दी हुई Smartlink
-    const AD_URL =
-      "https://www.profitableratecpmnetwork.com/fjqx7bku6?key=aafc520549b009c41172af26f14180a3";
+function money(value) {
+  return Number(value).toLocaleString("en-IN", {
+    style: "currency",
+    currency: "INR"
+  });
+}
 
-    let userId = localStorage.getItem("royalKingUserId") || "";
+function message(id, text) {
+  $(id).textContent = text;
+}
 
-    const $ = id => document.getElementById(id);
+async function api(path, options = {}) {
+  const response = await fetch(API + path, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {})
+    }
+  });
 
-    function showStatus(id, message) {
-      $(id).textContent = message;
+  const data = await response.json().catch(() => ({}));
+
+  if (!response.ok) {
+    throw new Error(data.error || "सर्वर से संपर्क नहीं हो सका");
+  }
+
+  return data;
+}
+
+function showAccount() {
+  $("userId").textContent = userId || "अकाउंट नहीं बना है";
+  $("createBtn").disabled = Boolean(userId);
+}
+
+async function createAccount() {
+  if (userId) return;
+
+  $("createBtn").disabled = true;
+  message("accountStatus", "अकाउंट बनाया जा रहा है...");
+
+  try {
+    const data = await api("/api/users", {
+      method: "POST",
+      body: JSON.stringify({})
+    });
+
+    userId = data.userId;
+    localStorage.setItem("royalKingUserId", userId);
+
+    showAccount();
+    message("accountStatus", "अकाउंट सफलतापूर्वक बनाया गया।");
+
+    await loadWallet();
+  } catch (error) {
+    message("accountStatus", error.message);
+    $("createBtn").disabled = false;
+  }
+}
+
+async function loadWallet() {
+  if (!userId) {
+    message("accountStatus", "पहले अकाउंट बनाएँ।");
+    return;
+  }
+
+  try {
+    const data = await api(
+      "/api/wallet/" + encodeURIComponent(userId)
+    );
+
+    $("balance").textContent = money(data.balance);
+
+    const list = $("transactions");
+    list.replaceChildren();
+
+    if (!data.transactions.length) {
+      list.textContent = "अभी कोई लेन-देन नहीं है।";
+      return;
     }
 
-    function formatMoney(value) {
-      return Number(value).toLocaleString("en-IN", {
-        style: "currency",
-        currency: "INR"
-      });
+    data.transactions.forEach(tx => {
+      const item = document.createElement("div");
+      item.className = "item";
+
+      item.textContent =
+        (tx.type === "credit" ? "+ " : "- ") +
+        money(tx.amount) + " | " +
+        tx.source + " | " +
+        new Date(tx.createdAt).toLocaleString("hi-IN");
+
+      list.appendChild(item);
+    });
+  } catch (error) {
+    message("accountStatus", error.message);
+  }
+}
+
+async function withdraw() {
+  if (!userId) {
+    message("withdrawStatus", "पहले अकाउंट बनाएँ।");
+    return;
+  }
+
+  const amount = Number($("amount").value);
+
+  if (!Number.isFinite(amount) ||
+      amount < 100 ||
+      Math.round(amount * 100) !== amount * 100) {
+    message(
+      "withdrawStatus",
+      "₹100 या उससे अधिक की वैध राशि दर्ज करें।"
+    );
+    return;
+  }
+
+  try {
+    const data = await api("/api/withdrawals", {
+      method: "POST",
+      body: JSON.stringify({ userId, amount })
+    });
+
+    message(
+      "withdrawStatus",
+      "Request भेज दी गई। Status: " +
+      data.withdrawal.status +
+      " | ID: " + data.withdrawal.id
+    );
+
+    $("amount").value = "";
+    await loadWithdrawals();
+  } catch (error) {
+    message("withdrawStatus", error.message);
+  }
+}
+
+async function loadWithdrawals() {
+  if (!userId) {
+    message("withdrawStatus", "पहले अकाउंट बनाएँ।");
+    return;
+  }
+
+  try {
+    const data = await api(
+      "/api/withdrawals/" + encodeURIComponent(userId)
+    );
+
+    const list = $("withdrawals");
+    list.replaceChildren();
+
+    if (!data.withdrawals.length) {
+      list.textContent = "कोई Withdrawal Request नहीं है।";
+      return;
     }
 
-    function displayUser() {
-      $("userId").textContent = userId || "अभी अकाउंट नहीं बना है";
-      $("createBtn").disabled = Boolean(userId);
-    }
+    data.withdrawals.forEach(w => {
+      const item = document.createElement("div");
+      item.className = "item";
 
-    async function api(path, options = {}) {
-      const response = await fetch(API + path, {
-        ...options,
-        headers: {
-          "Content-Type": "application/json",
-          ...(options.headers || {})
-        }
-      });
+      item.textContent =
+        "Request #" + w.id + " | " +
+        money(w.amount) + " | Status: " + w.status;
 
-      const data = await response.json().catch(() => ({}));
+      list.appendChild(item);
+    });
+  } catch (error) {
+    message("withdrawStatus", error.message);
+  }
+}
 
-      if (!response.ok) {
-        throw new Error(data.error || "Request failed");
-      }
+function openAd() {
+  if (!AD_URL.startsWith("https://")) return;
 
-      return data;
-    }
+  window.open(AD_URL, "_blank", "noopener,noreferrer");
+}
 
-    async function createAccount() {
-      try {
-        showStatus("accountStatus", "अकाउंट बनाया जा रहा है...");
+showAccount();
 
-        const data = await api("/api/users", {
-          method: "POST",
-          body: JSON.stringify({})
-        });
-
-        userId = data.userId;
-        localStorage.setItem("royalKingUserId", userId);
-
-        displayUser();
-
-        showStatus("accountStatus", "अकाउंट बन गया!");
-
-        await loadWallet();
-      } catch (error) {
-        showStatus("accountStatus", error.message);
-      }
-    }
-
-    async function loadWallet() {
-      if (!userId) {
-        showStatus("accountStatus", "पहले नया अकाउंट बनाएँ।");
-        return;
-      }
-
-      try {
-        const data = await api(
-          "/api/wallet/" + encodeURIComponent(userId)
-        );
-
-        $("balance").textContent = formatMoney(data.balance);
-
-        const list = $("transactions");
-        list.replaceChildren();
-
-        if (!data.transactions.length) {
-          list.textContent = "अभी कोई transaction नहीं है।";
-          return;
-        }
-
-        data.transactions.forEach(tx => {
-          const item = document.createElement("div");
-          item.className = "item";
-
-          item.textContent =
-            (tx.type === "credit" ? "+ " : "- ") +
-            formatMoney(tx.amount) +
-            " | " + tx.source +
-            " | " + tx.createdAt;
-
-          list.appendChild(item);
-        });
-      } catch (error) {
-        showStatus("accountStatus", error.message);
-      }
-    }
-
-    async function requestWithdrawal() {
-      if (!userId) {
-        showStatus("withdrawStatus", "पहले अकाउंट बनाएँ।");
-        return;
-      }
-
-      const amount = Number($("withdrawAmount").value);
-
-      if (!Number.isFinite(amount) || amount < 100) {
-        showStatus(
-          "withdrawStatus",
-          "न्यूनतम Withdrawal ₹100 है।"
-        );
-        return;
-      }
-
-      try {
-        const data = await api("/api/withdrawals", {
-          method: "POST",
-          body: JSON.stringify({
-            userId,
-            amount
-          })
-        });
-
-        showStatus(
-          "withdrawStatus",
-          "Request भेज दी गई। Status: " +
-          data.withdrawal.status +
-          " | Request ID: " + data.withdrawal.id
-        );
-
-        $("withdrawAmount").value = "";
-
-        await loadWithdrawals();
-      } catch (error) {
-        showStatus("withdrawStatus", error.message);
-      }
-    }
-
-    async function loadWithdrawals() {
-      if (!userId) {
-        showStatus("withdrawStatus", "पहले अकाउंट बनाएँ।");
-        return;
-      }
-
-      try {
-        const data = await api(
-          "/api/withdrawals/" + encodeURIComponent(userId)
-        );
-
-        const list = $("withdrawals");
-        list.replaceChildren();
-
-        if (!data.withdrawals.length) {
-          list.textContent = "अभी कोई Withdrawal Request नहीं है।";
-          return;
-        }
-
-        data.withdrawals.forEach(w => {
-          const item = document.createElement("div");
-          item.className = "item";
-
-          item.textContent =
-            "Request #" + w.id +
-            " | " + formatMoney(w.amount) +
-            " | Status: " + w.status;
-
-          list.appendChild(item);
-        });
-      } catch (error) {
-        showStatus("withdrawStatus", error.message);
-      }
-    }
-
-    function openAdvertisement() {
-      const confirmed = confirm(
-        "आप विज्ञापन वेबसाइट खोलने जा रहे हैं। " +
-        "विज्ञापन खोलने से सीधे वॉलेट में पैसे नहीं जुड़ेंगे। " +
-        "क्या आगे बढ़ना चाहते हैं?"
-      );
-
-      if (!confirmed) return;
-
-      window.open(AD_URL, "_blank", "noopener,noreferrer");
-    }
-
-    displayUser();
-
-    if (userId) {
-      loadWallet();
-    }
-  </script>
+if (userId) {
+  loadWallet();
+}
+</script>
 </body>
 </html>
