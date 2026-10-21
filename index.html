@@ -1,336 +1,304 @@
-<!DOCTYPE html>
-<html lang="hi">
+<!DOCTYPE html><html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#111827">
-<title>VINOD AVJS ROYAL KING</title>
-
-<style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  padding:16px;
-  background:#0b1020;
-  color:#fff;
-  font-family:Arial,sans-serif
+<meta name="theme-color" content="#07152f">
+<title>VINOD AVJS ROYAL KING</title><style>
+:root {
+  --bg: #07152f;
+  --panel: #102449;
+  --gold: #ffd36a;
+  --text: #ffffff;
+  --muted: #b8c6df;
 }
-.container{max-width:520px;margin:auto}
-header{text-align:center;padding:20px 5px}
-header h1{color:#facc15;font-size:25px}
-header p{color:#cbd5e1}
-.card{
-  background:#182238;
-  border:1px solid #34415c;
-  border-radius:17px;
-  padding:18px;
-  margin-bottom:16px
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
 }
-.card h2{font-size:19px;margin-top:0}
-.balance{font-size:36px;color:#4ade80;font-weight:bold}
-.muted{color:#cbd5e1;font-size:14px;line-height:1.6}
-button{
-  width:100%;
-  padding:13px;
-  margin-top:10px;
-  border:0;
-  border-radius:9px;
-  background:#facc15;
-  color:#111827;
-  font-weight:bold;
-  font-size:15px;
-  cursor:pointer
+header {
+  text-align: center;
+  padding: 25px 12px;
+  background: linear-gradient(135deg,#061027,#173d70);
+  border-bottom: 2px solid var(--gold);
 }
-button.secondary{background:#334155;color:#fff}
-button:disabled{opacity:.5}
-input{
-  width:100%;
-  padding:13px;
-  margin-top:8px;
-  border:1px solid #475569;
-  border-radius:9px;
-  background:#0b1020;
-  color:white;
-  font-size:16px
+.logo {
+  font-size: 42px;
+  margin-bottom: 8px;
 }
-.status{margin-top:12px;color:#93c5fd;overflow-wrap:anywhere}
-.item{padding:12px 0;border-bottom:1px solid #34415c;overflow-wrap:anywhere}
-.badge{color:#facc15}
-footer{text-align:center;color:#94a3b8;font-size:12px;padding:12px}
-</style>
-</head>
-
-<body>
-<main class="container">
-
+h1 {
+  color: var(--gold);
+  font-size: 23px;
+  margin: 5px 0;
+}
+header p { color: var(--muted); }
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 16px;
+}
+.card {
+  background: var(--panel);
+  border: 1px solid #284570;
+  border-radius: 15px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+h2 {
+  font-size: 19px;
+  color: var(--gold);
+}
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 9px;
+  border: 1px solid #60789e;
+  margin: 6px 0;
+  font-size: 15px;
+}
+input, select {
+  background: #081832;
+  color: white;
+}
+button {
+  background: var(--gold);
+  color: #17233c;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+.categories {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.categories button {
+  width: auto;
+  padding: 9px 12px;
+}
+.apps {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 12px;
+}
+.app {
+  background: #0a1b38;
+  border: 1px solid #35517d;
+  border-radius: 12px;
+  padding: 13px;
+  text-align: center;
+}
+.app-icon { font-size: 30px; }
+.app h3 { font-size: 15px; }
+.app p { color: var(--muted); font-size: 12px; }
+.app a {
+  display: block;
+  background: var(--gold);
+  color: #102040;
+  padding: 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+.small { color: var(--muted); font-size: 12px; }
+#message { overflow-wrap: anywhere; }
+footer {
+  text-align: center;
+  color: var(--muted);
+  padding: 22px 10px;
+}
+@media(min-width:600px) {
+  .apps { grid-template-columns: repeat(4,minmax(0,1fr)); }
+}
+</style></head><body>
 <header>
-  <h1>👑 VINOD AVJS ROYAL KING</h1>
-  <p>Wallet • Rewards • Dashboard</p>
-</header>
-
-<section class="card">
-  <h2>👤 आपका अकाउंट</h2>
-  <p class="muted">आपकी User ID</p>
-  <div id="userId">अकाउंट लोड हो रहा है...</div>
-
-  <button id="createBtn" onclick="createAccount()">
-    नया अकाउंट बनाएँ
-  </button>
-
-  <button class="secondary" onclick="loadWallet()">
-    🔄 बैलेंस अपडेट करें
-  </button>
-
-  <div id="accountStatus" class="status"></div>
-</section>
-
-<section class="card">
-  <h2>💰 मेरा वॉलेट</h2>
-  <div class="balance" id="balance">₹0.00</div>
-  <p class="muted">
-    उपलब्ध बैलेंस सर्वर से प्राप्त किया जाता है।
-    विज्ञापन खोलने से सीधे पैसे नहीं जुड़ते।
+  <div class="logo">👑</div>
+  <h1>VINOD AVJS ROYAL KING</h1>
+  <p>Apps Directory • Royal Experience</p>
+</header><main class="container"><section class="card">
+  <h2>🔐 Create Account</h2>
+  <form id="registerForm">
+    <input id="name" placeholder="आपका नाम" required minlength="2"
+      maxlength="80">
+    <input id="email" type="email" placeholder="Email Address" required>
+    <input id="password" type="password"
+      placeholder="Password (कम से कम 10 अक्षर)"
+      required minlength="10" maxlength="200">
+    <button type="submit">Register</button>
+  </form>
+  <p id="message" class="small" aria-live="polite"></p>
+  <p class="small">
+    यह शुरुआती रजिस्ट्रेशन इंटरफेस है। सुरक्षित Login और Session
+    लागू होने तक इसे वास्तविक वित्तीय खाते के रूप में इस्तेमाल न करें।
   </p>
-</section>
-
-<section class="card">
-  <h2>📢 विज्ञापन</h2>
-  <p class="muted">
-    विज्ञापन वैकल्पिक हैं। वास्तविक विज्ञापन आय
-    नेटवर्क की रिपोर्ट और सत्यापन पर निर्भर करती है।
-    कृत्रिम या प्रोत्साहित क्लिक न करें।
+</section><section class="card">
+  <h2>💰 My Wallet</h2>
+  <p>बैलेंस: <strong id="balance">₹0.00</strong></p>
+  <p class="small">
+    वास्तविक बैलेंस दिखाने के लिए प्रमाणित Login और Backend Wallet API
+    आवश्यक हैं। विज्ञापन क्लिक करने से पैसे अपने आप नहीं जुड़ते।
   </p>
-  <button onclick="openAd()">विज्ञापन खोलें</button>
-</section>
-
-<section class="card">
-  <h2>💸 Withdrawal Request</h2>
-  <p class="muted">
-    न्यूनतम निकासी: ₹100
+  <button disabled>Withdraw — ₹100 Minimum</button>
+</section><section class="card">
+  <h2>🔎 ऐप खोजें</h2>
+  <input id="search" placeholder="ऐप का नाम खोजें...">
+  <div id="categories" class="categories"></div>
+</section><section class="card">
+  <h2>📱 Apps Directory</h2>
+  <p class="small">
+    ऐप खोलने पर संबंधित आधिकारिक वेबसाइट या उपलब्ध स्टोर लिंक पर जाएँ।
   </p>
-
-  <label for="amount">निकासी राशि (₹)</label>
-  <input id="amount" type="number" min="100"
-         max="1000000" step="0.01"
-         placeholder="उदाहरण: 100">
-
-  <button onclick="withdraw()">Request भेजें</button>
-  <div id="withdrawStatus" class="status"></div>
-
-  <button class="secondary" onclick="loadWithdrawals()">
-    Withdrawal History देखें
-  </button>
-  <div id="withdrawals"></div>
-</section>
-
-<section class="card">
-  <h2>📜 Transaction History</h2>
-  <div id="transactions" class="muted">
-    अकाउंट लोड होने के बाद जानकारी यहाँ दिखाई देगी।
-  </div>
-</section>
-
-<footer>
-  VINOD AVJS ROYAL KING<br>
-  कमाई और भुगतान सत्यापित राजस्व तथा लागू शर्तों के अधीन हैं।
-</footer>
-
-</main>
-
-<script>
-"use strict";
-
-// Render Backend
+  <div id="apps" class="apps"></div>
+</section></main><footer>
+  © 2026 VINOD AVJS ROYAL KING
+  <p>कमाई विज्ञापन नेटवर्क की वास्तविक स्वीकृत आय पर निर्भर है।</p>
+</footer><script>
 const API = "https://vinu-js-backend.onrender.com";
 
-// आपकी Adsterra Smartlink
-const AD_URL =
-"https://www.profitableratecpmnetwork.com/fjqx7bku6?key=aafc520549b009c41172af26f14180a3";
+const categories = {
+  "All": "सभी",
+  "Social": "सोशल मीडिया",
+  "Video": "वीडियो",
+  "Messaging": "मैसेजिंग",
+  "Payments": "पेमेंट",
+  "Shopping": "शॉपिंग",
+  "Food": "फूड",
+  "Education": "शिक्षा",
+  "Travel": "यात्रा",
+  "Utilities": "उपयोगी ऐप"
+};
 
-const $ = id => document.getElementById(id);
+const apps = [
+  ["WhatsApp","Social","💬","https://www.whatsapp.com/"],
+  ["Facebook","Social","📘","https://www.facebook.com/"],
+  ["Instagram","Social","📸","https://www.instagram.com/"],
+  ["Telegram","Messaging","✈️","https://telegram.org/"],
+  ["YouTube","Video","▶️","https://www.youtube.com/"],
+  ["Google Pay","Payments","💳","https://pay.google.com/"],
+  ["PhonePe","Payments","💜","https://www.phonepe.com/"],
+  ["Paytm","Payments","💰","https://paytm.com/"],
+  ["Amazon India","Shopping","📦","https://www.amazon.in/"],
+  ["Flipkart","Shopping","🛍️","https://www.flipkart.com/"],
+  ["Meesho","Shopping","🛒","https://www.meesho.com/"],
+  ["Swiggy","Food","🍔","https://www.swiggy.com/"],
+  ["Zomato","Food","🍕","https://www.zomato.com/"],
+  ["Google","Utilities","🔎","https://www.google.com/"],
+  ["Google Maps","Travel","🗺️","https://maps.google.com/"],
+  ["Google Drive","Utilities","☁️","https://drive.google.com/"],
+  ["Gmail","Utilities","✉️","https://mail.google.com/"],
+  ["Wikipedia","Education","📚","https://www.wikipedia.org/"],
+  ["Google Translate","Education","🌐","https://translate.google.com/"],
+  ["Google Play","Utilities","▶️","https://play.google.com/store"]
+];
 
-let userId = localStorage.getItem("royalKingUserId") || "";
+let selectedCategory = "All";
 
-function money(value) {
-  return Number(value).toLocaleString("en-IN", {
-    style: "currency",
-    currency: "INR"
+function renderCategories() {
+  const root = document.getElementById("categories");
+  root.replaceChildren();
+
+  Object.entries(categories).forEach(([key, label]) => {
+    const button = document.createElement("button");
+    button.textContent = label;
+    button.onclick = () => {
+      selectedCategory = key;
+      renderApps();
+    };
+    root.appendChild(button);
   });
 }
 
-function message(id, text) {
-  $(id).textContent = text;
-}
+function renderApps() {
+  const root = document.getElementById("apps");
+  const query = document.getElementById("search").value
+    .trim().toLowerCase();
 
-async function api(path, options = {}) {
-  const response = await fetch(API + path, {
-    ...options,
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {})
-    }
+  root.replaceChildren();
+
+  const filtered = apps.filter(app =>
+    (selectedCategory === "All" || app[1] === selectedCategory) &&
+    app[0].toLowerCase().includes(query)
+  );
+
+  filtered.forEach(([name, category, icon, url]) => {
+    const card = document.createElement("article");
+    card.className = "app";
+
+    const emoji = document.createElement("div");
+    emoji.className = "app-icon";
+    emoji.textContent = icon;
+
+    const title = document.createElement("h3");
+    title.textContent = name;
+
+    const description = document.createElement("p");
+    description.textContent = categories[category];
+
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    link.textContent = "Open App";
+
+    card.append(emoji, title, description, link);
+    root.appendChild(card);
   });
 
-  const data = await response.json().catch(() => ({}));
-
-  if (!response.ok) {
-    throw new Error(data.error || "सर्वर से संपर्क नहीं हो सका");
-  }
-
-  return data;
-}
-
-function showAccount() {
-  $("userId").textContent = userId || "अकाउंट नहीं बना है";
-  $("createBtn").disabled = Boolean(userId);
-}
-
-async function createAccount() {
-  if (userId) return;
-
-  $("createBtn").disabled = true;
-  message("accountStatus", "अकाउंट बनाया जा रहा है...");
-
-  try {
-    const data = await api("/api/users", {
-      method: "POST",
-      body: JSON.stringify({})
-    });
-
-    userId = data.userId;
-    localStorage.setItem("royalKingUserId", userId);
-
-    showAccount();
-    message("accountStatus", "अकाउंट सफलतापूर्वक बनाया गया।");
-
-    await loadWallet();
-  } catch (error) {
-    message("accountStatus", error.message);
-    $("createBtn").disabled = false;
+  if (!filtered.length) {
+    root.textContent = "कोई ऐप नहीं मिला।";
   }
 }
 
-async function loadWallet() {
-  if (!userId) {
-    message("accountStatus", "पहले अकाउंट बनाएँ।");
-    return;
-  }
+document.getElementById("search").addEventListener("input", renderApps);
 
-  try {
-    const data = await api(
-      "/api/wallet/" + encodeURIComponent(userId)
-    );
+document.getElementById("registerForm").addEventListener(
+  "submit",
+  async event => {
+    event.preventDefault();
 
-    $("balance").textContent = money(data.balance);
+    const message = document.getElementById("message");
+    const button = event.submitter;
+    button.disabled = true;
+    message.textContent = "Registration हो रहा है...";
 
-    const list = $("transactions");
-    list.replaceChildren();
+    try {
+      const response = await fetch(`${API}/api/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: document.getElementById("name").value.trim(),
+          email: document.getElementById("email").value.trim(),
+          password: document.getElementById("password").value
+        })
+      });
 
-    if (!data.transactions.length) {
-      list.textContent = "अभी कोई लेन-देन नहीं है।";
-      return;
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Registration असफल रहा");
+      }
+
+      message.textContent =
+        `Account बन गया। User ID: ${data.user.id}. सुरक्षित Login अभी लागू करना बाकी है।`;
+
+      event.target.reset();
+    } catch (error) {
+      message.textContent = error.message === "Failed to fetch"
+        ? "Backend उपलब्ध नहीं है। Render Deployment और CORS जाँचें।"
+        : error.message;
+    } finally {
+      button.disabled = false;
     }
-
-    data.transactions.forEach(tx => {
-      const item = document.createElement("div");
-      item.className = "item";
-
-      item.textContent =
-        (tx.type === "credit" ? "+ " : "- ") +
-        money(tx.amount) + " | " +
-        tx.source + " | " +
-        new Date(tx.createdAt).toLocaleString("hi-IN");
-
-      list.appendChild(item);
-    });
-  } catch (error) {
-    message("accountStatus", error.message);
   }
-}
+);
 
-async function withdraw() {
-  if (!userId) {
-    message("withdrawStatus", "पहले अकाउंट बनाएँ।");
-    return;
-  }
-
-  const amount = Number($("amount").value);
-
-  if (!Number.isFinite(amount) ||
-      amount < 100 ||
-      Math.round(amount * 100) !== amount * 100) {
-    message(
-      "withdrawStatus",
-      "₹100 या उससे अधिक की वैध राशि दर्ज करें।"
-    );
-    return;
-  }
-
-  try {
-    const data = await api("/api/withdrawals", {
-      method: "POST",
-      body: JSON.stringify({ userId, amount })
-    });
-
-    message(
-      "withdrawStatus",
-      "Request भेज दी गई। Status: " +
-      data.withdrawal.status +
-      " | ID: " + data.withdrawal.id
-    );
-
-    $("amount").value = "";
-    await loadWithdrawals();
-  } catch (error) {
-    message("withdrawStatus", error.message);
-  }
-}
-
-async function loadWithdrawals() {
-  if (!userId) {
-    message("withdrawStatus", "पहले अकाउंट बनाएँ।");
-    return;
-  }
-
-  try {
-    const data = await api(
-      "/api/withdrawals/" + encodeURIComponent(userId)
-    );
-
-    const list = $("withdrawals");
-    list.replaceChildren();
-
-    if (!data.withdrawals.length) {
-      list.textContent = "कोई Withdrawal Request नहीं है।";
-      return;
-    }
-
-    data.withdrawals.forEach(w => {
-      const item = document.createElement("div");
-      item.className = "item";
-
-      item.textContent =
-        "Request #" + w.id + " | " +
-        money(w.amount) + " | Status: " + w.status;
-
-      list.appendChild(item);
-    });
-  } catch (error) {
-    message("withdrawStatus", error.message);
-  }
-}
-
-function openAd() {
-  if (!AD_URL.startsWith("https://")) return;
-
-  window.open(AD_URL, "_blank", "noopener,noreferrer");
-}
-
-showAccount();
-
-if (userId) {
-  loadWallet();
-}
-</script>
-</body>
+renderCategories();
+renderApps();
+</script></body>
 </html>
